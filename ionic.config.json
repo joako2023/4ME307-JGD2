@@ -1,0 +1,7 @@
+{
+  "name": "SD-Administrador",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
