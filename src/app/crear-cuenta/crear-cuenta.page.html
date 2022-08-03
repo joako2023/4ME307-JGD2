@@ -1,0 +1,55 @@
+<ion-content>
+  <main class="mainBody">
+    <form [formGroup]="formCreateAccount" (ngSubmit)="onCreate()">
+
+      <label for="userName">Nombre Usuario</label>
+      <input type="text" id="userName"  formControlName="userName" required>
+      <div *ngIf=" form.userName.invalid && (form.userName.dirty || form.userName.touched)">
+        <small>El nombre de usuario es obligatorio</small>
+      </div>
+
+      <label for="email">Correo electrónico</label>
+      <input type="email" id="email" formControlName="email" required>
+      <div *ngIf="form.email.invalid && (form.email.dirty || form.email.touched)">
+        <small *ngIf="form.email.errors.required">
+          La direcci&oacute;n de correo electr&oacute;nico es obligatoria
+        </small>
+        <small *ngIf="form.email.errors.email">
+          por favor ingresar una direcci&oacute;n de correo electr&oacute;nico v&aacute;lida
+        </small>
+      </div>
+
+      <label for="password" >Contraseña</label>
+      <input type="password" id="password" formControlName="password" required>
+      <div *ngIf="form.password.invalid && (form.password.dirty || form.password.touched)">
+        <small *ngIf="form.password.errors.required">
+          La contrase&ntilde;a es obligatoria
+        </small>
+        <small *ngIf="form.password.errors.minlength">
+          La contrase&ntilde;a debe un m&iacute;nimo de 8 caracteres
+        </small>
+      </div>
+
+      <label for="passwordConfirm">Confirmar Contraseña</label>
+      <input type="password" id="passwordConfirm" formControlName="passwordConfirm" required>
+      
+      <div>
+        <small *ngIf="!validateEqualsPass()">
+          La confirmaci&oacute;n debe coincidir con la contrase&ntilde;a
+        </small>
+      </div>
+
+      <ion-item id="checkbox-container" lines="none">
+        <ion-checkbox formControlName="terms"></ion-checkbox>
+        <ion-label class="ion-margin">Aceptar los <a href="" style="color:#e76d3e;" >t&eacute;rminos y condiciones</a></ion-label>
+      </ion-item>
+
+      <button class="darkP botonSubmit" >Continuar</button>
+
+      <div id="create-account-container">
+        <label >¿Ya tienes una cuenta? <a routerLink="/login" style="color:#e76d3e;">Iniciar Sesión</a></label>
+      </div>
+
+    </form>
+  </main>
+</ion-content>

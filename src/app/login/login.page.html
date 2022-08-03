@@ -1,0 +1,24 @@
+<ion-content>
+  <main class="mainBody">
+    <form [formGroup]="formularioLogin" (ngSubmit)="login();">
+      <label for="username">Correo electrónico</label>
+      <input type="username" id="username" formControlName="username" required>
+      <div class="erroresValidacion" *ngIf="form.username.invalid && (form.username.dirty || form.username.touched)">
+        <small *ngIf="form.username.errors.required">Tu direcci&oacute;n de correo electr&oacute;nico es obligatorio</small>
+        <small *ngIf="form.username.errors.username">Debes introducir una direcci&oacute;n de correo electr&oacute;nico v&aacute;lida</small>
+      </div>
+      <label for="password">Contraseña</label>
+      <input type="password" id="password" formControlName="password" required>
+      <div class="erroresValidacion" *ngIf="form.password.invalid && (form.password.dirty || form.password.touched)">
+        <small *ngIf="form.password.errors.required">La contrase&ntilde;a es obligatoria</small>
+        <small *ngIf="form.password.errors.minlength">Las contrase&ntilde;as en este sistema tienen un m&iacute;nimo de 8 caracteres</small>
+      </div>
+
+      <button class="darkP botonSubmit" [disabled]="formularioLogin.invalid">Ingresar</button>
+
+      <div id="create-account-container">
+        <label >¿No estas registrado? <a routerLink="/crear-cuenta" style="color:#e76d3e;">Crear cuenta</a></label>
+      </div>
+   </form>
+  </main>
+</ion-content>

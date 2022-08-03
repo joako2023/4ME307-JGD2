@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar mode="ios" slots="primary">
     <ion-title>
-      Tab 1
+      Administrador
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,26 +12,120 @@
       <ion-title size="large">Tab 1</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-card mode="ios">
-    <img src="https://cdn.pixabay.com/photo/2022/06/25/23/41/ladybug-7284337_960_720.jpg" />
-    <ion-card-header>
-      <ion-card-title><strong>Catalogo de clientes</strong></ion-card-title>
-      <ion-card-subtitle><ion-button routerLink="../tab2" size="medium" style="width: 20%;" >
-        <ion-icon name="arrow-forward-circle-outline" color="dark"></ion-icon>
-      </ion-button></ion-card-subtitle>
-    </ion-card-header>
-  </ion-card>
+  
   <ion-grid>
-    <ion-row>
-      <ion-col size="4"></ion-col>
-      <ion-col size="4"></ion-col>
-      <ion-col size="4"></ion-col>
-      <ion-col size="4"></ion-col>
-      <ion-col size="4"></ion-col>
-      <ion-col size="4"></ion-col>
-      <ion-col size="4"></ion-col>
-      <ion-col size="4"></ion-col>
-      <ion-col size="4"></ion-col>
+    <ion-row class="ion-justify-content-center" >
+      <ion-col class="ion-margin" size="3">
+        <ion-card mode="ios">
+        <img class="img-crop-fluid" src="https://img.freepik.com/vector-gratis/gente-comiendo-sano-haciendo-ejercicio-regularmente_53876-64671.jpg?w=360" />
+        <ion-card-header>
+          <ion-card-subtitle>
+            <ion-item>
+              <strong>Catalogo de clientes</strong>
+              <ion-button shape="round" routerLink="/catalogo-clientes" slot="end">
+              <ion-icon name="arrow-forward-circle-outline" color="dark" ></ion-icon>
+            </ion-button>
+          </ion-item>
+            </ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+      <ion-col class="ion-margin" size="3">
+        <ion-card mode="ios">
+          <img class="img-crop-fluid" src="https://ideasfrescas.com.mx/wp-content/uploads/2020/06/big-data-pymes-2.jpg" />
+          <ion-card-header>
+            <ion-card-subtitle>
+              <ion-item>
+                <strong>Modulo analiticas</strong>
+                <ion-button shape="round" routerLink="/analiticas"  slot="end">
+                <ion-icon name="arrow-forward-circle-outline" color="dark" ></ion-icon>
+              </ion-button>
+            </ion-item>
+              </ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col class="ion-margin" size="3">
+        <ion-card mode="ios">
+          <img class="img-crop-fluid" src="https://i.pinimg.com/originals/c9/3a/9e/c93a9e7fe39d46b5ad65785ae3ffed11.jpg" />
+          <ion-card-header>
+            <ion-card-subtitle>
+              <ion-item>
+                <strong>smae</strong>
+                <ion-button shape="round" routerLink="/smae" slot="end">
+                <ion-icon name="arrow-forward-circle-outline" color="dark" ></ion-icon>
+              </ion-button>
+            </ion-item>
+              </ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col class="ion-margin" size="3">
+        <ion-card mode="ios">
+          <img class="img-crop-fluid" src="https://img.freepik.com/vector-gratis/metodos-pago_1085-813.jpg" />
+          <ion-card-header>
+            <ion-card-subtitle>
+              <ion-item>
+                <strong>control ppd</strong>
+                <ion-button shape="round" routerLink="/control-pagos"  slot="end">
+                <ion-icon name="arrow-forward-circle-outline" color="dark" ></ion-icon>
+              </ion-button>
+            </ion-item>
+              </ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+
+      </ion-col>
+      <ion-col class="ion-margin" size="3">
+
+        <ion-card mode="ios">
+          <img class="img-crop-fluid" src="https://thumbs.dreamstime.com/b/paquete-de-papel-comida-dibujos-animados-eco-bolsa-con-pan-fresco-deliciosas-verduras-y-frutas-vino-tinto-vector-mercado-compras-213081746.jpg" />
+          <ion-card-header>
+            <ion-card-subtitle>
+              <ion-item>
+                <strong>Libreria de alimentos</strong>
+                <ion-button shape="round" routerLink="/libreria-alimentos" slot="end">
+                <ion-icon name="arrow-forward-circle-outline" color="dark" ></ion-icon>
+              </ion-button>
+            </ion-item>
+              </ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+
+      </ion-col>
+      <ion-col class="ion-margin"  size="3">
+        <ion-card mode="ios">
+          <img class="img-crop-fluid" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2sxmSo4yGmOys_gtgXfczgT4PH5EJPJoimw&usqp=CAU" />
+          <ion-card-header>
+            <ion-card-subtitle>
+              <ion-item>
+                <strong>alimentos sugeridos</strong>
+                <ion-button shape="round" routerLink="/alimentos-sugeridos" slot="end">
+                <ion-icon name="arrow-forward-circle-outline" color="dark" ></ion-icon>
+              </ion-button>
+            </ion-item>
+              </ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col class="ion-margin" size="3" offset-md="3.4">
+        <ion-card mode="ios">
+          <img class="img-crop-fluid" src="https://img2.freepng.es/20180430/ghw/kisspng-food-balance-wheel-eating-portuguese-cuisine-nutri-mimosa-vector-5ae77929039139.1970602615251192730146.jpg" />
+          <ion-card-header>
+            <ion-card-subtitle>
+              <ion-item>
+                <strong>tabla de equivalencias</strong>
+                <ion-button shape="round" routerLink="/tabla-equivalencias" slot="end">
+                <ion-icon name="arrow-forward-circle-outline" color="dark" ></ion-icon>
+              </ion-button>
+            </ion-item>
+              </ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+
+      </ion-col>
+      <ion-col class="ion-margin" size="3"></ion-col>
+      <ion-col class="ion-margin" size="3"></ion-col>
     </ion-row>
   </ion-grid>
   

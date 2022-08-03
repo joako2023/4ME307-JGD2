@@ -1,10 +1,226 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-back-button></ion-back-button>
+  <ion-toolbar mode="ios" slots="primary">
+    <ion-back-button slot="end"></ion-back-button>
     <ion-title>catalogo-clientes</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+  <ion-item lines="none">
+    <ion-searchbar placeholder="Buscar clientes" debounce="300" (ionChange)="search($event.target.value)">
+    </ion-searchbar>
+
+    <ion-buttons>
+      <ion-button (click)="verModalRegistro(registro)">
+        <ion-icon sise="large" name="person-add-outline"></ion-icon>
+      </ion-button>
+      <ion-button (click)="exportToExcel()" slot="end">
+        <ion-icon name="download-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+
+  </ion-item>
+
+
+  <ion-list>
+    <ng-container *ngFor="let nutriologo of listaNutriologos">
+
+      <ion-item lines="none">
+        <ion-item button (click)="verModal(modal, nutriologo)" *ngIf="nutriologo.nombre!=null">
+          <ion-label>{{nutriologo.nombre}} {{ nutriologo.apellido}}</ion-label>
+
+        </ion-item>
+
+        <ion-buttons slot="end">
+          <ion-button (click)="presentAlert(nutriologo.id)">
+
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+
+        </ion-buttons>
+      </ion-item>
+
+
+    </ng-container>
+
+
+  </ion-list>
+ 
+
+
+
 </ion-content>
+
+<ion-modal #modal trigger="open-modal" mode="ios">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Editar</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="modal.dismiss()">
+            <ion-icon name="close-circle-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <form #formEdit [formGroup]="formUploadNutriologo">
+        <ion-list lines="full" class="ion-no-margin">
+
+          <ion-item>
+            <ion-label position="stacked">identificacion</ion-label>
+            <ion-input placeholder="identificacion" formControlName="id" id="inputId"> </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked"> nombre </ion-label>
+            <ion-input placeholder="nombres" formControlName="nombre"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked"> apellido </ion-label>
+            <ion-input placeholder="apellido" formControlName="apellido"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked"> telefono </ion-label>
+            <ion-input placeholder="telefono" formControlName="telefono"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked"> email </ion-label>
+            <ion-input placeholder="email" formControlName="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked"> tipoPago </ion-label>
+            <ion-input placeholder="tipoPago" formControlName="tipoPago"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked"> acercaDeMi </ion-label>
+            <ion-input placeholder="acerca de mi" formControlName="acercaDeMi"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked"> experiencia </ion-label>
+            <ion-input placeholder="experiencia" formControlName="experiencia"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked"> especialidad </ion-label>
+            <ion-input placeholder="especialidad" formControlName="especialidad"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked"> enfermedades Tratadas </ion-label>
+            <ion-input placeholder="enfermedades Tratadas" formControlName="enfermedadesTratadas"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked"> id Establecimiento </ion-label>
+            <ion-input placeholder="id Establecimiento" formControlName="idEstablecimiento"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked"> Imagen </ion-label>
+            <ion-input placeholder="Imagen" formControlName="Imagen"></ion-input>
+          </ion-item>
+
+
+        </ion-list>
+
+      </form>
+
+
+
+
+    </ion-content>
+    <form [formGroup]="formUploadNutriologo" (ngSubmit)="editarNutriologo()">
+      <ion-item>
+        <ion-buttons slot="end">
+          <ion-button type="submit" (click)="modal.dismiss()">
+            <ion-icon size="large" name="cloud-upload-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </form>
+
+  </ng-template>
+</ion-modal>
+
+<ion-modal #registro trigger="open-modal" mode="ios">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Agregar</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="registro.dismiss()">
+            <ion-icon name="close-circle-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <form [formGroup]="formUploadNutriologo">
+        <ion-list lines="full" class="ion-no-margin">
+          <ion-item>
+            <ion-label position="stacked">identificacion</ion-label>
+            <ion-input placeholder="identificacion" formControlName="identificacion"> </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked"> nombre </ion-label>
+            <ion-input placeholder="nombres" formControlName="nombre"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked"> apellido </ion-label>
+            <ion-input placeholder="apellido" formControlName="apellido"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked"> telefono </ion-label>
+            <ion-input placeholder="telefono" formControlName="telefono"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked"> email </ion-label>
+            <ion-input placeholder="email" formControlName="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked"> tipoPago </ion-label>
+            <ion-input placeholder="tipoPago" formControlName="tipoPago"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked"> acercaDeMi </ion-label>
+            <ion-input placeholder="acerca de mi" formControlName="acercaDeMi"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked"> experiencia </ion-label>
+            <ion-input placeholder="experiencia" formControlName="experiencia"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked"> especialidad </ion-label>
+            <ion-input placeholder="especialidad" formControlName="especialidad"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked"> enfermedades Tratadas </ion-label>
+            <ion-input placeholder="enfermedades Tratadas" formControlName="enfermedadesTratadas"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked"> id Establecimiento </ion-label>
+            <ion-input placeholder="id Establecimiento" formControlName="idEstablecimiento"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked"> Imagen </ion-label>
+            <ion-input placeholder="Imagen" formControlName="Imagen"></ion-input>
+          </ion-item>
+
+        </ion-list>
+      </form>
+    </ion-content>
+    <form [formGroup]="formUploadNutriologo" (ngSubmit)="guardarNutriologo()">
+      <ion-item>
+
+        <ion-buttons slot="end">
+          <ion-button type="submit" (click)="registro.dismiss()">
+            <ion-icon size="large" name="cloud-upload-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+
+      </ion-item>
+    </form>
+  </ng-template>
+</ion-modal>

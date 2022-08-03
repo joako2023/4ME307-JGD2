@@ -24,3 +24,1068 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+
+*{
+
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    outline: none;
+}
+.tab-selected{
+    color: #e98900 !important;
+}
+hr{
+    width: 100%;
+    height: 5px;
+    border-radius: 50px;
+    background-color: #e86e3f;
+    margin: 10px 0px;
+}
+label:not(.labelFlex){
+   padding-left: 25px;
+}
+.itemIon{
+    margin: 10px 0px;
+    --padding-start: 0px !important;
+}
+.itemIonList{
+    --padding-start: 0px !important;
+}
+::-webkit-scrollbar:not(.slide) {
+ /* Tamaño del scroll en horizontal */
+    display: none;  /* Ocultar scroll */
+}
+.contFlex{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contFlex .contItem{
+    text-align: center;
+    width: 100%;
+    height: auto;
+    padding: 1%;
+    margin: 2%;
+}
+.contBtn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contBtn button{
+    text-shadow: 3px 3px 5px rgba(150, 150, 150, 0.48);
+    background-color: #e98900;
+    color: white;
+    width: auto;
+    padding: 7px 20px;
+    border-radius: 50px;
+    margin: 0px 0px 20px;
+    font-size: 12pt;
+}
+ion-checkbox{
+    --background-checked: #e98900;
+    --border-color-checked: #e86e3f;
+}
+ion-radio{
+    --color-checked: #e98900;
+}
+.modalGraficas .modal-wrapper{
+    --height: 50vh;
+    bottom: 0px;
+    position: fixed;
+    border-radius: 10px 10px 0px 0px;
+}
+.modalRegistro .modal-wrapper{
+    --height: 65vh;
+    bottom: 0px;
+    position: fixed;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.graph-detail-modal .modal-wrapper {
+  width: 100%;
+  height: 100%;
+  --background: white;
+}
+
+input{
+    width: 100%;
+    margin: 10px 0px;
+    min-height: 35px;
+    border-radius: 50px;
+    background-color: #ecc560;
+    color: black;
+    padding-left: 15px;
+    border: 0px;
+}
+
+cdk-virtual-scroll-viewport {
+  height: 100%;
+  width: 100%;
+}
+
+
+ion-content{
+    --background: white url('./assets/fondo.jpg') bottom no-repeat;
+}
+.custom-loader {
+  --height: 20vh;
+  --width: 20vw;
+  --background: white !important;
+}
+.titBtn button{
+ width: auto;
+ padding: 8px 15px;
+ border-radius: 50px;
+    background-color: #e86e3f;
+    color: white;
+    font-size: 12pt;
+}
+.imgRegistroPaciente{
+    width: 60%;
+    margin: 0px 20%;
+}
+
+
+ion-toast {
+    --background: #e86e3f;
+    --height:40px;
+    --min-height: 40px;
+    --padding-bottom: 35px;
+
+  }
+
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #222222;
+    border-radius: 15px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ecc560;
+
+  }
+
+
+
+
+  ion-item {
+    --inner-border-width: 0px;
+    --border-width:0px;
+    border: 0px;
+    background-color: transparent;
+  }
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    ion-content .mainBody{
+        width: 90%;
+        height: auto;
+        margin: auto;
+        padding-top: 20px;
+        margin-bottom: 20px !important;
+    }
+    ion-header .main{
+        width: 95%;
+        margin: auto;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+
+
+    }
+    ion-header p{
+        width: 90%;
+        margin-right: auto;
+
+
+    }
+    ion-header  button{
+        background-color: transparent;
+        color: #222;
+        font-size: 20pt;
+        width: auto;
+        height: auto;
+    }
+    form{
+        width: 100%;
+        margin: 35px 0px;
+    }
+    form input{
+        width: 100%;
+        margin: 10px 0px;
+        min-height: 35px;
+        border-radius: 50px;
+        background-color: #ecc560;
+        color: black;
+        padding-left: 15px;
+        border: 0px;
+    } form textarea{
+        width: 100%;
+        margin: 10px 0px;
+        min-height: 35px;
+        border-radius: 10px;
+        background-color: #ecc560;
+        color: black;
+        padding: 15px;
+        border: 0px;
+    }
+
+    .modal-comida .modal-wrapper {
+        width: 70%;
+        height: 50%;
+        padding: 10px;
+    }
+
+    .modal-lugar .modal-wrapper {
+        width: 70%;
+        height: 50%;
+        padding: 10px;
+    }
+
+
+
+    .modal-preparaaliment .modal-wrapper {
+        width: 70%;
+        height: 60%;
+        padding: 10px;
+    }
+
+    .mainBody {
+        width: 80%;
+    }
+
+    .botons {
+        width: 10%;
+        height: 5rem;
+        align-items: center;
+        z-index: 999 !important;
+        display: flex;
+        position: fixed;
+        justify-content: center;
+        margin-top: 14rem;
+
+    }
+
+    .botons .left {
+        background-color: rgb(175, 175, 175);
+        border-radius: 5px;
+        width: 1.5rem;
+        opacity: 35%;
+        height: 5rem;
+        font-size: 16pt;
+
+
+    }
+
+    .botonz {
+        width: 10%;
+        height: 5rem;
+        align-items: center;
+        z-index: 999 !important;
+        display: flex;
+        margin-left: 90%;
+        position: fixed;
+        justify-content: center;
+        margin-top: 14rem;
+    }
+
+    .botonz .right {
+        background-color: rgb(175, 175, 175);
+        border-radius: 5px;
+        width: 1.5rem;
+        opacity: 100% !important;
+        height: 5rem;
+        font-size: 16pt;
+    }
+
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    ion-content .mainBody{
+        width: 90%;
+        height: auto;
+        margin: auto;
+        padding-top: 20px;
+        margin-bottom: 30px !important;
+    }
+    ion-header{
+        width: 100%;
+        height: auto !important;
+        z-index: 9999 !important;
+
+    }
+    ion-header .main{
+        width: 95%;
+        margin: auto;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+        padding: 15px 0px;
+
+    }
+    ion-header p{
+        width: 90%;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-size: 13pt;
+        margin-right: auto;
+
+
+    }
+    ion-header  button{
+        cursor: pointer;
+        background-color: transparent;
+        color: #222;
+        font-size: 18pt;
+        width: auto;
+        height: auto;
+        border: 0px;
+        outline: 0px;
+    }
+    form{
+        width: 100%;
+        margin: 35px 0px;
+    }
+    form input{
+        width: 100%;
+        margin: 10px 0px;
+        min-height: 35px;
+        border-radius: 50px;
+        background-color: #ffe2af;
+        color: black;
+        padding-left: 15px;
+        border: 0px;
+    }
+    form textarea{
+        width: 100%;
+        margin: 10px 0px;
+        min-height: 35px;
+        border-radius: 10px;
+        background-color: #ecc560;
+        color: black;
+        padding: 15px;
+        border: 0px;
+    }
+
+    .modal-comida .modal-wrapper {
+        width: 70%;
+        height: 50%;
+        padding: 10px;
+    }
+
+    .modal-lugar .modal-wrapper {
+        width: 70%;
+        height: 50%;
+        padding: 10px;
+    }
+
+    .modal-preparaaliment .modal-wrapper {
+        width: 70%;
+        height: 60%;
+        padding: 10px;
+    }
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    ion-content .mainBody{
+        width: 70%;
+        height: auto;
+        margin: auto;
+        padding-top: 20px;
+        margin-bottom: 30px !important;
+    }
+    ion-header{
+        width: 100%;
+        height: auto !important;
+        z-index: 9999 !important;
+
+    }
+    ion-header .main{
+        width: 95%;
+        margin: auto;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+        padding: 15px 0px;
+
+    }
+    ion-header p{
+        width: 90%;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-size: 13pt;
+        margin-right: auto;
+
+
+    }
+    ion-header  button{
+        cursor: pointer;
+        background-color: transparent;
+        color: #222;
+        font-size: 18pt;
+        width: auto;
+        height: auto;
+        border: 0px;
+        outline: 0px;
+    }
+    form{
+        width: 100%;
+        margin: 35px 0px;
+    }
+    form input{
+        width: 100%;
+        margin: 10px 0px;
+        min-height: 35px;
+        border-radius: 50px;
+        background-color: #ffe2af;
+        color: black;
+        padding-left: 15px;
+        border: 0px;
+    }
+    form textarea{
+        width: 100%;
+        margin: 10px 0px;
+        min-height: 35px;
+        border-radius: 10px;
+        background-color: #ecc560;
+        color: black;
+        padding: 15px;
+        border: 0px;
+    }
+
+    .modal-comida .modal-wrapper {
+        width: 50%;
+        height: 40%;
+        padding: 10px;
+    }
+
+
+    .modal-lugar .modal-wrapper {
+        width: 50%;
+        height: 40%;
+        padding: 10px;
+    }
+
+
+    .modal-preparaaliment .modal-wrapper {
+        width: 50%;
+        height: 40%;
+        padding: 10px;
+    }
+
+
+    .mainBody {
+        width: 80%;
+    }
+
+    .botons {
+        width: 10%;
+        height: 5rem;
+        align-items: center;
+        z-index: 999 !important;
+        display: flex;
+        position: fixed;
+        justify-content: center;
+        margin-top: 24rem;
+
+    }
+
+    .botons .left {
+        background-color: rgb(175, 175, 175);
+        border-radius: 5px;
+        width: 3.5rem;
+        opacity: 55%;
+        height: 5rem;
+        font-size: 18pt;
+
+
+    }
+
+    .botonz {
+        width: 10%;
+        height: 5rem;
+        align-items: center;
+        z-index: 999 !important;
+        display: flex;
+        margin-left: 90%;
+        position: fixed;
+        justify-content: center;
+        margin-top: 24rem;
+    }
+
+    .botonz .right {
+        background-color: rgb(175, 175, 175);
+        border-radius: 5px;
+        width: 3.5rem;
+        opacity: 100% !important;
+        height: 5rem;
+        font-size: 18pt;
+    }
+
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    ion-content .mainBody{
+        width: 70%;
+        height: auto;
+        margin: auto;
+        padding-top: 20px;
+        margin-bottom: 30px !important;
+    }
+    ion-header{
+        width: 100%;
+        height: auto !important;
+        z-index: 9999 !important;
+    }
+    ion-header .main{
+        width: 95%;
+        margin: auto;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+        padding: 15px 0px;
+
+    }
+    ion-header p{
+        width: 90%;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-size: 13pt;
+        margin-right: auto;
+
+
+    }
+    ion-header  button{
+        cursor: pointer;
+        background-color: transparent;
+        color: #222;
+        font-size: 18pt;
+        width: auto;
+        height: auto;
+        border: 0px;
+        outline: 0px;
+    }
+    form{
+        width: 100%;
+        margin: 35px 0px;
+    }
+    form input{
+        width: 100%;
+        margin: 10px 0px;
+        min-height: 35px;
+        border-radius: 50px;
+        background-color: #ffe2af;
+        color: black;
+        padding-left: 15px;
+        border: 0px;
+    }
+    form textarea{
+        width: 100%;
+        margin: 10px 0px;
+        min-height: 35px;
+        border-radius: 10px;
+        background-color: #ecc560;
+        color: black;
+        padding: 15px;
+        border: 0px;
+    }
+
+    .modal-comida .modal-wrapper {
+        width: 30%;
+        height: 60%;
+        padding: 10px;
+    }
+
+    .modal-lugar .modal-wrapper {
+        width: 30%;
+        height: 60%;
+        padding: 10px;
+    }
+
+
+    .modal-preparaaliment .modal-wrapper {
+        width: 30%;
+        height: 60%;
+        padding: 10px;
+    }
+
+
+  .mainBody {
+        width: 80%;
+    }
+
+    .botons {
+        width: 10%;
+        height: 5rem;
+        align-items: center;
+        z-index: 999 !important;
+        display: flex;
+        position: fixed;
+        justify-content: center;
+        margin-top: 34rem;
+
+    }
+
+    .botons .left {
+        background-color: rgb(175, 175, 175);
+        border-radius: 5px;
+        width: 4.5rem;
+        opacity: 75%;
+        height: 5rem;
+        font-size: 22pt;
+
+
+    }
+
+    .botonz {
+        width: 10%;
+        height: 5rem;
+        align-items: center;
+        z-index: 999 !important;
+        display: flex;
+        margin-left: 90%;
+        position: fixed;
+        justify-content: center;
+        margin-top: 34rem;
+    }
+
+    .botonz .right {
+        background-color: rgb(175, 175, 175);
+        border-radius: 5px;
+        width: 4.5rem;
+        opacity: 100% !important;
+        height: 5rem;
+        font-size: 22pt;
+    }
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    ion-content .mainBody{
+        width: 90%;
+        max-width: 900px;
+        height: auto;
+        margin: auto;
+        padding-top: 20px;
+        margin-bottom: 0px !important;
+    }
+    ion-header{
+        width: 100%;
+        height: auto !important;
+        z-index: 9999 !important;
+
+    }
+    ion-header .main{
+        width: 95%;
+        margin: auto;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+        padding: 15px 0px;
+
+    }
+    ion-header p{
+        width: 90%;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-size: 13pt;
+        margin-right: auto;
+
+
+    }
+    ion-header  button{
+        cursor: pointer;
+        background-color: transparent;
+        color: #222;
+        font-size: 18pt;
+        width: auto;
+        height: auto;
+        border: 0px;
+        outline: 0px;
+    }
+    form{
+        width: 100%;
+        margin: 35px 0px;
+    }
+    form input{
+        width: 100%;
+        margin: 10px 0px;
+        min-height: 35px;
+        border-radius: 50px;
+        background-color: #ffe2af;
+        color: black;
+        padding-left: 15px;
+        border: 0px;
+    }
+    form textarea{
+        width: 100%;
+        margin: 10px 0px;
+        min-height: 35px;
+        border-radius: 10px;
+        background-color: #ecc560;
+        color: black;
+        padding: 15px;
+        border: 0px;
+    }
+
+    .modal-comida .modal-wrapper {
+        width: 30%;
+        height: 80%;
+        padding: 10px;
+    }
+
+
+    .modal-lugar .modal-wrapper {
+        width: 30%;
+        height: 80%;
+        padding: 10px;
+    }
+
+
+    .modal-preparaaliment .modal-wrapper {
+        width: 30%;
+        height: 80%;
+        padding: 10px;
+    }
+
+
+
+   .mainBody {
+        width: 80%;
+    }
+
+    .botons {
+        width: 10%;
+        height: 5rem;
+        align-items: center;
+        z-index: 999 !important;
+        display: flex;
+        position: fixed;
+        margin-left: 5%;
+        justify-content: center;
+        margin-top: 14rem;
+
+    }
+
+    .botons .left {
+        background-color: transparent;
+        color: rgb(175, 175, 175);
+        border-radius: 5px;
+        border: rgb(175, 175, 175) 2px solid;
+        border-radius: 5px;
+        width: 3.5rem;
+        opacity: 75%;
+        height: 4rem;
+        font-size: 22pt;
+
+
+    }
+
+    .botonz {
+        width: 10%;
+        height: 5rem;
+        align-items: center;
+        z-index: 999 !important;
+        display: flex;
+        margin-left: 85%;
+        position: fixed;
+        justify-content: center;
+        margin-top: 14rem;
+    }
+
+    .botonz .right {
+        background-color: transparent;
+        color: rgb(175, 175, 175);
+        border-radius: 5px;
+        border: rgb(175, 175, 175) 2px solid;
+        border-radius: 5px;
+        width: 3.5rem;
+        opacity: 100% !important;
+        height: 4rem;
+        font-size: 22pt;
+    }
+
+}
+
+@media only screen and (min-width: 1600px) {
+    ion-content .mainBody{
+        width: 90%;
+        max-width: 1200px;
+        height: auto;
+        margin: auto;
+        padding-top: 20px;
+        margin-bottom: 0px !important;
+    }
+    ion-header{
+        width: 100%;
+        height: auto !important;
+        z-index: 9999 !important;
+
+    }
+    ion-header .main{
+        width: 95%;
+        margin: auto;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+        padding: 15px 0px;
+
+    }
+    ion-header p{
+        width: 90%;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-size: 13pt;
+        margin-right: auto;
+
+
+    }
+    ion-header  button{
+        cursor: pointer;
+        background-color: transparent;
+        color: #222;
+        font-size: 18pt;
+        width: auto;
+        height: auto;
+        border: 0px;
+        outline: 0px;
+    }
+    form{
+        width: 100%;
+        margin: 35px 0px;
+    }
+    form input{
+        width: 100%;
+        margin: 10px 0px;
+        min-height: 35px;
+        border-radius: 50px;
+        background-color: #ffe2af;
+        color: black;
+        padding-left: 15px;
+        border: 0px;
+    }
+    form textarea{
+        width: 100%;
+        margin: 10px 0px;
+        min-height: 35px;
+        border-radius: 10px;
+        background-color: #ecc560;
+        color: black;
+        padding: 15px;
+        border: 0px;
+    }
+
+    .modal-comida .modal-wrapper {
+        width: 30%;
+        height: 80%;
+        padding: 10px;
+    }
+
+
+    .modal-lugar .modal-wrapper {
+        width: 30%;
+        height: 80%;
+        padding: 10px;
+    }
+
+
+    .modal-preparaaliment .modal-wrapper {
+        width: 30%;
+        height: 80%;
+        padding: 10px;
+    }
+
+}
+
+
+
+
+
+
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1440px) {
+    .drop {
+        width: 100%;
+        display: flex;
+    }
+
+    .datoz {
+        width: 65%;
+    }
+
+    .dropzone {
+        width: 30%;
+        margin-right: 2%;
+    }
+
+    .mainBody {
+        width: 80%;
+    }
+
+    .botons {
+        width: 10%;
+        height: 5rem;
+        align-items: center;
+        z-index: 999 !important;
+        display: flex;
+        position: fixed;
+        margin-left: 5%;
+        justify-content: center;
+        margin-top: 26rem;
+
+    }
+
+    .botons .left {
+        background-color: transparent;
+        color: rgb(175, 175, 175);
+        border-radius: 5px;
+        border: rgb(175, 175, 175) 2px solid;
+        border-radius: 5px;
+        width: 6rem;
+        opacity: 75%;
+        height: 6rem;
+        font-size: 30pt;
+
+
+    }
+
+    .botonz {
+        width: 10%;
+        height: 5rem;
+        align-items: center;
+        z-index: 999 !important;
+        display: flex;
+        margin-left: 85%;
+        position: fixed;
+        justify-content: center;
+        margin-top: 26rem;
+    }
+
+    .botonz .right {
+        background-color: transparent;
+        color: rgb(175, 175, 175);
+        border-radius: 5px;
+        border: rgb(175, 175, 175) 2px solid;
+        border-radius: 5px;
+        width: 6rem;
+        opacity: 100% !important;
+        height: 6rem;
+        font-size: 30pt;
+    }
+}
+
+
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1920px) {
+    .drop {
+        width: 100%;
+        display: flex;
+    }
+
+    .datoz {
+        width: 65%;
+    }
+
+    .dropzone {
+        width: 30%;
+        margin-right: 2%;
+    }
+
+
+
+    .mainBody {
+        width: 80%;
+    }
+
+    .botons {
+        width: 10%;
+        height: 5rem;
+        align-items: center;
+        z-index: 999 !important;
+        display: flex;
+        position: fixed;
+        margin-left: 5%;
+        justify-content: center;
+        margin-top: 26rem;
+
+    }
+
+    .botons .left {
+        background-color: transparent;
+        color: rgb(175, 175, 175);
+        border-radius: 5px;
+        border: rgb(175, 175, 175) 2px solid;
+        border-radius: 5px;
+        width: 6rem;
+        opacity: 75%;
+        height: 6rem;
+        font-size: 30pt;
+
+
+    }
+
+    .botonz {
+        width: 10%;
+        height: 5rem;
+        align-items: center;
+        z-index: 999 !important;
+        display: flex;
+        margin-left: 85%;
+        position: fixed;
+        justify-content: center;
+        margin-top: 26rem;
+    }
+
+    .botonz .right {
+        background-color: transparent;
+        color: rgb(175, 175, 175);
+        border-radius: 5px;
+        border: rgb(175, 175, 175) 2px solid;
+        width: 6rem;
+        opacity: 100% !important;
+        height: 6rem;
+        font-size: 30pt;
+    }
+}
