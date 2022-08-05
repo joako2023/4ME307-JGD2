@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AlertController, IonModal } from '@ionic/angular';
+import { AlertController, IonItem, IonModal } from '@ionic/angular';
 import { Nutriologos } from '../interfaces/nutriolg.interface';
 import { ExportExcelService } from '../servics/export-excel.service';
 import { NutriologoService } from '../servics/nutriologo.service';
@@ -119,25 +119,31 @@ export class CatalogoClientesPage implements OnInit {
     this.nutriologoSvc.up({ ...body })
   }
 
-  
+
   title = 'angular-export-to-excel';
 
   dataForExcel = [];
 
-  
 
-  
+
+
 
   exportToExcel() {
+    let listaN = [...this.listaNutriologos]
+    listaN.map(item => {
+      const { identificacion, nombre, apellido, telefono, email, tipoPago, acercaDeMi, experiencia, especialidad, enfermedadesTratadas, idEstablecimiento } = item;
+      return { identificacion, nombre, apellido, telefono, email, tipoPago, acercaDeMi, experiencia, especialidad, enfermedadesTratadas, idEstablecimiento }
+    }
+    )
 
-    this.listaNutriologos.forEach((row: any) => {
+    listaN.forEach((row: any) => {
       this.dataForExcel.push(Object.values(row))
     })
 
     let reportData = {
       title: 'Lista nutriologos',
       data: this.dataForExcel,
-      headers: Object.keys(this.listaNutriologos[0])
+      headers: Object.keys(listaN[0])
     }
 
     this.ete.exportExcel(reportData);

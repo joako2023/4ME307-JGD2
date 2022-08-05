@@ -32,7 +32,7 @@ export class ExportExcelService {
       size: 16,
       underline: 'single',
       bold: true,
-      color: { argb: '0085A3' }
+      color: { argb: 'FFB050' }
     }
     titleRow.alignment = { vertical: 'middle', horizontal: 'center' }
 
@@ -60,7 +60,7 @@ export class ExportExcelService {
       cell.fill = {
         type: 'pattern',
         pattern: 'solid',
-        fgColor: { argb: '4167B8' },
+        fgColor: { argb: 'FFB050' },
         bgColor: { argb: '' }
       }
       cell.font = {
@@ -75,9 +75,9 @@ export class ExportExcelService {
       let row = worksheet.addRow(d);
 
       let sales = row.getCell(6);
-      let color = 'FF99FF99';
+      let color = 'FFFFFF';
       if (+sales.value < 200000) {
-        color = 'FF9999'
+        color = 'FFFFFF'
       }
 
       sales.fill = {
@@ -92,7 +92,7 @@ export class ExportExcelService {
     worksheet.addRow([]);
 
     //Footer Row
-    let footerRow = worksheet.addRow(['Lista de nutriologos' + date]);
+    let footerRow = worksheet.addRow(['Lista de nutriologos ' + date]);
     footerRow.getCell(1).fill = {
       type: 'pattern',
       pattern: 'solid',

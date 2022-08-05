@@ -1,9 +1,137 @@
 <ion-header>
   <ion-toolbar>
+    <ion-back-button slot="end"></ion-back-button>
     <ion-title>libreria-alimentos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+  <ion-item lines="none">
+    <ion-searchbar placeholder="Buscar clientes" debounce="300" (ionChange)="search($event.target.value)">
+    </ion-searchbar>
+
+    <ion-buttons>
+      <ion-button (click)="verModalRegistro(registro)">
+        <ion-icon sise="large" name="person-add-outline"></ion-icon>
+      </ion-button>
+      <ion-button (click)="exportToExcel()" slot="end">
+        <ion-icon name="download-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+
+  </ion-item>
+
+
+  <ion-list>
+    <ng-container *ngFor="let alimento of listaAlimentos">
+
+      <ion-item lines="none">
+        <ion-item button (click)="verModal(modal, alimento)" *ngIf="alimento.nombre!=null">
+          <ion-label>{{alimento.nombre}} </ion-label>
+
+        </ion-item>
+
+        <ion-buttons slot="end">
+          <ion-button (click)="presentAlert(alimento.id)">
+
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+
+        </ion-buttons>
+      </ion-item>
+
+
+    </ng-container>
+
+
+  </ion-list>
+ 
+
+
+
 </ion-content>
+
+<ion-modal #modal trigger="open-modal" mode="ios">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Editar</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="modal.dismiss()">
+            <ion-icon name="close-circle-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <form #formEdit [formGroup]="formAlimentos">
+        <ion-list lines="full" class="ion-no-margin">
+
+         
+          <ion-item>
+            <ion-label position="stacked"> nombre </ion-label>
+            <ion-input placeholder="nombres" formControlName="nombre"></ion-input>
+          </ion-item>
+          
+        </ion-list>
+
+      </form>
+
+
+
+
+    </ion-content>
+    <form [formGroup]="formAlimentos"  (ngSubmit)="editarAlimento()">
+      <ion-item>
+        <ion-buttons slot="end">
+          <ion-button type="submit" (click)="modal.dismiss()">
+            <ion-icon size="large" name="cloud-upload-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </form>
+
+  </ng-template>
+</ion-modal>
+
+<ion-modal #registro trigger="open-modal" mode="ios">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Agregar</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="registro.dismiss()">
+            <ion-icon name="close-circle-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <form [formGroup]="formAlimentos">
+        <ion-list lines="full" class="ion-no-margin">
+        
+
+          <ion-item>
+            <ion-label position="stacked"> nombre </ion-label>
+            <ion-input placeholder="nombres" formControlName="nombre"></ion-input>
+          </ion-item>
+          
+
+        </ion-list>
+      </form>
+    </ion-content>
+    <form [formGroup]="formAlimentos" (ngSubmit)="guardarAlimento()">
+      <ion-item>
+
+        <ion-buttons slot="end">
+          <ion-button type="submit" (click)="registro.dismiss()">
+            <ion-icon size="large" name="cloud-upload-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+
+      </ion-item>
+    </form>
+  </ng-template>
+</ion-modal>
