@@ -47,7 +47,7 @@ export class LibreriaAlimentosPage implements OnInit {
       id: [''],
     
       nombre: ['', [Validators.required]],
-   
+      terms: [false]
     });
 
 

@@ -32,7 +32,7 @@ export class AlimentosService {
     this._guardar.pipe(
         debounceTime(500)
     ).subscribe(resp => {
-        this.http.post('/Alimentos', resp).subscribe(respHttp =>{
+        this.http.post('/alimentos', resp).subscribe(respHttp =>{
           this.getAllAlimentos(1)
         }
           
@@ -43,7 +43,7 @@ private editar(){
   this._editar.pipe(
     debounceTime(500)
 ).subscribe((resp: any) => {
-    this.http.put('/Alimentos/'+ resp.id, resp).subscribe(respHttp =>{
+    this.http.put('/alimentos/'+ resp.id, resp).subscribe(respHttp =>{
       this.getAllAlimentos(1)
     }
       
@@ -56,7 +56,7 @@ private editar(){
 private delete(){
 this._eliminar.pipe(debounceTime(500)
 ).subscribe((resp) =>{
-  this.http.delete('/Alimentos/'+resp).subscribe(respHttp=>{
+  this.http.delete('/alimentos/'+resp).subscribe(respHttp=>{
     console.log(respHttp)
     this.getAllAlimentos(1)
   })
@@ -82,7 +82,7 @@ this._eliminar.pipe(debounceTime(500)
          take:15+''
      }
       });
-    this.http.get('/Alimentos/pagination/search', { params }).subscribe((resp: any) => {
+    this.http.get('/alimentos/pagination/search', { params }).subscribe((resp: any) => {
       this.storageLibreriaAlimentos.next(resp);
     });
   }
