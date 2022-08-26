@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { AlertController, IonModal } from '@ionic/angular';
 import { Alimentos } from '../interfaces/Libreria-alimentos.interface';
 import { ExportExcelService } from '../servics/export-excel.service';
@@ -22,7 +23,8 @@ export class LibreriaAlimentosPage implements OnInit {
     public ete: ExportExcelService,
     private alimentosSvc: AlimentosService,
     private alertController: AlertController,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   borrarReg() {
@@ -31,6 +33,10 @@ export class LibreriaAlimentosPage implements OnInit {
   }
   public formAlimentos!: FormGroup;
   ngOnInit() {
+    this.activatedRoute.url.subscribe(() => {
+      this.alimentosSvc.searchByKeyword(this.keyword)
+      this.page=1;
+    })
     this.alimentosSvc.keyword.subscribe(resp => {
       this.keyword = resp;
     });

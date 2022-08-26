@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { AlertController, IonItem, IonModal } from '@ionic/angular';
 import { Nutriologos } from '../interfaces/nutriolg.interface';
 import { ExportExcelService } from '../servics/export-excel.service';
@@ -11,20 +12,18 @@ import { NutriologoService } from '../servics/nutriologo.service';
   styleUrls: ['./catalogo-clientes.page.scss'],
 })
 export class CatalogoClientesPage implements OnInit {
-
-
-
-
   listaNutriologos = [] as any;
   private page = 2;
   keyword = '';
   public registros: any[] = [];
   searched = new FormControl('');
+  
   constructor(
     public ete: ExportExcelService,
     private nutriologoSvc: NutriologoService,
     private alertController: AlertController,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   borrarReg() {
@@ -32,7 +31,12 @@ export class CatalogoClientesPage implements OnInit {
     localStorage.removeItem('tempRegistro');
   }
   public formUploadNutriologo!: FormGroup;
+
   ngOnInit() {
+    this.activatedRoute.url.subscribe(() => {
+      this.nutriologoSvc.searchByKeyword(this.keyword)
+      this.page=1;
+    })
     this.nutriologoSvc.keyword.subscribe(resp => {
       this.keyword = resp;
     });

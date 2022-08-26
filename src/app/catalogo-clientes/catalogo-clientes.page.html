@@ -4,27 +4,27 @@
     <ion-title>catalogo-clientes</ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-item lines="none">
+  <ion-searchbar placeholder="Buscar clientes" debounce="300" (ionChange)="search($event.target.value)">
+  </ion-searchbar>
 
-<ion-content>
-
-  <ion-item lines="none">
-    <ion-searchbar placeholder="Buscar clientes" debounce="300" (ionChange)="search($event.target.value)">
-    </ion-searchbar>
-
-    <ion-buttons>
-      <ion-button (click)="verModalRegistro(registro)">
-        <ion-icon sise="large" name="person-add-outline"></ion-icon>
-      </ion-button>
-      <ion-button (click)="exportToExcel()" slot="end">
-        <ion-icon name="download-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+  <ion-buttons>
+    <ion-button (click)="verModalRegistro(registro)">
+      <ion-icon sise="large" name="person-add-outline"></ion-icon>
+    </ion-button>
+    <ion-button (click)="exportToExcel()" slot="end">
+      <ion-icon name="download-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
 
 
-  </ion-item>
+</ion-item>
+<ion-content >
+
+  
 
 
-  <ion-list>
+  <ion-list lines="none">
     <ng-container *ngFor="let nutriologo of listaNutriologos">
 
       <ion-item lines="none">
@@ -47,6 +47,12 @@
 
 
   </ion-list>
+<ion-infinite-scroll (ionInfinite)="loadData($event)">
+  <ion-infinite-scroll-content loadingSpinner="bubbles"
+  loadingText="cargando...">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+  
  
 
 
