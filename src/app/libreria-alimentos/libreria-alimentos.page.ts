@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AlertController, IonModal } from '@ionic/angular';
-import { Alimentos } from '../interfaces/Libreria-alimentos.interface';
+import { LibreriaAlimentos } from '../interfaces/Libreria-alimentos.interface';
 import { ExportExcelService } from '../servics/export-excel.service';
-import { AlimentosService } from '../servics/libreria-alimentos.service';
+import {  LibreriaAlimentosService } from '../servics/libreria-alimentos.service';
 
 @Component({
   selector: 'app-libreria-alimentos',
@@ -21,7 +21,7 @@ export class LibreriaAlimentosPage implements OnInit {
   searched = new FormControl('');
   constructor(
     public ete: ExportExcelService,
-    private alimentosSvc: AlimentosService,
+    private alimentosSvc: LibreriaAlimentosService,
     private alertController: AlertController,
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute
@@ -66,7 +66,7 @@ export class LibreriaAlimentosPage implements OnInit {
   }
 
   loadData($event) {
-    this.alimentosSvc.getAllAlimentos(this.page, this.keyword);
+    this.alimentosSvc.getAllLibreriaAlimentos(this.page, this.keyword);
     $event.target.complete();
     this.page++;
   }
@@ -77,7 +77,7 @@ export class LibreriaAlimentosPage implements OnInit {
   }
 
 
-  verModal(modal: IonModal, ali: Alimentos) {
+  verModal(modal: IonModal, ali: LibreriaAlimentos) {
 
     modal.present();
 

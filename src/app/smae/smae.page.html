@@ -5,5 +5,36 @@
 </ion-header>
 
 <ion-content>
+  <button (click)="removeData()">Remove Data</button>
+
+  <div >
+    <ion-item >
+      <ion-label>categorias</ion-label>
+      
+        <ion-select  placeholder="Seleciona una opción"  interface="action-sheet">
+          <ng-container *ngFor="let item of listCategorias">
+            <ion-select-option  [value]="item.id" > {{item.name}}</ion-select-option>
+            
+          </ng-container>
+        </ion-select>
+        
+     
+    </ion-item>
+  </div>
+  
+  <div *ngIf="isExcelFile === false">
+    This is not an Excel file
+  </div>
+      <span *ngIf="spinnerEnabled" class="k-i-loading k-icon"></span>
+      <table>
+        <th *ngFor="let key of keys">
+          {{key}}
+        </th>
+        <tr *ngFor="let item of dataSheet | async">
+          <td *ngFor="let key of keys">
+            {{item[key]}}
+          </td>
+        </tr> 
+      </table>
 
 </ion-content>

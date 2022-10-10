@@ -3,25 +3,25 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, Subject } from "rxjs";
 import { HttpGenericService } from "./http-generic.service";
 import { debounceTime, tap } from "rxjs/operators";
-import { Alimentos } from "../interfaces/Libreria-alimentos.interface";
+import { LibreriaAlimentos } from "../interfaces/Libreria-alimentos.interface";
 
 @Injectable({
     providedIn: 'root'
 })
-export class AlimentosService {
+export class LibreriaAlimentosService {
 
 
   private storageLibreriaAlimentos = new BehaviorSubject({ data: [], count: 0 });
   private _keyword = new BehaviorSubject('');
-  private _editar=new Subject<Alimentos>();
- private _guardar=new Subject<Alimentos>();
+  private _editar=new Subject<LibreriaAlimentos>();
+ private _guardar=new Subject<LibreriaAlimentos>();
  private _eliminar=new Subject<number>();
   public listaAlimentos  = this.storageLibreriaAlimentos.asObservable();
   public keyword = this._keyword.asObservable();
   constructor(
     private http: HttpGenericService<any>
   ) {
-    this.getAllAlimentos();
+    this.getAllLibreriaAlimentos();
     this.searched();
     this.save();
     this.editar();
@@ -32,8 +32,8 @@ export class AlimentosService {
     this._guardar.pipe(
         debounceTime(500)
     ).subscribe(resp => {
-        this.http.post('/alimentos', resp).subscribe(respHttp =>{
-          this.getAllAlimentos(1)
+        this.http.post('/Libreria-alimentos', resp).subscribe(respHttp =>{
+          this.getAllLibreriaAlimentos(1)
         }
           
         );
@@ -43,8 +43,8 @@ private editar(){
   this._editar.pipe(
     debounceTime(500)
 ).subscribe((resp: any) => {
-    this.http.put('/alimentos/'+ resp.id, resp).subscribe(respHttp =>{
-      this.getAllAlimentos(1)
+    this.http.put('/Libreria-alimentos/'+ resp.id, resp).subscribe(respHttp =>{
+      this.getAllLibreriaAlimentos(1)
     }
       
     );
@@ -56,9 +56,9 @@ private editar(){
 private delete(){
 this._eliminar.pipe(debounceTime(500)
 ).subscribe((resp) =>{
-  this.http.delete('/alimentos/'+resp).subscribe(respHttp=>{
+  this.http.delete('/Libreria-alimentos/'+resp).subscribe(respHttp=>{
     console.log(respHttp)
-    this.getAllAlimentos(1)
+    this.getAllLibreriaAlimentos(1)
   })
 })
 }
@@ -70,11 +70,11 @@ this._eliminar.pipe(debounceTime(500)
     this._keyword.pipe(
       debounceTime(100)
     ).subscribe(resp => {
-      this.getAllAlimentos(1, resp);
+      this.getAllLibreriaAlimentos(1, resp);
     });
   }
 
-  public getAllAlimentos(pag: number = 0, key = '') {
+  public getAllLibreriaAlimentos(pag: number = 0, key = '') {
     const params = new HttpParams({
      fromObject:{
          keyword:key,
@@ -82,7 +82,7 @@ this._eliminar.pipe(debounceTime(500)
          take:15+''
      }
       });
-    this.http.get('/alimentos/pagination/search', { params }).subscribe((resp: any) => {
+    this.http.get('/Libreria-alimentos/pagination/search', { params }).subscribe((resp: any) => {
       this.storageLibreriaAlimentos.next(resp);
     });
   }
@@ -91,11 +91,11 @@ this._eliminar.pipe(debounceTime(500)
     this._keyword.next(keyword);
   }
   
-  up(data: Alimentos) {
+  up(data: LibreriaAlimentos) {
     this._guardar.next(data);
   }
   
-  upEditar(data: Alimentos) {
+  upEditar(data: LibreriaAlimentos) {
     this._editar.next(data);
   }
   upEliminar(id: number) {

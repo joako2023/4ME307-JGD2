@@ -1,4 +1,4 @@
-export class Alimentos{
+export class LibreriaAlimentos{
 
     nombre: string;
 }
