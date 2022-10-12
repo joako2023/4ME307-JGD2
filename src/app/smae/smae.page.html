@@ -11,9 +11,9 @@
     <ion-item >
       <ion-label>categorias</ion-label>
       
-        <ion-select  placeholder="Seleciona una opción"  interface="action-sheet">
+        <ion-select (ionChange)="Change($event)" placeholder="Seleciona una opción"  interface="action-sheet">
           <ng-container *ngFor="let item of listCategorias">
-            <ion-select-option  [value]="item.id" > {{item.name}}</ion-select-option>
+            <ion-select-option  [value]="item.id" > {{item.nombre}}</ion-select-option>
             
           </ng-container>
         </ion-select>

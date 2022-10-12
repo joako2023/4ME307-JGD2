@@ -16,11 +16,8 @@ export class SmaeService {
     this.getServicios()
   }
 
-  getServicios() {
-    this.http.get('/categorias-smae').subscribe((resp: any[]) => {
-      this._listCategorias.next(resp);
-
-    });
+  public getServicios() {
+   return this.http.get('/categorias-smae')
   }
 
   public getReporte() {

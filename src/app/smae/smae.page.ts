@@ -20,6 +20,7 @@ export class SmaePage implements OnInit {
   public wsname: string;
   public ws: XLSX.WorkSheet;
   public archivo: File;
+  public file:File;
   listCategorias: any[] = [];
   constructor(
     private svcSmae: SmaeService
@@ -28,27 +29,29 @@ export class SmaePage implements OnInit {
   }
 
   ngOnInit() {
-    this.svcSmae.listCategorias.subscribe(resp => {
+   this.svcSmae.getServicios().subscribe((resp:any)=>{
     if(resp.length>0){
       this.listCategorias = resp;
       console.log(this.listCategorias)
     }
-      
-    })
+   })
+
     this.svcSmae.getReporte().subscribe(resp => {
-      this.configExcel(new File([resp], "MAE2014.xlsx"))
+     this.file= (new File([resp], "MAE2014.xlsx"))
+     this.configExcel()
     })
+
+
+   
 
   }
   
-/*this.formTraslado.controls.servicio.valueChanges.subscribe(resp => {
-      
-      const servcs = this.listServicios.find(i => i.id == resp);
-      
-     this.precio=servcs.price;
-     
 
-    }) */
+Change(event:any){
+console.log(event)
+  this.configExcel(event.detail.value)
+
+}
 
   spinnerEnabled = false;
   keys: string[];
@@ -98,12 +101,12 @@ export class SmaePage implements OnInit {
     }
   */
 
-  configExcel(file: File) {
+  configExcel(id:number=1) {
 
-    console.log(file)
+   
     let data, header;
 
-    this.isExcelFile = !!file.name.match(/(.xls|.xlsx)/);
+    this.isExcelFile = !!this.file.name.match(/(.xls|.xlsx)/);
 
 
     if (this.isExcelFile) {
@@ -118,7 +121,7 @@ export class SmaePage implements OnInit {
 
         const names = wb.SheetNames
         console.log(names)
-        this.wsname = wb.SheetNames[5];
+        this.wsname = wb.SheetNames[id];
         console.log(this.wsname)
         this.ws = wb.Sheets[this.wsname];
 
@@ -128,7 +131,7 @@ export class SmaePage implements OnInit {
 
       };
 
-      reader.readAsBinaryString(file);
+      reader.readAsBinaryString(this.file);
 
       reader.onloadend = (e) => {
         this.spinnerEnabled = false;
