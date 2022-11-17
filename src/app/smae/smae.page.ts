@@ -16,117 +16,59 @@ const path = require('path');*/
 
 })
 export class SmaePage implements OnInit {
-  //public pathRouteFile= path.join('/home','/sergio','/Descargas','/MAE2014.xlsx');
+
   public wsname: string;
   public ws: XLSX.WorkSheet;
   public archivo: File;
-  public file:File;
+  public file: File;
   listCategorias: any[] = [];
   constructor(
     private svcSmae: SmaeService
-  ) { 
+  ) {
 
   }
 
   ngOnInit() {
-   this.svcSmae.getServicios().subscribe((resp:any)=>{
-    if(resp.length>0){
-      this.listCategorias = resp;
-      console.log(this.listCategorias)
-    }
-   })
+    this.svcSmae.getServicios().subscribe((resp: any) => {
+      if (resp.length > 0) {
+        this.listCategorias = resp;
 
-    this.svcSmae.getReporte().subscribe(resp => {
-     this.file= (new File([resp], "MAE2014.xlsx"))
-     this.configExcel()
+      }
     })
 
+    this.svcSmae.getReporte().subscribe(resp => {
+      this.file = (new File([resp], "MAE2014.xlsx"))
+      this.configExcel()
+    })
+  }
 
-   
+
+  Change(event: any) {
+    /*if(event.id.value==2||event.id.value==3||event.id.value==4){
+    
+    
+    }*/
+    this.configExcel(event.detail.value)
 
   }
-  
-
-Change(event:any){
-console.log(event)
-  this.configExcel(event.detail.value)
-
-}
 
   spinnerEnabled = false;
   keys: string[];
   dataSheet = new Subject();
   @ViewChild('inputFile') inputFile: ElementRef;
   isExcelFile: boolean;
-  /*
-    onChange(evt) {
-      let data, header;
-      const target: DataTransfer = <DataTransfer>(evt.target);
-      this.isExcelFile = !!target.files[0].name.match(/(.xls|.xlsx)/);
-      if (target.files.length > 1) {
-        this.inputFile.nativeElement.value = '';
-      }
-      if (this.isExcelFile) {
-        this.spinnerEnabled = true;
-        const reader: FileReader = new FileReader();
-        reader.onload = (e: any) => {
-  
-          const bstr: string = e.target.result;
-          console.log(bstr)
-          const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
-  
-  
-          const names = wb.SheetNames
-  
-          this.wsname = wb.SheetNames[5];
-          this.ws = wb.Sheets[this.wsname];
-  
-  
-  
-          data = XLSX.utils.sheet_to_json(this.ws);
-  
-        };
-  
-        reader.readAsBinaryString(target.files[0]);
-  
-        reader.onloadend = (e) => {
-          this.spinnerEnabled = false;
-  
-          this.keys = Object.keys(data[0]);
-          this.dataSheet.next(data)
-        }
-      } else {
-        this.inputFile.nativeElement.value = '';
-      }
-    }
-  */
-
-  configExcel(id:number=1) {
-
-   
+   newKey:any[]=[]
+  configExcel(id: number = 0) {
     let data, header;
-
     this.isExcelFile = !!this.file.name.match(/(.xls|.xlsx)/);
-
-
     if (this.isExcelFile) {
       this.spinnerEnabled = true;
       const reader: FileReader = new FileReader();
       reader.onload = (e: any) => {
-        console.log(e.target)
         const bstr: string = e.target.result;
-        console.log(bstr)
         const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
-
-
-        const names = wb.SheetNames
-        console.log(names)
-        this.wsname = wb.SheetNames[id];
-        console.log(this.wsname)
+        this.wsname = wb.SheetNames[(id-1)];
         this.ws = wb.Sheets[this.wsname];
-
-
-
         data = XLSX.utils.sheet_to_json(this.ws);
 
       };
@@ -137,6 +79,21 @@ console.log(event)
         this.spinnerEnabled = false;
 
         this.keys = Object.keys(data[0]);
+        
+       this.newKey=[]
+     this.keys.forEach(key =>{
+
+      if(!key.includes('_EMPTY')){
+        this.newKey.push(key)
+
+      }else{
+        this.newKey.push('')
+      }
+
+     })
+     
+      
+
         this.dataSheet.next(data)
       }
     } else {
@@ -145,11 +102,7 @@ console.log(event)
 
   }
 
-  removeData() {
-    this.inputFile.nativeElement.value = '';
-    this.dataSheet.next(null);
-    this.keys = null;
-  }
+
 
 
 }

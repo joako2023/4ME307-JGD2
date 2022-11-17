@@ -19,9 +19,9 @@
 
 
 </ion-item>
-<ion-content >
+<ion-content>
 
-  
+
 
 
   <ion-list lines="none">
@@ -47,13 +47,12 @@
 
 
   </ion-list>
-<ion-infinite-scroll (ionInfinite)="loadData($event)">
-  <ion-infinite-scroll-content loadingSpinner="bubbles"
-  loadingText="cargando...">
-  </ion-infinite-scroll-content>
-</ion-infinite-scroll>
-  
- 
+  <ion-infinite-scroll (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="cargando...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
 
 
 
@@ -123,7 +122,12 @@
 
           <ion-item>
             <ion-label position="stacked"> Imagen </ion-label>
-            <ion-input placeholder="Imagen" formControlName="Imagen"></ion-input>
+            <ion-input placeholder="Imagen" formControlName="Imagen">
+              <br>
+              <input type="file" name="files" accept="image/*" (change)="onFileChanged($event)">
+              <br>
+            </ion-input>
+
           </ion-item>
 
 
@@ -211,7 +215,11 @@
 
           <ion-item>
             <ion-label position="stacked"> Imagen </ion-label>
-            <ion-input placeholder="Imagen" formControlName="Imagen"></ion-input>
+            <ion-input placeholder="Imagen" formControlName="Imagen">
+              <br>
+              <input type="file" name="files" accept="image/*" (change)="onFileChanged($event)">
+              <br>
+            </ion-input>
           </ion-item>
 
         </ion-list>

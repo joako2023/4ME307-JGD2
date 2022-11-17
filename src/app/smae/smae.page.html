@@ -1,6 +1,8 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar mode="ios">
+    <ion-back-button slot="end"></ion-back-button>
     <ion-title>smae</ion-title>
+    
   </ion-toolbar>
 </ion-header>
 
@@ -12,8 +14,8 @@
       <ion-label>categorias</ion-label>
       
         <ion-select (ionChange)="Change($event)" placeholder="Seleciona una opción"  interface="action-sheet">
-          <ng-container *ngFor="let item of listCategorias">
-            <ion-select-option  [value]="item.id" > {{item.nombre}}</ion-select-option>
+          <ng-container *ngFor="let categoria of listCategorias">
+            <ion-select-option  [value]="categoria.id" > {{categoria.nombre}}</ion-select-option>
             
           </ng-container>
         </ion-select>
@@ -25,9 +27,11 @@
   <div *ngIf="isExcelFile === false">
     This is not an Excel file
   </div>
+
+  
       <span *ngIf="spinnerEnabled" class="k-i-loading k-icon"></span>
       <table>
-        <th *ngFor="let key of keys">
+        <th *ngFor="let key of newKey">
           {{key}}
         </th>
         <tr *ngFor="let item of dataSheet | async">

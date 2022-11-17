@@ -13,7 +13,7 @@ export class NutriologoService {
   private storageNutriologo = new BehaviorSubject({ data: [], count: 0 });
   private _keyword = new BehaviorSubject('');
   private _editar=new Subject<Nutriologos>();
- private _guardar=new Subject<Nutriologos>();
+ private _guardar=new Subject<FormData>();
  private _eliminar=new Subject<number>();
   public listaNutriologos  = this.storageNutriologo.asObservable();
   public keyword = this._keyword.asObservable();
@@ -90,7 +90,7 @@ this._eliminar.pipe(debounceTime(500)
     this._keyword.next(keyword);
   }
   
-  up(data: Nutriologos) {
+  up(data: FormData) {
     this._guardar.next(data);
   }
   

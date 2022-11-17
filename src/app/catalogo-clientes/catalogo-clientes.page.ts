@@ -17,7 +17,7 @@ export class CatalogoClientesPage implements OnInit {
   keyword = '';
   public registros: any[] = [];
   searched = new FormControl('');
-  
+  img: File;
   constructor(
     public ete: ExportExcelService,
     private nutriologoSvc: NutriologoService,
@@ -35,7 +35,7 @@ export class CatalogoClientesPage implements OnInit {
   ngOnInit() {
     this.activatedRoute.url.subscribe(() => {
       this.nutriologoSvc.searchByKeyword(this.keyword)
-      this.page=1;
+      this.page = 1;
     })
     this.nutriologoSvc.keyword.subscribe(resp => {
       this.keyword = resp;
@@ -61,8 +61,8 @@ export class CatalogoClientesPage implements OnInit {
       experiencia: ['', [Validators.required]],
       especialidad: ['', [Validators.required]],
       enfermedadesTratadas: ['', [Validators.required]],
-      idEstablecimiento: ['', [Validators.required]],
-      Imagen: ['', [Validators.required]],
+      idEstablecimiento: [''],
+      Imagen: [''],
       terms: [false]
     });
 
@@ -99,7 +99,10 @@ export class CatalogoClientesPage implements OnInit {
     this.formUploadNutriologo.reset();
     modal.present();
   }
+  onFileChanged(event) {
+    this.img = event.target.files[0];
 
+  }
   async presentAlert(id: number) {
     const alert = await this.alertController.create({
       header: 'Alerta',
@@ -118,9 +121,13 @@ export class CatalogoClientesPage implements OnInit {
     }
   }
   guardarNutriologo() {
-
+    const formData = new FormData()
+    formData.append('imageUpload', this.img, this.img.name)
     const body = this.formUploadNutriologo.value;
-    this.nutriologoSvc.up({ ...body })
+    for(const dataKey in body) {
+      formData.append(dataKey, body[dataKey]);
+    }
+    this.nutriologoSvc.up(formData)
   }
 
 
