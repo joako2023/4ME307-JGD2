@@ -29,10 +29,10 @@ const routes: Routes = [
     path: 'smae',
     loadChildren: () => import('./smae/smae.module').then( m => m.SmaePageModule)
   },
-  {
-    path: 'control-pagos',
-    loadChildren: () => import('./control-pagos/control-pagos.module').then( m => m.ControlPagosPageModule)
-  },
+ {
+  path: 'control-pagos',
+  loadChildren: () => import('./control-pagos/control-pagos.module').then( m => m.ControlPagosPageModule)
+},
   {
     path: 'libreria-alimentos',
     loadChildren: () => import('./libreria-alimentos/libreria-alimentos.module').then( m => m.LibreriaAlimentosPageModule)
@@ -44,7 +44,12 @@ const routes: Routes = [
   {
     path: 'tabla-equivalencias',
     loadChildren: () => import('./tabla-equivalencias/tabla-equivalencias.module').then( m => m.TablaEquivalenciasPageModule)
+  },
+  {
+    path: 'pago-planes',
+    loadChildren: () => import('./pago-planes/pago-planes.module').then( m => m.PagoPlanesPageModule)
   }
+
 ];
 @NgModule({
   imports: [

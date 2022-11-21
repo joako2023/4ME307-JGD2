@@ -9,8 +9,8 @@ import { HttpGenericService } from "./http-generic.service";
     providedIn:'root'
     })
     export class PlanService{
-    
-    
+      private plan_selected:string='planSelected';
+      protected selected: BehaviorSubject<Plan>;
         private storagePlan = new BehaviorSubject({ data: [], count: 0,servicios:[]});
         private _keyword = new BehaviorSubject('');
         private _editar=new Subject<Plan>();
@@ -21,11 +21,13 @@ import { HttpGenericService } from "./http-generic.service";
         constructor(
           private http: HttpGenericService<any>
         ) {
+          this.setConfig();
           this.getAllPlanes();
           this.searched();
           this.save();
           this.editar();
           this.delete();
+          
         }
       
         private save() {
@@ -52,7 +54,20 @@ import { HttpGenericService } from "./http-generic.service";
       
       }
       
-      
+      setConfig(){
+        
+          const selectStorage = localStorage.getItem(this.plan_selected);
+          this.selected = new BehaviorSubject<Plan>(selectStorage !== null ? JSON.parse(selectStorage) : undefined);
+          this.selected.subscribe(resp => {
+            if (resp) {
+              localStorage.setItem(this.plan_selected, JSON.stringify(resp));
+            }
+          });
+       
+      }
+      select(data: any) {
+        this.selected.next(data);
+      }
       private delete(){
       this._eliminar.pipe(debounceTime(500)
       ).subscribe((resp) =>{
@@ -74,7 +89,7 @@ import { HttpGenericService } from "./http-generic.service";
           });
         }
       
-        public getAllPlanes(pag: number = 0, key = '') {
+        public getAllPlanes(pag: number = 1, key = '') {
           const params = new HttpParams({
            fromObject:{
                keyword:key,

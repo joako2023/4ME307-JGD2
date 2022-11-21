@@ -86,7 +86,7 @@ import { HttpGenericService } from "./http-generic.service";
 
 
 
-        public getAllServicios(pag: number = 0, key = '') {
+        public getAllServicios(pag: number = 1, key = '') {
           const params = new HttpParams({
            fromObject:{
                keyword:key,

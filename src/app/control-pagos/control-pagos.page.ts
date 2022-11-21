@@ -67,12 +67,9 @@ export class ControlPagosPage implements OnInit {
     this.servicios.listaServicios.subscribe(resp => {
      
       this.listaServicios = resp.data ;
-      console.log(resp.data)
+      
     });
-    this.planes.listaPlanes.subscribe(resp => {
-      this.formPlan.patchValue(resp);
-      this.serviciosSelected = resp.servicios;
-    });
+    
   }
 
   guardarPlan() {
