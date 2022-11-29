@@ -11,7 +11,7 @@
 
 <ion-content fullscreen>
   <div id="planes-show">
-    <div class="plans">
+    <div class="plans" >
       <ion-card button (click)="openNuevoPlan()" mode="ios">
         <ion-card-header>
           <ion-card-title>Crear nuevo plan</ion-card-title>
@@ -20,25 +20,33 @@
           <ion-label>Haz clic aquí para crear un nuevo plan.</ion-label>
         </ion-card-content>
       </ion-card>
+      
     </div>
     <div class="plans" *ngFor="let item of listPlanes">
-      <ion-card mode="ios">
-        <ion-card-header class="ion-text-center">
-          <ion-card-subtitle class="ion-text-center">{{item.titulo}}</ion-card-subtitle>
-          <ion-card-title *ngIf="item.costoPromocional > 0" [ngClass]="{'promo': item.costoPromocional > 0}"><small>{{ item.costo | currency : 'MXN': 'MXN $': '1.0-0'}}</small></ion-card-title>
-          <ion-card-title><small>{{(item.costoPromocional > 0 ? item.costoPromocional : item.costo) | currency : 'MXN': 'MXN $': '1.0-0'}}</small></ion-card-title>
-          <small>Pago {{item.duracion === 1 ? 'Mensual' : item.duracion === 6 ?  'Semestral': 'Anual'}}</small>
-        </ion-card-header>
-        <ion-card-content>
-         <ion-buttons class="ion-justify-content-center">
-           <ion-button (click)="openEditar(item)" slot="start" size="small"><span class="fa-solid fa-pencil ion-margin-end"></span> Editar</ion-button>
-           <ion-button color="{{item.active ? 'success': 'danger'}}" slot="end" size="small">{{item.active ? 'On': 'Off'}} <span class="ion-margin-start fa-solid fa-wifi"></span></ion-button>
-         </ion-buttons>
-          <ion-buttons class="ion-justify-content-center">
-            <ion-button (click)="listSubs = item.subscripciones" color="primary">Subscripciones <span class="fa-solid ion-margin-start fa-chevron-down"></span></ion-button>
-          </ion-buttons>
-        </ion-card-content>
-      </ion-card>
+     
+       
+        <ion-card mode="ios">
+          
+            <ion-card-header class="ion-text-center">
+              <ion-card-subtitle class="ion-text-center">{{item.titulo}}</ion-card-subtitle>
+              <ion-card-title *ngIf="item.precio > 0" [ngClass]="{'promo': item.precioOld > 0}"><small>{{ item.precioOld | currency : 'MXN': 'MXN $': '1.0-0'}}</small></ion-card-title>
+              <ion-card-title><small>{{(item.precio > 0 ? item.precio : item.precioOld) | currency : 'MXN': 'MXN $': '1.0-0'}}</small></ion-card-title>
+              <small>Pago {{item.duracion === 1 ? 'Mensual' : item.duracion === 6 ?  'Semestral': 'Anual'}}</small>
+            </ion-card-header>
+        
+          
+          <ion-card-content>
+           <ion-buttons class="ion-justify-content-center">
+             <ion-button (click)="openEditar(item)" slot="start" size="small"><span class="fa-solid fa-pencil ion-margin-end"></span> Editar</ion-button>
+             <ion-button color="{{item.active ? 'success': 'danger'}}" slot="end" size="small">{{item.active ? 'On': 'Off'}} <span class="ion-margin-start fa-solid fa-wifi"></span></ion-button>
+           </ion-buttons>
+            <ion-buttons class="ion-justify-content-center">
+              <ion-button (click)="listSubs = item.suscripciones" color="primary">Subscripciones <span class="fa-solid ion-margin-start fa-chevron-down"></span></ion-button>
+            </ion-buttons>
+          </ion-card-content>
+        </ion-card>
+    
+      
     </div>
   </div>
   <ion-item lines="none" color="white" class="ion-text-center">
@@ -78,13 +86,13 @@
             </ion-col>
             <ion-col size-xs="6" size-sm="3" size-lg="2" size-xl="2" size-md="3">
               <ion-label>
-                <small><b>Equipos:</b></small> <br>
-                <p>{{item.equiposPermitidos }}</p>
+                <small><b>Plan:</b></small> <br>
+                <p>{{item.id }}</p>
               </ion-label>
             </ion-col>
             <ion-col size-xs="6" size-sm="3" size-lg="2" size-xl="2" size-md="3">
               <ion-label>
-                <small><b>Costo:</b></small> <br>
+                <small><b>precio:</b></small> <br>
                 <p>{{item.pago | currency: '': 'MXN $':'1.0-0'}}</p>
               </ion-label>
             </ion-col>

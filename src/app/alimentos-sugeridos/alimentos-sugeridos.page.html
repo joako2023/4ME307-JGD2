@@ -25,7 +25,7 @@
 
 
   <ion-list >
-    <ng-container *ngFor="let alimento of listaAlimentos">
+    <ng-container *ngFor="let alimento of listaAlimentosSugeridos">
 
       <ion-item lines="none">
         <ion-item button (click)="verModal(modal, alimento)" *ngIf="alimento.nombre!=null">

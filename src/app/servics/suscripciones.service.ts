@@ -2,40 +2,41 @@ import { HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Subject } from "rxjs";
 import { debounceTime } from "rxjs/operators";
-import { Plan } from "../interfaces/plan.interface";
+import { AlimentosSugeridos } from "../interfaces/alimentos-sugeridos.interface";
+import { Suscripcion } from "../interfaces/suscripcion.interface";
 import { HttpGenericService } from "./http-generic.service";
+
+
 
 @Injectable({
     providedIn:'root'
     })
-    export class PlanService{
-      private plan_selected:string='planSelected';
-      protected selected: BehaviorSubject<any>;
-        private storagePlan = new BehaviorSubject({ data: [], count: 0,servicios:[]});
+    export class SuscripcionesService{
+    
+    
+        private storageSuscripcion = new BehaviorSubject({ data: [], count: 0 });
         private _keyword = new BehaviorSubject('');
-        private _editar=new Subject<Plan>();
-       private _guardar=new Subject<Plan>();
+        private _editar=new Subject<Suscripcion>();
+       private _guardar=new Subject<Suscripcion>();
        private _eliminar=new Subject<number>();
-        public listaPlanes  = this.storagePlan.asObservable();
+        public listaSuscripcion  = this.storageSuscripcion.asObservable();
         public keyword = this._keyword.asObservable();
         constructor(
           private http: HttpGenericService<any>
         ) {
-          this.setConfig();
-          this.getAllPlanes();
+          this.getAllSuscripciones();
           this.searched();
           this.save();
           this.editar();
           this.delete();
-          
         }
       
         private save() {
           this._guardar.pipe(
               debounceTime(500)
           ).subscribe(resp => {
-              this.http.post('/plan', resp).subscribe(respHttp =>{
-                this.getAllPlanes(1)
+              this.http.post('/suscripciones', resp).subscribe(respHttp =>{
+                this.getAllSuscripciones(1)
               }
                 
               );
@@ -45,8 +46,8 @@ import { HttpGenericService } from "./http-generic.service";
         this._editar.pipe(
           debounceTime(500)
       ).subscribe((resp: any) => {
-          this.http.put('/plan/'+ resp.id, resp).subscribe(respHttp =>{
-            this.getAllPlanes(1)
+          this.http.put('/suscripciones/'+ resp.id, resp).subscribe(respHttp =>{
+            this.getAllSuscripciones(1)
           }
             
           );
@@ -54,32 +55,13 @@ import { HttpGenericService } from "./http-generic.service";
       
       }
       
-      setConfig(){
-        
-          const selectStorage = localStorage.getItem(this.plan_selected);
-          this.selected = new BehaviorSubject<Plan>(selectStorage !== null ? JSON.parse(selectStorage) : undefined);
-          this.selected.subscribe(resp => {
-            if (resp) {
-              localStorage.setItem(this.plan_selected, JSON.stringify(resp));
-              console.log(resp)
-            }
-          });
-       
-      }
-
-      select(data: any) {
-        this.selected.next(data);
-      }
-      getSelected() {
-        return this.selected.asObservable();
-      }
-
+      
       private delete(){
       this._eliminar.pipe(debounceTime(500)
       ).subscribe((resp) =>{
-        this.http.delete('/plan/'+resp).subscribe(respHttp=>{
+        this.http.delete('/suscripciones/'+resp).subscribe(respHttp=>{
           console.log(respHttp)
-          this.getAllPlanes(1)
+          this.getAllSuscripciones(1)
         })
       })
       }
@@ -91,11 +73,11 @@ import { HttpGenericService } from "./http-generic.service";
           this._keyword.pipe(
             debounceTime(100)
           ).subscribe(resp => {
-            this.getAllPlanes(1, resp);
+            this.getAllSuscripciones(1, resp);
           });
         }
       
-        public getAllPlanes(pag: number = 1, key = '') {
+        public getAllSuscripciones(pag: number = 0, key = '') {
           const params = new HttpParams({
            fromObject:{
                keyword:key,
@@ -103,8 +85,8 @@ import { HttpGenericService } from "./http-generic.service";
                take:15+''
            }
             });
-          this.http.get('/plan/pagination/search', { params }).subscribe((resp: any) => {
-            this.storagePlan.next(resp);
+          this.http.get('/suscripciones/pagination/search', { params }).subscribe((resp: any) => {
+            this.storageSuscripcion.next(resp);
           });
         }
       
@@ -112,11 +94,11 @@ import { HttpGenericService } from "./http-generic.service";
           this._keyword.next(keyword);
         }
         
-        up(data: Plan) {
+        up(data: Suscripcion) {
           this._guardar.next(data);
         }
         
-        upEditar(data: Plan) {
+        upEditar(data: Suscripcion) {
           this._editar.next(data);
         }
         upEliminar(id: number) {

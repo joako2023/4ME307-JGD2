@@ -31,7 +31,7 @@ export class ControlPagosPage implements OnInit {
       precio: [''],
       descripcion: ['',[Validators.required]],
      active:[false],
-     duracion: ['1'],
+     duracion: [1],
      mesesSinPago:[null],
      
     });
@@ -65,9 +65,13 @@ export class ControlPagosPage implements OnInit {
 
   ngOnInit() {
     this.servicios.listaServicios.subscribe(resp => {
-     
+    
       this.listaServicios = resp.data ;
       
+    });
+    this.planes.getSelected().subscribe(resp => {
+      this.formPlan.patchValue(resp);
+      this.serviciosSelected = resp.servicios;
     });
     
   }

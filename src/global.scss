@@ -151,7 +151,15 @@ ion-content{
     width: 60%;
     margin: 0px 20%;
 }
-
+.nav-btn {
+    background-color: transparent;
+    
+  }
+  
+  .promo {
+    text-decoration: line-through;
+    font-size: 22px;
+  }
 
 ion-toast {
     --background: #e86e3f;

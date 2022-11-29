@@ -1,0 +1,16 @@
+#planes-show {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+  }
+  
+  #planes-show .plans {
+    width: 350px !important;
+    height: 150px !important;
+    display: inline-flex;
+  }
+  
+  .plans ion-card {
+    width: 250px !important; 
+   
+  }
