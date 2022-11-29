@@ -48,10 +48,8 @@ const routes: Routes = [
   {
     path: 'pago-planes',
     loadChildren: () => import('./pago-planes/pago-planes.module').then( m => m.PagoPlanesPageModule)
-  },  {
-    path: 'editar-planes',
-    loadChildren: () => import('./editar-planes/editar-planes.module').then( m => m.EditarPlanesPageModule)
-  }
+  },
+
 
 
 ];
