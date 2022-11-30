@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IonModal } from '@ionic/angular';
+import {  IonModal } from '@ionic/angular';
+import { ClikTools } from '../cliktools/cliktools';
 import { PlanService } from '../servics/plan.service';
 import { ServiciosService } from '../servics/servicios.service';
 
@@ -18,7 +19,8 @@ export class ControlPagosPage implements OnInit {
   constructor(
     private planes: PlanService,
     private servicios: ServiciosService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private clicktools: ClikTools
   ) {this.formServicio = this.fb.group({
       id: [null],
       nombre: ['',[Validators.required]],
@@ -41,25 +43,30 @@ export class ControlPagosPage implements OnInit {
     const exist = this.serviciosSelected.find(i => i.id === item.id);
     if( exist === undefined && event.target.checked === true) {
         this.serviciosSelected.push(item);
+       
     } else if(exist && event.target.checked === false) {
       this.serviciosSelected = this.serviciosSelected.filter(i => i.id !== item.id);
+      
     }
   }
-
+ 
   async openGuardarServicio(modal: IonModal) {this.formServicio.reset({
       id: null,
       nombre: '',
       descripcion: ''
     });
     await modal.present();
+   
   }
 
   guardarServicio(){
     const data=this.formServicio.value;
     if(data.id !== null) {
       this.servicios.upEditar({...data});
+      this.clicktools.acceptMessage("Actualizado Correctamente","");
     } else {
       this.servicios.up({...data });
+      this.clicktools.acceptMessage("Guardado Correctamente","");
     }
   }
 
@@ -80,8 +87,10 @@ export class ControlPagosPage implements OnInit {
     const data = { ...this.formPlan.value,  servicios: [ ...this.serviciosSelected.map(i => ({ id: i.id })) ] };
     if(data.id !== null) {
       this.planes.upEditar(data);
+      this.clicktools.acceptMessage("Actualizado Correctamente","");
     } else {
       this.planes.up(data);
+      this.clicktools.acceptMessage("Guardado Correctamente","");
     }
 
   }

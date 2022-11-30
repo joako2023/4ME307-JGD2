@@ -32,7 +32,7 @@ export class AlimentosSugeridosService{
       this._guardar.pipe(
           debounceTime(500)
       ).subscribe(resp => {
-          this.http.post('/alimentos-sugeridos', resp).subscribe(respHttp =>{
+          this.http.post('/alimentosSugeridos', resp).subscribe(respHttp =>{
             this.getAllAlimentos(1)
           }
             
@@ -43,7 +43,7 @@ export class AlimentosSugeridosService{
     this._editar.pipe(
       debounceTime(500)
   ).subscribe((resp: any) => {
-      this.http.put('/alimentos-sugeridos/'+ resp.id, resp).subscribe(respHttp =>{
+      this.http.put('/alimentosSugeridos/'+ resp.id, resp).subscribe(respHttp =>{
         this.getAllAlimentos(1)
       }
         
@@ -56,7 +56,7 @@ export class AlimentosSugeridosService{
   private delete(){
   this._eliminar.pipe(debounceTime(500)
   ).subscribe((resp) =>{
-    this.http.delete('/alimentos-sugeridos/'+resp).subscribe(respHttp=>{
+    this.http.delete('/alimentosSugeridos/'+resp).subscribe(respHttp=>{
       console.log(respHttp)
       this.getAllAlimentos(1)
     })
@@ -82,7 +82,7 @@ export class AlimentosSugeridosService{
            take:15+''
        }
         });
-      this.http.get('/alimentos-sugeridos/pagination/search', { params }).subscribe((resp: any) => {
+      this.http.get('/alimentosSugeridos/pagination/search', { params }).subscribe((resp: any) => {
         this.storageAlimentosSugeridos.next(resp);
       });
     }

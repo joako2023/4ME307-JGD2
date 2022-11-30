@@ -30,7 +30,7 @@ export class SmaePage implements OnInit {
 
   ngOnInit() {
     this.svcSmae.getServicios().subscribe((resp: any) => {
-      if (resp.length > 0) {
+      if (resp.length > 0 && resp !==null) {
         this.listCategorias = resp;
 
       }
