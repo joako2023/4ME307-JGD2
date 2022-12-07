@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {  IonModal } from '@ionic/angular';
 import { ClikTools } from '../cliktools/cliktools';
-import { PlanService } from '../servics/plan.service';
+import { PlanesService } from '../servics/plan.service';
 import { ServiciosService } from '../servics/servicios.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class ControlPagosPage implements OnInit {
   formPlan: FormGroup;
 
   constructor(
-    private planes: PlanService,
+    private planes: PlanesService,
     private servicios: ServiciosService,
     private fb: FormBuilder,
     private clicktools: ClikTools
@@ -62,18 +62,16 @@ export class ControlPagosPage implements OnInit {
   guardarServicio(){
     const data=this.formServicio.value;
     if(data.id !== null) {
-      this.servicios.upEditar({...data});
-      this.clicktools.acceptMessage("Actualizado Correctamente","");
-    } else {
-      this.servicios.up({...data });
-      this.clicktools.acceptMessage("Guardado Correctamente","");
-    }
+      this.servicios.put({...data});
+       } else {
+      this.servicios.post({...data });
+      }
   }
 
   ngOnInit() {
-    this.servicios.listaServicios.subscribe(resp => {
+    this.servicios.getList().subscribe(resp => {
     
-      this.listaServicios = resp.data ;
+      this.listaServicios = resp ;
       
     });
     this.planes.getSelected().subscribe(resp => {
@@ -86,12 +84,10 @@ export class ControlPagosPage implements OnInit {
   guardarPlan() {
     const data = { ...this.formPlan.value,  servicios: [ ...this.serviciosSelected.map(i => ({ id: i.id })) ] };
     if(data.id !== null) {
-      this.planes.upEditar(data);
-      this.clicktools.acceptMessage("Actualizado Correctamente","");
-    } else {
-      this.planes.up(data);
-      this.clicktools.acceptMessage("Guardado Correctamente","");
-    }
+      this.planes.put(data);
+       } else {
+      this.planes.post(data);
+      }
 
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PlanService } from '../servics/plan.service';
+import { PlanesService } from '../servics/plan.service';
 import { SuscripcionesService } from '../servics/suscripciones.service';
 
 @Component({
@@ -14,19 +14,19 @@ export class PagoPlanesPage implements OnInit {
   p = 1;
 
   constructor(
-    private planes: PlanService,
+    private planes: PlanesService,
     private router: Router,
     private suscripciones: SuscripcionesService,
     
   ) { }
 
   ngOnInit() {
-    this.planes.listaPlanes.subscribe(resp => {
-      this.listPlanes = resp.data;
+    this.planes.getList().subscribe(resp => {
+      this.listPlanes = resp;
 
     });
-    this.suscripciones.listaSuscripcion.subscribe(resp => {
-      this.listSubs = resp.data;
+    this.suscripciones.getList().subscribe(resp => {
+      this.listSubs = resp;
 
     });
   }

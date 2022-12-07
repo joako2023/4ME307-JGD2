@@ -7,7 +7,8 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthInterceptorService } from './servics/auth-interceptor.service';
+import { HttpInterceptorService } from './servics/FAST-TRACK-FRONTEND/http.interceptor';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,7 +16,7 @@ import { AuthInterceptorService } from './servics/auth-interceptor.service';
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptorService,
+      useClass: HttpInterceptorService,
       multi: true
     }],
   bootstrap: [AppComponent],

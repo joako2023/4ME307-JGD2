@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http'
-import { HttpGenericService } from "./http-generic.service";
+import { HttpGenericService } from "./FAST-TRACK-FRONTEND/http-generic.service";
+
 
 @Injectable({
   providedIn: 'root'

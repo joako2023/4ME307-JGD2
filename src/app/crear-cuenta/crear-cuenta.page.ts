@@ -2,9 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClikTools } from '../cliktools/cliktools';
-import { HttpGenericService } from '../servics/http-generic.service';
+
 import { UserInterface } from 'src/app/interfaces/user.interface';
 import { UserService } from 'src/app/servics/user.service';
+import { HttpGenericService } from '../servics/FAST-TRACK-FRONTEND/http-generic.service';
 @Component({
   selector: 'app-crear-cuenta',
   templateUrl: './crear-cuenta.page.html',
@@ -64,13 +65,13 @@ export class CrearCuentaPage implements OnInit {
           rol: 'paciente'
         } as UserInterface;
 
-        this.userService.saveUser(data)
-        .subscribe((response) => {
-          if(response.hasOwnProperty('id')){
-            this.formCreateAccount.reset();
-            this.clicktools.alertMessageRouter("/login","Operación exitosa", "Se ha registrado exitosamente");
-          }
-        });
+        // this.userService.saveUser(data)
+        // .subscribe((response) => {
+        //   if(response.hasOwnProperty('id')){
+        //     this.formCreateAccount.reset();
+        //     this.clicktools.alertMessageRouter("/login","Operación exitosa", "Se ha registrado exitosamente");
+        //   }
+        // });
       }
 
     }

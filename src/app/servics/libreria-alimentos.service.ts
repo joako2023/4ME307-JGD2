@@ -1,104 +1,34 @@
-import { HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Subject } from "rxjs";
-import { HttpGenericService } from "./http-generic.service";
-import { debounceTime, tap } from "rxjs/operators";
-import { LibreriaAlimentos } from "../interfaces/Libreria-alimentos.interface";
+import { CrudService } from "./FAST-TRACK-FRONTEND/crud.service";
+import { HttpGenericService } from "./FAST-TRACK-FRONTEND/http-generic.service";
+import { UtilsService } from "./FAST-TRACK-FRONTEND/utils.service";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
-export class LibreriaAlimentosService {
-
-
-  private storageLibreriaAlimentos = new BehaviorSubject({ data: [], count: 0 });
-  private _keyword = new BehaviorSubject('');
-  private _editar=new Subject<LibreriaAlimentos>();
- private _guardar=new Subject<LibreriaAlimentos>();
- private _eliminar=new Subject<number>();
-  public listaAlimentos  = this.storageLibreriaAlimentos.asObservable();
-  public keyword = this._keyword.asObservable();
+export class  LibreriaAlimentosService extends CrudService<any, any> {
   constructor(
-    private http: HttpGenericService<any>
+    protected http: HttpGenericService<any>,
+    protected utils: UtilsService
   ) {
-    this.getAllLibreriaAlimentos();
-    this.searched();
-    this.save();
-    this.editar();
-    this.delete();
-  }
-
-  private save() {
-    this._guardar.pipe(
-        debounceTime(500)
-    ).subscribe(resp => {
-        this.http.post('/Libreria-alimentos', resp).subscribe(respHttp =>{
-          this.getAllLibreriaAlimentos(1)
-        }
-          
-        );
+    super(http, utils, {
+      callInSave: true,
+      debug: true,
+      debounceConfig: 300,
+      callInSaveInfinite: false,
+      urlDelete: '/libreria-alimentos',
+      urlGet: '/libreria-alimentos',
+      urlPut: '/libreria-alimentos',
+      urlPost: '/libreria-alimentos',
+      urlGetInfinite: '',
+      messageForSave: 'Alimento guardado',
+      messageForDelete: 'Alimento eliminado',
+      messageForUpdate: 'Alimento actualizado',
+      messageForLoad: 'Realizando operación',
+      messageForError: 'Ocurrio un problema realizando esta operación',
+      keyLocalStorageList: 'LIST_LIB_ALIMENTOS',
+      keyLocalStorageSelected: 'LIB_ALIMENTOS_SELECTED'
     });
-}
-private editar(){
-  this._editar.pipe(
-    debounceTime(500)
-).subscribe((resp: any) => {
-    this.http.put('/Libreria-alimentos/'+ resp.id, resp).subscribe(respHttp =>{
-      this.getAllLibreriaAlimentos(1)
-    }
-      
-    );
-});
-
-}
-
-
-private delete(){
-this._eliminar.pipe(debounceTime(500)
-).subscribe((resp) =>{
-  this.http.delete('/Libreria-alimentos/'+resp).subscribe(respHttp=>{
-    console.log(respHttp)
-    this.getAllLibreriaAlimentos(1)
-  })
-})
-}
-
-
-
-
-  private searched() {
-    this._keyword.pipe(
-      debounceTime(100)
-    ).subscribe(resp => {
-      this.getAllLibreriaAlimentos(1, resp);
-    });
-  }
-
-  public getAllLibreriaAlimentos(pag: number = 0, key = '') {
-    const params = new HttpParams({
-     fromObject:{
-         keyword:key,
-         page:pag+'',
-         take:15+''
-     }
-      });
-    this.http.get('/Libreria-alimentos/pagination/search', { params }).subscribe((resp: any) => {
-      this.storageLibreriaAlimentos.next(resp);
-    });
-  }
-
-  searchByKeyword(keyword: string){
-    this._keyword.next(keyword);
-  }
-  
-  up(data: LibreriaAlimentos) {
-    this._guardar.next(data);
-  }
-  
-  upEditar(data: LibreriaAlimentos) {
-    this._editar.next(data);
-  }
-  upEliminar(id: number) {
-    this._eliminar.next(id);
+    super.get();
   }
 }

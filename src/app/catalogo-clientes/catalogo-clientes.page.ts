@@ -33,19 +33,9 @@ export class CatalogoClientesPage implements OnInit {
   public formUploadNutriologo!: FormGroup;
 
   ngOnInit() {
-    this.activatedRoute.url.subscribe(() => {
-      this.nutriologoSvc.searchByKeyword(this.keyword)
-      this.page = 1;
-    })
-    this.nutriologoSvc.keyword.subscribe(resp => {
-      this.keyword = resp;
-    });
-    this.nutriologoSvc.listaNutriologos.subscribe((resp: any) => {
-      if (this.page === 2) {
-        this.listaNutriologos = [...[], ...resp.data];
-      } else {
-        this.listaNutriologos = [...this.listaNutriologos, ...resp.data];
-      }
+  
+    this.nutriologoSvc.getList().subscribe((resp: any) => {
+      this.listaNutriologos=resp
     });
 
 
@@ -76,15 +66,12 @@ export class CatalogoClientesPage implements OnInit {
   }
 
   loadData($event) {
-    this.nutriologoSvc.getAllNutriologos(this.page, this.keyword);
+    this.nutriologoSvc.get();
     $event.target.complete();
     this.page++;
   }
 
-  search(value: string) {
-    this.page = 2;
-    this.nutriologoSvc.searchByKeyword(value);
-  }
+  
 
 
   verModal(modal: IonModal, nut: Nutriologos) {
@@ -108,7 +95,7 @@ export class CatalogoClientesPage implements OnInit {
       header: 'Alerta',
       subHeader: 'Borrar cliente',
       message: '¿Desea continuar con la operación?',
-      buttons: [{ text: 'Aceptar', handler: () => { this.nutriologoSvc.upEliminar(id) } }]
+      buttons: [{ text: 'Aceptar', handler: () => { this.nutriologoSvc.delete(id) } }]
     });
 
     await alert.present();
@@ -117,7 +104,7 @@ export class CatalogoClientesPage implements OnInit {
 
     const body = this.formUploadNutriologo.value;
     if (body.id) {
-      this.nutriologoSvc.upEditar({ ...body });
+      this.nutriologoSvc.put({ ...body });
     }
   }
   guardarNutriologo() {
@@ -127,7 +114,7 @@ export class CatalogoClientesPage implements OnInit {
     for(const dataKey in body) {
       formData.append(dataKey, body[dataKey]);
     }
-    this.nutriologoSvc.up(formData)
+    this.nutriologoSvc.post(formData)
   }
 
 

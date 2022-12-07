@@ -1,128 +1,34 @@
-import { HttpParams } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { BehaviorSubject, Subject } from "rxjs";
-import { debounceTime } from "rxjs/operators";
-import { Plan } from "../interfaces/plan.interface";
-import { HttpGenericService } from "./http-generic.service";
+import {Injectable} from '@angular/core';
+import {CrudService} from './FAST-TRACK-FRONTEND/crud.service';
+import {HttpGenericService} from './FAST-TRACK-FRONTEND/http-generic.service';
+import {UtilsService} from './FAST-TRACK-FRONTEND/utils.service';
 
 @Injectable({
-    providedIn:'root'
-    })
-    export class PlanService{
-      private plan_selected:string='planSelected';
-      protected selected: BehaviorSubject<any>;
-        private storagePlan = new BehaviorSubject({ data: [], count: 0,servicios:[]});
-        private _keyword = new BehaviorSubject('');
-        private _editar=new Subject<Plan>();
-       private _guardar=new Subject<Plan>();
-       private _eliminar=new Subject<number>();
-        public listaPlanes  = this.storagePlan.asObservable();
-        public keyword = this._keyword.asObservable();
-        constructor(
-          private http: HttpGenericService<any>
-        ) {
-          this.setConfig();
-          this.getAllPlanes();
-          this.searched();
-          this.save();
-          this.editar();
-          this.delete();
-          
-        }
-      
-        private save() {
-          this._guardar.pipe(
-              debounceTime(500)
-          ).subscribe(resp => {
-              this.http.post('/plan', resp).subscribe(respHttp =>{
-                this.getAllPlanes(1)
-              }
-                
-              );
-          });
-      }
-      private editar(){
-        this._editar.pipe(
-          debounceTime(500)
-      ).subscribe((resp: any) => {
-          this.http.put('/plan/'+ resp.id, resp).subscribe(respHttp =>{
-            this.getAllPlanes(1)
-          }
-            
-          );
-      });
-      
-      }
-      
-      setConfig(){
-        
-          const selectStorage = localStorage.getItem(this.plan_selected);
-          this.selected = new BehaviorSubject<Plan>(selectStorage !== null ? JSON.parse(selectStorage) : undefined);
-          this.selected.subscribe(resp => {
-            if (resp) {
-              localStorage.setItem(this.plan_selected, JSON.stringify(resp));
-              console.log(resp)
-            }
-          });
-       
-      }
-
-      select(data: any) {
-        this.selected.next(data);
-      }
-      getSelected() {
-        return this.selected.asObservable();
-      }
-
-      private delete(){
-      this._eliminar.pipe(debounceTime(500)
-      ).subscribe((resp) =>{
-        this.http.delete('/plan/'+resp).subscribe(respHttp=>{
-          console.log(respHttp)
-          this.getAllPlanes(1)
-        })
-      })
-      }
-      
-      
-      
-      
-        private searched() {
-          this._keyword.pipe(
-            debounceTime(100)
-          ).subscribe(resp => {
-            this.getAllPlanes(1, resp);
-          });
-        }
-      
-        public getAllPlanes(pag: number = 1, key = '') {
-          const params = new HttpParams({
-           fromObject:{
-               keyword:key,
-               page:pag+'',
-               take:15+''
-           }
-            });
-          this.http.get('/plan/pagination/search', { params }).subscribe((resp: any) => {
-            this.storagePlan.next(resp);
-          });
-        }
-      
-        searchByKeyword(keyword: string){
-          this._keyword.next(keyword);
-        }
-        
-        up(data: Plan) {
-          this._guardar.next(data);
-        }
-        
-        upEditar(data: Plan) {
-          this._editar.next(data);
-        }
-        upEliminar(id: number) {
-          this._eliminar.next(id);
-        }
-    
-    
-    
-    }
+  providedIn: 'root'
+})
+export class  PlanesService extends CrudService<any, any> {
+  constructor(
+    protected http: HttpGenericService<any>,
+    protected utils: UtilsService
+  ) {
+    super(http, utils, {
+      callInSave: true,
+      debug: true,
+      debounceConfig: 300,
+      callInSaveInfinite: false,
+      urlDelete: '/planes',
+      urlGet: '/planes',
+      urlPut: '/planes',
+      urlPost: '/planes',
+      urlGetInfinite: '',
+      messageForSave: 'Plan guardado',
+      messageForDelete: 'Plan eliminado',
+      messageForUpdate: 'Plan actualizado',
+      messageForLoad: 'Realizando operación',
+      messageForError: 'Ocurrio un problema realizando esta operación',
+      keyLocalStorageList: 'LIST_PLANES',
+      keyLocalStorageSelected: 'PLAN_SELECTED'
+    });
+    super.get();
+  }
+}

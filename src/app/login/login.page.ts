@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpGenericService } from '../servics/http-generic.service';
-import { SesionService } from '../servics/session.service';
-import { UtileriasService } from '../servics/utileria.service';
+import { HttpGenericService } from '../servics/FAST-TRACK-FRONTEND/http-generic.service';
+import { SessionService } from '../servics/FAST-TRACK-FRONTEND/session.service';
+import { UtilsService } from '../servics/FAST-TRACK-FRONTEND/utils.service';
+
 
 @Component({
   selector: 'app-login',
@@ -13,9 +14,8 @@ export class LoginPage implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private sesion: SesionService,
-    private apiclient:HttpGenericService<any>,
-    private utilerias:UtileriasService
+    private sesion: SessionService,
+    
   ) { }
 
   public formularioLogin!: FormGroup;
@@ -27,23 +27,7 @@ export class LoginPage implements OnInit {
   }
 
   public login() {
-    if (this.formularioLogin.valid) {
-      console.log(this.formularioLogin.value)
-      this.apiclient.post(
-        '/auth/local',
-        this.formularioLogin.value
-      ).subscribe((response: any) => {
-        if (response.hasOwnProperty("jwt")) {
-          
-          this.sesion.set("usuarioSD", JSON.stringify(response.user))
-          this.sesion.setToken(response.jwt)
-          this.sesion.redirectIfLoggedIn('')
-        } 
-        
-      })
-    } else {
-      this.utilerias.showIncorrectFormMessage()
-    }
+   this.sesion.up(this.formularioLogin.value)
   }
 
   public get form() {

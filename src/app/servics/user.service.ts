@@ -1,56 +1,34 @@
-import { Injectable } from '@angular/core';
-import {  UserInterface } from '../interfaces/user.interface';
-
-import { HttpGenericService } from '../servics/http-generic.service';
+import {Injectable} from '@angular/core';
+import {CrudService} from './FAST-TRACK-FRONTEND/crud.service';
+import {HttpGenericService} from './FAST-TRACK-FRONTEND/http-generic.service';
+import {UtilsService} from './FAST-TRACK-FRONTEND/utils.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
-
-  private readonly urlUser = '/usuarios';
-  private readonly urlLogin = '/auth/local';
-
-  constructor(private httpGeneric: HttpGenericService<any> ) { }
-
-  public getUser(){
-    return this.httpGeneric.get(this.urlUser);
-  }
-
-  public saveUser(user: UserInterface){
-    const body = this.mapUser(user);
-    return this.httpGeneric.post(this.urlUser, body);
-  }
-
-  public userLogin(user: string, pass: string){
-    const body = {
-      username: user,
-      password: pass
-    }
-    return this.httpGeneric.post(this.urlLogin, body);
-  }
-
-  public updateUser(url: string, user: UserInterface, options = {}){
-
-    const body = this.mapUser(user);
-    return this.httpGeneric.put(this.urlUser, body)
-  }
-
-  public deleteUser(url: string, options = {}) {
-  }
-
-  private mapUser(user: UserInterface){
-
-    const body = {
-      username: user.username,
-      password: user.password,
-      email: user.email,
-      confirmed: false,
-      blocked: true,
-      tipo: "nutriologo",
-      telefono: user.telefono,
-      rol: "nutriologo",
-    } 
-    return body;
+export class  UserService extends CrudService<any, any> {
+  constructor(
+    protected http: HttpGenericService<any>,
+    protected utils: UtilsService
+  ) {
+    super(http, utils, {
+      callInSave: true,
+      debug: true,
+      debounceConfig: 300,
+      callInSaveInfinite: false,
+      urlDelete: '/user',
+      urlGet: '/user',
+      urlPut: '/user',
+      urlPost: '/user',
+      urlGetInfinite: '',
+      messageForSave: 'user guardado',
+      messageForDelete: 'user eliminado',
+      messageForUpdate: 'user actualizado',
+      messageForLoad: 'Realizando operación',
+      messageForError: 'Ocurrio un problema realizando esta operación',
+      keyLocalStorageList: 'LIST_USER',
+      keyLocalStorageSelected: 'USER_SELECTED'
+    });
+    super.get();
   }
 }

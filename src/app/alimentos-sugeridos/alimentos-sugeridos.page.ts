@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AlertController, IonModal } from '@ionic/angular';
 import { AlimentosSugeridos } from '../interfaces/alimentos-sugeridos.interface';
 import { AlimentosSugeridosService } from '../servics/alimentos-sugeridos.service';
+
 import { ExportExcelService } from '../servics/export-excel.service';
 
 @Component({
@@ -33,19 +34,9 @@ export class AlimentosSugeridosPage implements OnInit {
   }
   public formAlimentos!: FormGroup;
   ngOnInit() {
-    this.activatedRoute.url.subscribe(() => {
-      this.alimentosSvc.searchByKeyword(this.keyword)
-      this.page=1;
-    })
-    this.alimentosSvc.keyword.subscribe(resp => {
-      this.keyword = resp;
-    });
-    this.alimentosSvc.listaAlimentosSugeridos.subscribe((resp: any) => {
-      if (this.page === 2) {
-        this.listaAlimentosSugeridos = [...[], ...resp.data];
-      } else {
-        this.listaAlimentosSugeridos = [...this.listaAlimentosSugeridos, ...resp.data];
-      }
+  
+    this.alimentosSvc.getList().subscribe((resp: any) => {
+     this.listaAlimentosSugeridos=resp
     });
 
 
@@ -66,15 +57,11 @@ export class AlimentosSugeridosPage implements OnInit {
   }
 
   loadData($event) {
-    this.alimentosSvc.getAllAlimentos(this.page, this.keyword);
+    this.alimentosSvc.get();
     $event.target.complete();
     this.page++;
   }
 
-  search(value: string) {
-    this.page = 2;
-    this.alimentosSvc.searchByKeyword(value);
-  }
 
 
   verModal(modal: IonModal, ali: AlimentosSugeridos) {
@@ -95,7 +82,7 @@ export class AlimentosSugeridosPage implements OnInit {
       header: 'Alerta',
       subHeader: 'Borrar alimento',
       message: '¿Desea continuar con la operación?',
-      buttons: [{ text: 'Aceptar', handler: () => { this.alimentosSvc.upEliminar(id) } }]
+      buttons: [{ text: 'Aceptar', handler: () => { this.alimentosSvc.delete(id) } }]
     });
 
     await alert.present();
@@ -104,13 +91,13 @@ export class AlimentosSugeridosPage implements OnInit {
 
     const body = this.formAlimentos.value;
     if (body.id) {
-      this.alimentosSvc.upEditar({ ...body });
+      this.alimentosSvc.put({ ...body });
     }
   }
   guardarAlimento() {
 
     const body = this.formAlimentos.value;
-    this.alimentosSvc.up({ ...body })
+    this.alimentosSvc.post({ ...body })
   }
 
 

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { SessionGuard } from './servics/sesion.guard';
+import { SessionGuard } from './servics/FAST-TRACK-FRONTEND/guards/session.guard';
+
 
 const routes: Routes = [
   {

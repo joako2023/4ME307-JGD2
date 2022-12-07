@@ -33,14 +33,8 @@ export class TablaEquivalenciasPage implements OnInit {
   }
   public formEquivalencias!: FormGroup;
   ngOnInit() {
-    this.activatedRoute.url.subscribe(() => {
-      this.equivalenciasSvc.searchByKeyword(this.keyword)
-      this.page=1;
-    })
-    this.equivalenciasSvc.keyword.subscribe(resp => {
-      this.keyword = resp;
-    });
-    this.equivalenciasSvc.listaEquivalencias.subscribe((resp: any) => {
+ 
+    this.equivalenciasSvc.getList().subscribe((resp: any) => {
       if (this.page === 2) {
         this.listaEquivalencias = [...[], ...resp.data];
       } else {
@@ -66,15 +60,11 @@ export class TablaEquivalenciasPage implements OnInit {
   }
 
   loadData($event) {
-    this.equivalenciasSvc.getAllEquivalencias(this.page, this.keyword);
+    this.equivalenciasSvc.get();
     $event.target.complete();
     this.page++;
   }
 
-  search(value: string) {
-    this.page = 2;
-    this.equivalenciasSvc.searchByKeyword(value);
-  }
 
 
   verModal(modal: IonModal, ali: Equivalencias) {
@@ -95,7 +85,7 @@ export class TablaEquivalenciasPage implements OnInit {
       header: 'Alerta',
       subHeader: 'Borrar equivalencia',
       message: '¿Desea continuar con la operación?',
-      buttons: [{ text: 'Aceptar', handler: () => { this.equivalenciasSvc.upEliminar(id) } }]
+      buttons: [{ text: 'Aceptar', handler: () => { this.equivalenciasSvc.delete(id) } }]
     });
 
     await alert.present();
@@ -104,13 +94,13 @@ export class TablaEquivalenciasPage implements OnInit {
 
     const body = this.formEquivalencias.value;
     if (body.id) {
-      this.equivalenciasSvc.upEditar({ ...body });
+      this.equivalenciasSvc.put({ ...body });
     }
   }
   guardarEquivalencia() {
 
     const body = this.formEquivalencias.value;
-    this.equivalenciasSvc.up({ ...body })
+    this.equivalenciasSvc.post({ ...body })
   }
 
 
