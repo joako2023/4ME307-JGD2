@@ -46,11 +46,10 @@ export class CatalogoClientesPage implements OnInit {
       apellido: ['', [Validators.required]],
       telefono: ['', [Validators.required]],
       email: ['', [Validators.required]],
-      tipoPago: ['', [Validators.required]],
-      acercaDeMi: ['', [Validators.required]],
-      experiencia: ['', [Validators.required]],
+      tipo_pago: ['', [Validators.required]],
+      acerca_de_mi: ['', [Validators.required]],
       especialidad: ['', [Validators.required]],
-      enfermedadesTratadas: ['', [Validators.required]],
+      enfermedades_tratadas: ['', [Validators.required]],
       idEstablecimiento: [''],
       Imagen: [''],
       terms: [false]
@@ -129,8 +128,8 @@ export class CatalogoClientesPage implements OnInit {
   exportToExcel() {
     let listaN = [...this.listaNutriologos]
     listaN.map(item => {
-      const { identificacion, nombre, apellido, telefono, email, tipoPago, acercaDeMi, experiencia, especialidad, enfermedadesTratadas, idEstablecimiento } = item;
-      return { identificacion, nombre, apellido, telefono, email, tipoPago, acercaDeMi, experiencia, especialidad, enfermedadesTratadas, idEstablecimiento }
+      const { identificacion, nombre, apellido, telefono, email, tipo_pago, acerca_de_mi, especialidad, enfermedades_tratadas, idEstablecimiento } = item;
+      return { identificacion, nombre, apellido, telefono, email, tipo_pago, acerca_de_mi, especialidad, enfermedades_tratadas, idEstablecimiento }
     }
     )
 

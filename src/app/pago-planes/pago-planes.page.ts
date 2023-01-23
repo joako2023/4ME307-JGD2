@@ -32,7 +32,6 @@ export class PagoPlanesPage implements OnInit {
   }
 
   openEditar(item: any) {
-   // this.planSvcObj.sendObjectSource(item);
     this.planes.select(item);
     this.router.navigateByUrl('/control-pagos');
   }
@@ -40,7 +39,7 @@ export class PagoPlanesPage implements OnInit {
   openNuevoPlan() {
     const item = {
       id: null,
-      titulo: '',
+      nombre: '',
       descripcion: '',
       precioOld: '',
       duracion: 1,

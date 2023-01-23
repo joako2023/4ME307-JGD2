@@ -28,7 +28,7 @@
         <ion-card mode="ios">
           
             <ion-card-header class="ion-text-center">
-              <ion-card-subtitle class="ion-text-center">{{item.titulo}}</ion-card-subtitle>
+              <ion-card-subtitle class="ion-text-center">{{item.nombre}}</ion-card-subtitle>
               <ion-card-title *ngIf="item.precio > 0" [ngClass]="{'promo': item.precioOld > 0}"><small>{{ item.precioOld | currency : 'MXN': 'MXN $': '1.0-0'}}</small></ion-card-title>
               <ion-card-title><small>{{(item.precio > 0 ? item.precio : item.precioOld) | currency : 'MXN': 'MXN $': '1.0-0'}}</small></ion-card-title>
               <small>Pago {{item.duracion === 1 ? 'Mensual' : item.duracion === 6 ?  'Semestral': 'Anual'}}</small>

@@ -16,18 +16,18 @@ export class  SuscripcionesService extends CrudService<any, any> {
       debug: true,
       debounceConfig: 300,
       callInSaveInfinite: false,
-      urlDelete: '/planes',
-      urlGet: '/planes',
-      urlPut: '/planes',
-      urlPost: '/planes',
+      urlDelete: '/suscripciones',
+      urlGet: '/suscripciones',
+      urlPut: '/suscripciones',
+      urlPost: '/suscripciones',
       urlGetInfinite: '',
-      messageForSave: 'Plan guardado',
-      messageForDelete: 'Plan eliminado',
-      messageForUpdate: 'Plan actualizado',
+      messageForSave: 'Suscripcion guardada',
+      messageForDelete: 'Suscripcion eliminada',
+      messageForUpdate: 'Suscripcion actualizada',
       messageForLoad: 'Realizando operación',
       messageForError: 'Ocurrio un problema realizando esta operación',
-      keyLocalStorageList: 'LIST_PLANES',
-      keyLocalStorageSelected: 'PLAN_SELECTED'
+      keyLocalStorageList: 'LIST_SUSCRIPCIONES',
+      keyLocalStorageSelected: 'SUSCRIPCION_SELECTED'
     });
     super.get();
   }
