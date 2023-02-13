@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { NgChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,14 +12,11 @@ import { BarComponent } from './bar/bar.component';
 import { DoughnutComponent } from './doughnut/doughnut.component';
 import { LineComponent } from './line/line.component';
 import { HttpInterceptorService } from './servics/FAST-TRACK-FRONTEND/http.interceptor';
-import { TimeSerieComponent } from './time-serie/time-serie.component';
+
 
 
 @NgModule({
-  declarations: [AppComponent, DoughnutComponent,
-    BarComponent,
-    LineComponent,
-    TimeSerieComponent],
+  declarations: [AppComponent ],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {
@@ -26,6 +24,7 @@ import { TimeSerieComponent } from './time-serie/time-serie.component';
       useClass: HttpInterceptorService,
       multi: true
     }],
+    
   bootstrap: [AppComponent],
 })
 export class AppModule {}

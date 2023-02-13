@@ -11,6 +11,8 @@ export class DoughnutComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {}
+
+  
   chartType: ChartType = 'doughnut';
 
   data: ChartData<'doughnut'> = {

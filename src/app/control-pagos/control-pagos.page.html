@@ -1,8 +1,6 @@
 <ion-header mode="ios"  class="ion-no-border">
-  <ion-toolbar  color="white" mode="ios">
-    <ion-button slot="start" routerLink="/pago-planes" color="dark">
-      <span class="fa-solid fa-arrow-left"></span>
-    </ion-button>
+  <ion-toolbar  color="white" mode="ios" >
+    <ion-back-button slot="end"></ion-back-button>
    <div slot="start">
      <h1 class="ion-no-padding ion-no-margin ion-margin-start"><b>{{formPlan.controls['id'].value !== null ? 'Editar Plan' : 'Nuevo plan'}}</b></h1>
    </div>

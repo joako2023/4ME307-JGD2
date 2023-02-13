@@ -1,12 +1,28 @@
 <ion-header>
-  <ion-toolbar mode="ios">
+  <ion-toolbar mode="ios" slots="primary">
+    <ion-back-button slot="end"></ion-back-button>
     <ion-title>analiticas</ion-title>
-    <ion-button slot="start" routerLink="/tabs/tab1" color="dark">
-      <span class="fa-solid fa-arrow-left"></span>
-    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <app-line></app-line>
+      </ion-col>
+      <ion-col>
+        <app-doughnut></app-doughnut>
+      </ion-col>
+      <ion-col>
+        <app-bar></app-bar>
+      </ion-col>
+    
+    </ion-row>
+   
+  </ion-grid>
+ 
   
+  
+
 </ion-content>

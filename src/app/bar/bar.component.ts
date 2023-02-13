@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartOptions } from 'chart.js';
 import { ChartData, ChartType } from 'chart.js/dist/types/index';
+import { chartsService } from '../servics/metricas.service';
+
 
 @Component({
   selector: 'app-bar',
@@ -9,9 +11,13 @@ import { ChartData, ChartType } from 'chart.js/dist/types/index';
 })
 export class BarComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private metricaSvc:chartsService
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  
+  }
 
   chartType: ChartType = 'bar';
 
@@ -36,4 +42,6 @@ export class BarComponent implements OnInit {
       }
     }
   }
+
+
 }

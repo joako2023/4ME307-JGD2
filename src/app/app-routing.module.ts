@@ -49,27 +49,14 @@ const routes: Routes = [
   {
     path: 'pago-planes',
     loadChildren: () => import('./pago-planes/pago-planes.module').then( m => m.PagoPlanesPageModule)
-  },  {
+  },
+  {
     path: 'suscripciones',
     loadChildren: () => import('./suscripciones/suscripciones.module').then( m => m.SuscripcionesPageModule)
   },
-  {
-    path: 'bar',
-    loadChildren: () => import('./bar/bar.module').then( m => m.BarPageModule)
-  },
-  {
-    path: 'doughnut',
-    loadChildren: () => import('./doughnut/doughnut.module').then( m => m.DoughnutPageModule)
-  },
-  {
-    path: 'line',
-    loadChildren: () => import('./line/line.module').then( m => m.LinePageModule)
-  },
-  {
-    path: 'time-series',
-    loadChildren: () => import('./time-series/time-series.module').then( m => m.TimeSeriesPageModule)
-  },
 
+
+ 
 
 
 
