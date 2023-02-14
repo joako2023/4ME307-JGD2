@@ -6,23 +6,36 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <app-line></app-line>
+  <ion-grid >
+    <ion-row class="ion-justify-content-around">
+      <ion-col class="ion-margin" >
+        <ion-card>
+       
+          <ion-card-content>
+            <app-line></app-line>
+          </ion-card-content>
+        </ion-card>
       </ion-col>
-      <ion-col>
-        <app-doughnut></app-doughnut>
+      <ion-col class="ion-margin" size-lg="3" size-md="3"size-xs="12" size-xl="3" size-sm="12">
+        <ion-card>
+          
+          <ion-card-content>
+            <app-doughnut></app-doughnut>
+          </ion-card-content>
+        </ion-card>
       </ion-col>
-      <ion-col>
-        <app-bar></app-bar>
+      <ion-col class="ion-margin" >
+        <ion-card>
+          
+          <ion-card-content>
+            <app-bar></app-bar>
+          </ion-card-content>
+        </ion-card>
       </ion-col>
-    
     </ion-row>
-   
+    
   </ion-grid>
+  
+  
  
-  
-  
-
 </ion-content>
