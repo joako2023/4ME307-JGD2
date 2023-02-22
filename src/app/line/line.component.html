@@ -1,2 +1,7 @@
-<canvas baseChart [type]="chartType" [data]="data" [options]="options">
+<canvas baseChart [type]="type" [data]="data" [options]="options">
 </canvas>
+<form [formGroup]='formularioFecha' (ngSubmit)="graficar()">
+    <ion-input type="date" placeholder="from" formControlName="from"></ion-input>
+    <ion-input type="date" placeholder="to" formControlName="to"></ion-input>
+    <ion-button type="submit" >Graficar</ion-button>
+</form>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MenuController } from '@ionic/angular';
 import { PlanesService } from '../servics/plan.service';
 import { SuscripcionesService } from '../servics/suscripciones.service';
@@ -17,7 +17,7 @@ export class SuscripcionesPage implements OnInit {
   listVisible = 'persona';
   today = new Date();
   p = 1;
- 
+  asociar = 'empresa';
   editar = false;
 
   constructor(
@@ -66,7 +66,20 @@ export class SuscripcionesPage implements OnInit {
     });
     
   }
-
+  
+  validateFields(value: string, strings: string[]) {
+    if(value === 'empresa') {
+      let valid = true;
+      for (const valueElement in strings) {
+        if(valid !== this.formPersonas.get(strings[valueElement]).valid) {
+          valid = false;
+          break;
+        }
+      return valid;
+    }
+  }
+  }
+  
   ngOnInit() {
     this.planes.getList().subscribe(resp => {
       this.listPlanes = resp;
@@ -80,5 +93,31 @@ export class SuscripcionesPage implements OnInit {
 }
 
 
+openMenuEditor(value: string) {
+  this.asociar = value;
+  this.editar = false;
+  this.formPersonas.reset();
+  this.menuController.open('custom');
+}
+
+cambiarLista($event: any) {
+  this.listVisible = $event.target.value;
+}
+
+editarSubscripcion(item: any) {
+  if(this.listVisible === 'persona') {
+    this.asociar = 'persona';
+    this.editar = true;
+    this.formPersonas.patchValue({...item, planes: { id: item.subscripcion.plan.id }});
+    const formP = this.formPersonas.get('subscripcion').get('programas') as FormArray;
+    formP.clear();
+    for (const data of item.subscripcion.programas) {
+      formP.push(this.fb.group({
+        id: data.id
+      }));
+    }
+    this.menuController.open('custom');
+  }
+  }
 
 }

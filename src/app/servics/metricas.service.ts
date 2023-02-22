@@ -32,6 +32,7 @@ export class  chartsService extends CrudService<any, any> {
     super.get();
   }
   public llamarGrafico(type:string,metricaNombre:string,from:string, to:string){
-    return this.http.get('/charts'+type+'/'+metricaNombre+'/'+from+'/'+to)
+   // console.log('/charts'+'/'+type+'/'+metricaNombre+'/'+from+'/'+to)
+    return this.http.get('/charts'+'/'+type+'/'+metricaNombre+'/'+from+'/'+to)
   }
 }

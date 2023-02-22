@@ -22,11 +22,10 @@ export class AnaliticasPage implements OnInit {
   ) { }
   public formGrafica!: FormGroup;
   ngOnInit() {
-
+this.crearGrafico()
   }
 
 crearGrafico(){
-this.graficaSvc.llamarGrafico(this.type,this.metricaNombre,this.from,this.to)
 
 }
 

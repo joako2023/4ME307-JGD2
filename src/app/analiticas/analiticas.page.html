@@ -12,7 +12,7 @@
         <ion-card>
        
           <ion-card-content>
-            <app-line></app-line>
+            <app-line [type]="'line'" [metricaNombre]="'totalPacientes'" ></app-line>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -28,7 +28,15 @@
         <ion-card>
           
           <ion-card-content>
-            <app-bar></app-bar>
+            <app-bar [type]="'bar'" [metricaNombre]="'totalNutriologo'"></app-bar>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col  >
+        <ion-card>
+          
+          <ion-card-content>
+            <app-bar [type]="'bar'" [metricaNombre]="'totalSuscripciones'"></app-bar>
           </ion-card-content>
         </ion-card>
       </ion-col>
