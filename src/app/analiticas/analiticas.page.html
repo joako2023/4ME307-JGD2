@@ -6,44 +6,138 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid >
-    <ion-row class="ion-justify-content-around">
-      <ion-col class="ion-margin" >
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col class="ion-margin" size-lg="4" size-md="4" size-xs="12" size-xl="4" size-sm="12">
         <ion-card>
-       
+
           <ion-card-content>
-            <app-line [type]="'line'" [metricaNombre]="'totalPacientes'" ></app-line>
+            <app-line [type]="'line'" [metricaNombre]="'totalPacientes'"></app-line>
           </ion-card-content>
         </ion-card>
       </ion-col>
-      <ion-col class="ion-margin" size-lg="3" size-md="3"size-xs="12" size-xl="3" size-sm="12">
+   
+      <ion-col class="ion-margin" size-lg="4" size-md="4" size-xs="12" size-xl="4" size-sm="12">
         <ion-card>
-          
-          <ion-card-content>
-            <app-doughnut></app-doughnut>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col class="ion-margin" >
-        <ion-card>
-          
+
           <ion-card-content>
             <app-bar [type]="'bar'" [metricaNombre]="'totalNutriologo'"></app-bar>
           </ion-card-content>
         </ion-card>
       </ion-col>
-      <ion-col  >
+      
+      <ion-col class="ion-margin" size-lg="4" size-md="4" size-xs="12" size-xl="4" size-sm="12">
         <ion-card>
-          
+
           <ion-card-content>
             <app-bar [type]="'bar'" [metricaNombre]="'totalSuscripciones'"></app-bar>
           </ion-card-content>
         </ion-card>
       </ion-col>
+      <ion-col class="ion-margin" size-lg="4" size-md="4" size-xs="12" size-xl="4" size-sm="12">
+        <ion-card class="ion-padding">
+          
+          <ion-card-subtitle mode="ios" class="ion-margin-start">
+            cantidad de dinero recaudado
+            
+          </ion-card-subtitle>
+          <ion-card-content>
+            
+            <ng-container >
+              
+              <ion-item lines="none" >
+                
+                <ion-item  >
+                   <ion-icon name="cash-outline" class="ion-margin-end"></ion-icon><ion-label> <h1><strong>{{ pago|currency}} MXN </strong></h1></ion-label>
+                </ion-item>
+                
+              </ion-item>
+              <form class="ion-no-margin-top" [formGroup]='formularioFecha' (ngSubmit)="graficar()" >
+                <ion-input type="date" formControlName="from"></ion-input>
+                <ion-input type="date" formControlName="to"></ion-input>
+                <ion-button type="submit" >Graficar</ion-button>
+
+              </form>
+             
+            </ng-container>
+          
+            
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+
+
+      <ion-col class="ion-margin" size-lg="6" size-md="6" size-xs="12" size-xl="6" size-sm="12">
+        <ion-card class="ion-padding" #ranked>
+          <ion-card-subtitle mode="ios" class="ion-margin-start">
+            Top 10 Nutriologos del mes actual
+          </ion-card-subtitle>
+          <ion-card-content>
+            <ion-list mode="ios" class="ion-margin-start">
+             <ion-grid class="ion-margin">
+              <ion-row >
+                <ion-col >
+                  <h2>
+                    <strong>
+
+                      Especialidad
+                    </strong>
+                  </h2>
+                  
+                  
+                </ion-col>
+                <ion-col>
+                  <h2>
+                    <strong>
+
+                      Nutriologo
+                    </strong>
+                  </h2>
+                </ion-col>
+                <ion-col>
+                  <h2>
+                    <strong>
+
+                      Puntaje
+                    </strong>
+                  </h2>
+                </ion-col>
+              </ion-row>
+              <ion-row *ngFor="let rank of listRankNutriologos" >
+                <ion-col>
+                  {{rank.especialidad}}
+                </ion-col>
+                <ion-col>
+                  {{rank.nombre_completo}}
+                </ion-col>
+                <ion-col>
+                  {{rank.score}} 
+                </ion-col>
+              </ion-row>
+             </ion-grid>
+              
+              <form [formGroup]='formularioFecha' (ngSubmit)="graficarRankNutriologo()">
+                <ion-input type="date" formControlName="from"></ion-input>
+                <ion-input type="date" formControlName="to"></ion-input>
+                <ion-button type="submit" >Graficar</ion-button>
+  
+              </form>
+            </ion-list>
+          
+          </ion-card-content>
+          
+        </ion-card>
+        <ion-card *ngIf="error==false" class="ion-padding" #NoDataRank>
+          <ion-card-subtitle>
+            sin nutriologos para mostrar
+          </ion-card-subtitle>
+        </ion-card>
+      </ion-col>
     </ion-row>
-    
+
   </ion-grid>
-  
-  
- 
+
+
+
 </ion-content>

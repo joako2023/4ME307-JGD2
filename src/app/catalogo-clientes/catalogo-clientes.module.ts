@@ -7,6 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { CatalogoClientesPageRoutingModule } from './catalogo-clientes-routing.module';
 
 import { CatalogoClientesPage } from './catalogo-clientes.page';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+
+
 
 @NgModule({
   imports: [
@@ -14,7 +17,8 @@ import { CatalogoClientesPage } from './catalogo-clientes.page';
     FormsModule,
     IonicModule,
     CatalogoClientesPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxDropzoneModule
   ],
   declarations: [CatalogoClientesPage]
 })

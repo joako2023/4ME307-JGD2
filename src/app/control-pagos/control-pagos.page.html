@@ -1,9 +1,17 @@
 <ion-header mode="ios"  class="ion-no-border">
   <ion-toolbar  color="white" mode="ios" >
+   
+    <!-- <ion-button slot="end" routerLink="/tabs/tabs1/pagos-planes" color="dark">
+      <span class="fa-solid fa-arrow-left"></span>
+    </ion-button> -->
     <ion-back-button slot="end"></ion-back-button>
    <div slot="start">
+    
      <h1 class="ion-no-padding ion-no-margin ion-margin-start"><b>{{formPlan.controls['id'].value !== null ? 'Editar Plan' : 'Nuevo plan'}}</b></h1>
-   </div>
+     
+  
+    </div>
+   
   </ion-toolbar>
 </ion-header>
 
@@ -102,7 +110,7 @@
               </ng-container>
             </ng-container>
           </ion-list>
-          <form (ngSubmit)="formPlan.valid && serviciosSelected.length > 0 && guardarPlan()">
+          <form (ngSubmit)="formPlan.valid && serviciosSelected.length>0 && guardarPlan()">
             <ion-button [disabled]="formPlan.valid === false || serviciosSelected.length === 0" size="full" type="submit">{{this.formPlan.controls['id'].value !== null? 'Actualizar Plan' : 'Guardar Plan' }}</ion-button>
           </form>
         </ion-card-content>

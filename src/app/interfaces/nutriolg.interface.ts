@@ -10,5 +10,5 @@ export interface Nutriologos {
     especialidad: string;
     enfermedadesTratadas: string;
     idEstablecimiento: number;
-    Imagen: string;
+    imagen: string;
 }

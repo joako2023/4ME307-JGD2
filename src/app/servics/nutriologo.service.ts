@@ -31,4 +31,8 @@ export class  NutriologoService extends CrudService<any, any> {
     });
     super.get();
   }
+  // public actualizar(id:string, data:FormData){
+  //   // console.log('/charts'+'/'+type+'/'+metricaNombre+'/'+from+'/'+to)
+  //    return this.http.put('/nutriologo'+'/'+id+'/'+data)
+  //  }
 }

@@ -5,6 +5,12 @@ import { AlertController, IonItem, IonModal } from '@ionic/angular';
 import { Nutriologos } from '../interfaces/nutriolg.interface';
 import { ExportExcelService } from '../servics/export-excel.service';
 import { NutriologoService } from '../servics/nutriologo.service';
+import * as Dropzone from 'dropzone';
+import { ImageQueryPipe } from 'src/pipes/image-query.pipe';
+import { UtilsService } from '../servics/FAST-TRACK-FRONTEND/utils.service';
+import { SessionService } from '../servics/FAST-TRACK-FRONTEND/session.service';
+import { NgxDropzoneChangeEvent } from 'ngx-dropzone';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-catalogo-clientes',
@@ -17,14 +23,21 @@ export class CatalogoClientesPage implements OnInit {
   keyword = '';
   public registros: any[] = [];
   searched = new FormControl('');
-  img: File;
+  img: any;
+  imgn: Blob = undefined;
+  formData: FormData | undefined;
   constructor(
     public ete: ExportExcelService,
     private nutriologoSvc: NutriologoService,
     private alertController: AlertController,
     private fb: FormBuilder,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private imageQueryPipe: ImageQueryPipe,
+    private utils:UtilsService,
+    private sessionSvc: SessionService,
   ) { }
+  files: File[] = [];
+  fileImage= [] as File[];
 
   borrarReg() {
     this.registros = [];
@@ -37,27 +50,26 @@ export class CatalogoClientesPage implements OnInit {
     this.nutriologoSvc.getList().subscribe((resp: any) => {
       this.listaNutriologos=resp
     });
-
-
+   
+   
     this.formUploadNutriologo = this.fb.group({
       id: [''],
       identificacion: ['', [Validators.required]],
       nombre: ['', [Validators.required]],
       apellido: ['', [Validators.required]],
+      nombre_completo:['',[Validators.required]],
       telefono: ['', [Validators.required]],
       email: ['', [Validators.required]],
       tipo_pago: ['', [Validators.required]],
       acerca_de_mi: ['', [Validators.required]],
       especialidad: ['', [Validators.required]],
       enfermedades_tratadas: ['', [Validators.required]],
-      idEstablecimiento: [''],
-      Imagen: [''],
-      terms: [false]
+      imagen: [''],
+      score:[''],
+      //terms: [false]
     });
 
-
-
-
+   
   }
 
   public get form() {
@@ -69,15 +81,28 @@ export class CatalogoClientesPage implements OnInit {
     $event.target.complete();
     this.page++;
   }
-
   
+  // async image(){
+  //   this.imgn = await this.ngxImage.returnImageCompress()
+
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(this.img);
+  //     reader.onload = _event => {
+  //    const url = reader.result;
+  //    this.fileURL = url;
+  //   };
+  // }
 
 
-  verModal(modal: IonModal, nut: Nutriologos) {
+  async verModal(modal: IonModal, nut: Nutriologos) {
 
     modal.present();
 
     this.formUploadNutriologo.patchValue(nut)
+    const file =await this.utils.convertUrlToBinary(this.imageQueryPipe.transform(nut.imagen), nut.imagen);
+      this.fileImage=[file]
+
+  
 
   }
 
@@ -99,22 +124,44 @@ export class CatalogoClientesPage implements OnInit {
 
     await alert.present();
   }
-  editarNutriologo() {
+  save() {
+    this.formData = new FormData();
+    const { nombre, apellido } = this.formUploadNutriologo.value;
+    this.formUploadNutriologo.controls['nombre_completo'].patchValue(`${nombre} ${apellido}`);
+    this.formUploadNutriologo.controls['imagen'].patchValue('');
+   
+    const data = this.formUploadNutriologo.value;
+    for (const dataKey in data) {
+      this.formData.append(dataKey, JSON.stringify(data[dataKey]));
+    }
+    for(const datum of this.fileImage) {
+      console.log(this.fileImage)
+      this.formData.append('photo',datum, datum.name);
+      
+    }
+    if(data.id !== null) {
+      this.nutriologoSvc.put(this.formData)
+    } else {
+      this.nutriologoSvc.post(this.formData)
+    }
+  }
 
-    const body = this.formUploadNutriologo.value;
-    if (body.id) {
-      this.nutriologoSvc.put({ ...body });
-    }
+
+
+  
+  onSelectImagen($event: NgxDropzoneChangeEvent) {
+    this.fileImage = [...$event.addedFiles];
   }
-  guardarNutriologo() {
-    const formData = new FormData()
-    formData.append('imageUpload', this.img, this.img.name)
-    const body = this.formUploadNutriologo.value;
-    for(const dataKey in body) {
-      formData.append(dataKey, body[dataKey]);
-    }
-    this.nutriologoSvc.post(formData)
+  
+  // onSelect(arr: File[], $event: NgxDropzoneChangeEvent) {
+  //   arr.push(...$event.addedFiles);
+  // }
+
+  onRemove(arr: File[], f: File) {
+    arr.splice(arr.indexOf(f), 1);
   }
+
+
 
 
   title = 'angular-export-to-excel';

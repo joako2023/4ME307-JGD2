@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ChartData, ChartOptions, ChartType } from 'chart.js/dist/types/index';
 import { HttpGenericService } from '../servics/FAST-TRACK-FRONTEND/http-generic.service';
-import { chartsService } from '../servics/metricas.service';
+import { chartsService } from '../servics/charts.service';
 import { DatePipe } from '@angular/common';
 import { from } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -34,17 +34,17 @@ export class LineComponent implements OnInit {
   public formularioFecha!: FormGroup;
   ngOnInit() {
     this.graficoSvc.llamarGrafico(this.type, this.metricaNombre, this.formattedDateTo, this.formattedDateFrom).subscribe((resp: any) => {
-      console.log(this.data = resp)
+     
       this.data = { ...resp.data }
     });
 
   }
   graficar() {
     const form = this.formularioFecha.value
-    console.log(form)
+    
     if (form.from <= form.to) {
       this.graficoSvc.llamarGrafico(this.type, this.metricaNombre, form.from, form.to).subscribe((resp: any) => {
-        console.log(this.data = resp)
+        
         this.data = { ...resp.data }
       });
     }

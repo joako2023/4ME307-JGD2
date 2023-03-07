@@ -20,7 +20,7 @@ export class ControlPagosPage implements OnInit {
     private planes: PlanesService,
     private servicios: ServiciosService,
     private fb: FormBuilder,
-    private clicktools: ClikTools
+   
   ) {this.formServicio = this.fb.group({
       id: [null],
       nombre: ['',[Validators.required]],
@@ -33,7 +33,7 @@ export class ControlPagosPage implements OnInit {
       precio: [''],
       descripcion: ['',[Validators.required]],
      active:[false],
-     duracion: [1],
+     duracion: ['1'],
      mesesSinPago:[null],
      
     });
@@ -76,7 +76,7 @@ export class ControlPagosPage implements OnInit {
     });
     this.planes.getSelected().subscribe(resp => {
       this.formPlan.patchValue(resp);
-      this.serviciosSelected = resp.servicios;
+      this.serviciosSelected=resp.servicios
     });
     
   }

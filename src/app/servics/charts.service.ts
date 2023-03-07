@@ -6,7 +6,7 @@ import {UtilsService} from './FAST-TRACK-FRONTEND/utils.service';
 @Injectable({
   providedIn: 'root'
 })
-export class  MetricasService extends CrudService<any, any> {
+export class  chartsService extends CrudService<any, any> {
   constructor(
     protected http: HttpGenericService<any>,
     protected utils: UtilsService
@@ -16,23 +16,23 @@ export class  MetricasService extends CrudService<any, any> {
       debug: true,
       debounceConfig: 300,
       callInSaveInfinite: false,
-      urlDelete: '/metricas',
-      urlGet: '/metricas',
-      urlPut: '/metricas',
-      urlPost: '/metricas',
+      urlDelete: '/charts',
+      urlGet: '/charts',
+      urlPut: '/charts',
+      urlPost: '/charts',
       urlGetInfinite: '',
-      messageForSave: 'metricas guardadas',
-      messageForDelete: 'metricas eliminadas',
-      messageForUpdate: 'metricas actualizadas',
+      messageForSave: 'charts guardadas',
+      messageForDelete: 'charts eliminadas',
+      messageForUpdate: 'charts actualizadas',
       messageForLoad: 'Realizando operación',
       messageForError: 'Ocurrio un problema realizando esta operación',
-      keyLocalStorageList: 'LIST_metricas',
-      keyLocalStorageSelected: 'metricas_SELECTED'
+      keyLocalStorageList: 'LIST_charts',
+      keyLocalStorageSelected: 'charts_SELECTED'
     });
     super.get();
   }
-  public getFechasNuevas(from:string, to:string){
-    // console.log('/charts'+'/'+type+'/'+metricaNombre+'/'+from+'/'+to)
-     return this.http.get('/metricas'+'/'+from+'/'+to)
-   }
+  public llamarGrafico(type:string,metricaNombre:string,from:string, to:string){
+   // console.log('/charts'+'/'+type+'/'+metricaNombre+'/'+from+'/'+to)
+    return this.http.get('/charts'+'/'+type+'/'+metricaNombre+'/'+from+'/'+to)
+  }
 }

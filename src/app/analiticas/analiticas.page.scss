@@ -1,5 +1,5 @@
 :host {
-    display: block;
+    display: flex;
     grid-template-columns: repeat(3, minmax(0px, 1fr));
     gap: 1rem;
     padding: 2rem;
@@ -8,4 +8,11 @@
   .wide {
     grid-column: 1 / -1;
   }
+
+  .ion-no-margin-top{
+
+    margin-top:0 ;
+  }
+
+
   

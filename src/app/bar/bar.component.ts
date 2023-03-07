@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChartOptions } from 'chart.js';
 import { ChartData, ChartType } from 'chart.js/dist/types/index';
-import { chartsService } from '../servics/metricas.service';
+import { chartsService } from '../servics/charts.service';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -35,17 +35,17 @@ export class BarComponent implements OnInit {
   public formularioFecha!: FormGroup;
   ngOnInit() {
     this.graficoSvc.llamarGrafico(this.type, this.metricaNombre, this.formattedDateTo, this.formattedDateFrom).subscribe((resp: any) => {
-      console.log(this.data = resp)
+      
       this.data = { ...resp.data }
     });
 
   }
   graficar() {
     const form = this.formularioFecha.value
-    console.log(form)
+    
     if (form.from <= form.to) {
       this.graficoSvc.llamarGrafico(this.type, this.metricaNombre, form.from, form.to).subscribe((resp: any) => {
-        console.log(this.data = resp)
+        
         this.data = { ...resp.data }
       });
     }
