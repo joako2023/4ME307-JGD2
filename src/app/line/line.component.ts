@@ -64,8 +64,8 @@ export class LineComponent implements OnInit {
 
 
   consultarMes(){
-    const MesesArray:any=[{label:'enero',data:[0]},{label:'febrero',data:[0]},{label:'marzo',data:[0]},{label:'abril',data:[0]},{label:'mayo',data:[0]},{label:'junio',data:[0]},{label:'julio',data:[0]},{label:'agosto',data:[0]},{label:'septiembre',data:[0]},{label:'octubre',data:[0]},{label:'noviembre',data:[0]},{label:'diciembre',data:[0]}]
-    const MesesLabel:any=[]
+    const MesesArray:any=[{label:'Enero',data:[0]},{label:'Febrero',data:[0]},{label:'Marzo',data:[0]},{label:'Abril',data:[0]},{label:'Mayo',data:[0]},{label:'Junio',data:[0]},{label:'Julio',data:[0]},{label:'Agosto',data:[0]},{label:'Septiembre',data:[0]},{label:'Octubre',data:[0]},{label:'Noviembre',data:[0]},{label:'Diciembre',data:[0]}]
+ const MesesLabel:any=[]
     const newArray:any=[]
     const year= new Date().getFullYear()
    let yearFecha:any;

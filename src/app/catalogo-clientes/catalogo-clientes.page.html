@@ -7,7 +7,7 @@
 </ion-header>
 <ion-item lines="none">
   
-    <ion-searchbar placeholder="Buscar clientes" debounce="300" ></ion-searchbar>
+    <ion-searchbar placeholder="Buscar clientes" debounce="300" (ionChange)="search($event.target.value)" ></ion-searchbar>
   
 
   <ion-buttons>

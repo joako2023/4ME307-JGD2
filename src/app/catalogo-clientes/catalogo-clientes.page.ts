@@ -81,7 +81,14 @@ export class CatalogoClientesPage implements OnInit {
     $event.target.complete();
     this.page++;
   }
-  
+  search(value: string) {
+    this.nutriologoSvc.getHttp().get('/nutriologo/filtrar/'+value).subscribe((resp:any)=>{
+      
+      console.log(resp)
+      this.listaNutriologos=resp;
+      
+    })
+  }
   // async image(){
   //   this.imgn = await this.ngxImage.returnImageCompress()
 
