@@ -3,15 +3,15 @@
     <ion-back-button slot="end"></ion-back-button>
     <ion-title>catalogo-clientes</ion-title>
   </ion-toolbar>
+  
 </ion-header>
 <ion-item lines="none">
-  <ion-searchbar  placeholder="Buscar clientes" debounce="300" >
-  </ion-searchbar>
+  
+    <ion-searchbar placeholder="Buscar clientes" debounce="300" ></ion-searchbar>
+  
 
   <ion-buttons>
-    <!-- <ion-button (click)="verModalRegistro(registro)">
-      <ion-icon sise="large" name="person-add-outline"></ion-icon>
-    </ion-button> -->
+  
     <ion-button (click)="exportToExcel()" slot="end">
       <ion-icon name="download-outline"></ion-icon>
     </ion-button>
@@ -115,29 +115,14 @@
             <ion-label position="stacked"> enfermedades Tratadas </ion-label>
             <ion-input placeholder="enfermedades Tratadas" formControlName="enfermedades_tratadas"></ion-input>
           </ion-item>
-          <!-- <ion-item>
-            <ion-label position="stacked">Establecimiento </ion-label>
-            <ion-input placeholder="Establecimiento" formControlName="establecimiento"></ion-input>
-          </ion-item> -->
+          
           <ion-item disabled="true">
             <ion-label position="stacked" > puntaje </ion-label>
             <ion-input placeholder="puntaje" formControlName="score"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="stacked"> Imagen </ion-label>
-            <!-- <div class="img-container">
-              
-
-            </div>
-            <button (click)="image()" size="small" mode="ios" hidden #btnImage>
-              Agregar Imagen
-            </button> -->
-            <!-- <ion-input  formControlName="imagen">
-              <br>
-              <input type="file" name="files" accept="image/*" (change)="onFileChanged($event)">
-              <br>
-             
-            </ion-input> -->
+            
             <div class="ion-padding">
               <ngx-dropzone [maxFileSize]="7e6"  accept="image/jpg, image/png, image/jpeg" (change)="onSelectImagen($event)">
                 <ngx-dropzone-label>Sube aquí las imagenes </ngx-dropzone-label>

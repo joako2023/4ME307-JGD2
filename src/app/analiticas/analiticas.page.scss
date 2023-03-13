@@ -4,7 +4,7 @@
     gap: 1rem;
     padding: 2rem;
   }
-  
+
   .wide {
     grid-column: 1 / -1;
   }
@@ -13,6 +13,30 @@
 
     margin-top:0 ;
   }
-
+#cardPaciente{
+  background-color: #3dc2ff;
+  
+}
+#cardPaciente ion-card-subtitle {
+  --color: black;
+}
+#cardNutriologo{
+  background-color: #ffc409;
+}
+#cardNutriologo ion-card-subtitle {
+  --color: black;
+}
+#cardSuscrip{
+  background-color: orange;
+}
+#cardSuscrip ion-card-subtitle {
+  --color: black;
+}
+#cardDinero{
+  background-color: #2dd36f;
+}
+#cardDinero ion-card-subtitle {
+  --color: black;
+}
 
   

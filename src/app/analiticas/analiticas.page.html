@@ -3,11 +3,73 @@
     <ion-back-button slot="end"></ion-back-button>
     <ion-title>analiticas</ion-title>
   </ion-toolbar>
+  
 </ion-header>
 
 <ion-content>
+  <ion-grid class="ion-align-items-center" >
+    <ion-row>
+      <ion-col size="2.5" >
+        <ion-card id="cardPaciente">
+          <ion-card-content >
+            <ion-card-subtitle ><strong>Cantidad de pacientes</strong></ion-card-subtitle>
+            <ion-item lines="none" color="transparent">
+             
+              <ion-item color="transparent" >
+                 <ion-icon name="person-outline" class="ion-margin-end"></ion-icon><ion-label><h1><strong>{{ pacientes}} </strong></h1></ion-label>
+              </ion-item>
+              
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="2.5" offset="0.2">
+        <ion-card id="cardNutriologo">
+          <ion-card-content>
+            <ion-card-subtitle><strong>Cantidad de Nutriologos</strong></ion-card-subtitle>
+            <ion-item lines="none" color="transparent" >
+                
+              <ion-item  color="transparent">
+                 <ion-icon name="medkit-outline" class="ion-margin-end"></ion-icon><ion-label> <h1><strong>{{ nutriologos}} </strong></h1></ion-label>
+              </ion-item>
+              
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="3" offset="0.2">
+        <ion-card id="cardSuscrip">
+          <ion-card-content>
+            <ion-card-subtitle><strong>Cantidad de Suscripciones</strong></ion-card-subtitle>
+            <ion-item lines="none" color="transparent" >
+                
+              <ion-item color="transparent" >
+                 <ion-icon name="bookmark-outline" class="ion-margin-end"></ion-icon><ion-label> <h1><strong>{{ suscripciones}} </strong></h1></ion-label>
+              </ion-item>
+              
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="3" offset="0.2">
+        <ion-card id="cardDinero">
+          <ion-card-content>
+            <ion-card-subtitle><strong>Cantidad de Dinero recaudado</strong></ion-card-subtitle>
+            <ion-item lines="none" color="transparent">
+                
+              <ion-item  color="transparent">
+                 <ion-icon name="cash-outline" class="ion-margin-end"></ion-icon><ion-label> <h1><strong>{{ pago|currency}} </strong></h1></ion-label>
+              </ion-item>
+              
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-grid>
     <ion-row class="ion-justify-content-center ion-align-items-center">
+      
       <ion-col class="ion-margin" size-lg="4" size-md="4" size-xs="12" size-xl="4" size-sm="12">
         <ion-card>
 
@@ -37,31 +99,12 @@
       <ion-col class="ion-margin" size-lg="4" size-md="4" size-xs="12" size-xl="4" size-sm="12">
         <ion-card class="ion-padding">
           
-          <ion-card-subtitle mode="ios" class="ion-margin-start">
+          <!-- <ion-card-subtitle mode="ios" class="ion-margin-start">
             cantidad de dinero recaudado
             
-          </ion-card-subtitle>
+          </ion-card-subtitle> -->
           <ion-card-content>
-            
-            <ng-container >
-              
-              <ion-item lines="none" >
-                
-                <ion-item  >
-                   <ion-icon name="cash-outline" class="ion-margin-end"></ion-icon><ion-label> <h1><strong>{{ pago|currency}} MXN </strong></h1></ion-label>
-                </ion-item>
-                
-              </ion-item>
-              <form class="ion-no-margin-top" [formGroup]='formularioFecha' (ngSubmit)="graficar()" >
-                <ion-input type="date" formControlName="from"></ion-input>
-                <ion-input type="date" formControlName="to"></ion-input>
-                <ion-button type="submit" >Graficar</ion-button>
-
-              </form>
-             
-            </ng-container>
-          
-            
+            <app-line [type]="'line'" [metricaNombre]="'sumPago'"></app-line>
           </ion-card-content>
         </ion-card>
       </ion-col>

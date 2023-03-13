@@ -1,5 +1,16 @@
 <canvas baseChart [type]="type" [data]="data" [options]="options">
 </canvas>
+<div class="ion-padding">
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-button (click)="consultarMes()">Mes</ion-button>
+                
+            </ion-col>
+           
+        </ion-row>
+    </ion-grid>
+</div>
 <form [formGroup]='formularioFecha' (ngSubmit)="graficar()">
     <ion-input type="date" placeholder="from" formControlName="from"></ion-input>
     <ion-input type="date" placeholder="to" formControlName="to"></ion-input>

@@ -15,91 +15,96 @@ import { NutriologoService } from '../servics/nutriologo.service';
   styleUrls: ['./analiticas.page.scss'],
 })
 export class AnaliticasPage implements OnInit {
-  
-   listRankNutriologos=[] as any
-    myArray = [];
-pago:any
+  pacientes: any
+  nutriologos: any
+  listRankNutriologos = [] as any
+  myArray = [];
+  pago: any
+  suscripciones:any
 
-   public error:boolean
+  public error: boolean
   constructor(
-    private metricasSvc:MetricasService,
-    private fb:FormBuilder
+    private metricasSvc: MetricasService,
+    private fb: FormBuilder
   ) {
     this.formularioFecha = this.fb.group({
       from: ['', [Validators.required]],
       to: ['', [Validators.required]]
     });
-   }
+  }
   public formularioFecha!: FormGroup;
-  
+
   ngOnInit() {
     this.metricasSvc.getList().subscribe((resp: any) => {
-      
+
+
       if (resp) {
         for (let key in resp) {
           this.myArray.push(resp[key]);
         }
         if (this.myArray[9]) {
-          this.pago=this.myArray[9]
-          
-         }else{
-          this.pago=0
-         }
-         console.log(this.myArray[9])
-        this.listRankNutriologos=this.myArray[10]
-        this.error=true
-      }else{
-        this.error=false
+          this.pago = this.myArray[9]
+
+        } else {
+          this.pago = 0
+        }
+        this.nutriologos = this.myArray[4]
+        this.pacientes = this.myArray[5]
+        this.listRankNutriologos = this.myArray[10]
+        this.suscripciones=this.myArray[6]
+        this.error = true
+      } else {
+        this.error = false
       }
-     });
-     
-   
-    
+    });
+
+
+
   }
-graficarRankNutriologo(){
-   const form = this.formularioFecha.value
-    
+  graficarRankNutriologo() {
+    const form = this.formularioFecha.value
+
     if (form.from <= form.to) {
-      this.metricasSvc.getFechasNuevas( form.from, form.to).subscribe((resp: any) => {
-        if (resp && resp.length>0) {
+      this.metricasSvc.getFechasNuevas(form.from, form.to).subscribe((resp: any) => {
+        if (resp && resp.length > 0) {
           for (let key in resp) {
             this.myArray.push(resp[key]);
           }
           if (this.myArray[10]) {
-            this.listRankNutriologos=this.myArray[10]
-           }else{
-            this.listRankNutriologos=[]
-           }
+            this.listRankNutriologos = this.myArray[10]
+          } else {
+            this.listRankNutriologos = []
+          }
           console.log(this.myArray[10])
-          this.error=true
-        }else{
-          this.listRankNutriologos=[]
+          this.error = true
+        } else {
+          this.listRankNutriologos = []
         }
       });
     }
 
-}
+  }
 
 
 
   graficar() {
     const form = this.formularioFecha.value
-    
+
     if (form.from <= form.to) {
-      this.metricasSvc.getFechasNuevas( form.from, form.to).subscribe((resp: any) => {
-        if (resp && resp.length>0) {
+      this.metricasSvc.getFechasNuevas(form.from, form.to).subscribe((resp: any) => {
+        if (resp && resp.length > 0) {
           for (let key in resp) {
             this.myArray.push(resp[key]);
           }
           if (this.myArray[9]) {
-            this.pago=this.myArray[9]
-           }else{
-            this.pago=0
-           }
+            this.pago = this.myArray[9]
+          } else {
+            this.pago = 0
+          }
           console.log(this.myArray[9])
-          this.error=true
-        }else{
-          this.pago=0
+          this.error = true
+        } else {
+          this.pago = 0
         }
       });
     }

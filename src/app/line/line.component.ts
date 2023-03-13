@@ -5,6 +5,7 @@ import { chartsService } from '../servics/charts.service';
 import { DatePipe } from '@angular/common';
 import { from } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MetricasService } from '../servics/metricas.service';
 @Component({
   selector: 'app-line',
   templateUrl: './line.component.html',
@@ -23,6 +24,7 @@ export class LineComponent implements OnInit {
   constructor(
     private graficoSvc: chartsService,
     private fb: FormBuilder,
+    private metriSvc: MetricasService
   ) {
     this.to.setDate(this.to.getDate() - 30)
     this.formattedDateTo = this.datePipe.transform(this.to, 'yyyy-MM-dd');
@@ -59,6 +61,43 @@ export class LineComponent implements OnInit {
       }
     }
   };
+
+
+  consultarMes(){
+    const MesesArray:any=[{label:'enero',data:[0]},{label:'febrero',data:[0]},{label:'marzo',data:[0]},{label:'abril',data:[0]},{label:'mayo',data:[0]},{label:'junio',data:[0]},{label:'julio',data:[0]},{label:'agosto',data:[0]},{label:'septiembre',data:[0]},{label:'octubre',data:[0]},{label:'noviembre',data:[0]},{label:'diciembre',data:[0]}]
+    const MesesLabel:any=[]
+    const newArray:any=[]
+    const year= new Date().getFullYear()
+   let yearFecha:any;
+   this.metriSvc.getByYear(year).subscribe((resp: any) =>{
+  yearFecha=resp
+  for (let index = 0; index < resp.length; index++) {
+    
+    const mes=Number(resp[index].created_at.split('-')[1])
+    const valores:number=Number(resp[index][this.metricaNombre])
+   MesesArray[mes-1].data[0] =Number(MesesArray[mes-1].data[0])+Number(valores)
+    
+   }
+   MesesArray.forEach(element => {
+    if (element.data[0]>0) {
+      newArray.push(element)
+      MesesLabel.push(element.label)
+    }
+   });
+  
+   const data= {
+    labels:MesesLabel,
+    datasets:newArray
+    
+  }
+  
+  this.data = { ...data }
+   })
+  
+  }
+
+
+
 
 }
 

@@ -35,4 +35,8 @@ export class  MetricasService extends CrudService<any, any> {
     // console.log('/charts'+'/'+type+'/'+metricaNombre+'/'+from+'/'+to)
      return this.http.get('/metricas'+'/'+from+'/'+to)
    }
+
+   public getByYear(year:number){
+return this.http.get('/metricas',{params:{year}})
+   }
 }
