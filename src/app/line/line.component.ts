@@ -80,18 +80,19 @@ export class LineComponent implements OnInit {
    }
    MesesArray.forEach(element => {
     if (element.data[0]>0) {
-      newArray.push(element)
+      newArray.push(element.data[0])
       MesesLabel.push(element.label)
+      
     }
    });
   
    const data= {
     labels:MesesLabel,
-    datasets:newArray
+    datasets:[{label:this.metricaNombre,data:newArray}]
     
   }
   
-  this.data = { ...data }
+  this.data  = { ...data }
    })
   
   }

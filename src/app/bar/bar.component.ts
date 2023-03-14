@@ -84,19 +84,19 @@ for (let index = 0; index < resp.length; index++) {
  }
  MesesArray.forEach(element => {
   if (element.data[0]>0) {
-    newArray.push(element)
+    newArray.push(element.data[0])
     MesesLabel.push(element.label)
     
   }
  });
 
  const data= {
-  labels:[MesesLabel[0],MesesLabel[1]],
-  datasets:newArray
+  labels:MesesLabel,
+  datasets:[{label:this.metricaNombre,data:newArray}]
   
 }
-console.log()
-this.data = { ...data }
+
+this.data  = { ...data }
  })
 
 }
