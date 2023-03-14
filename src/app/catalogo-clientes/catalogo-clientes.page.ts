@@ -82,12 +82,18 @@ export class CatalogoClientesPage implements OnInit {
     this.page++;
   }
   search(value: string) {
-    this.nutriologoSvc.getHttp().get('/nutriologo/filtrar/'+value).subscribe((resp:any)=>{
+    if (value) {
+      this.nutriologoSvc.getHttp().get('/nutriologo/filtrar/'+value).subscribe((resp:any)=>{
       
-      console.log(resp)
-      this.listaNutriologos=resp;
-      
-    })
+        this.listaNutriologos=resp;
+        
+      })
+    }else{
+      this.nutriologoSvc.getList().subscribe((resp: any) => {
+        this.listaNutriologos=resp
+      });
+    }
+    
   }
   // async image(){
   //   this.imgn = await this.ngxImage.returnImageCompress()
@@ -142,7 +148,7 @@ export class CatalogoClientesPage implements OnInit {
       this.formData.append(dataKey, JSON.stringify(data[dataKey]));
     }
     for(const datum of this.fileImage) {
-      console.log(this.fileImage)
+      
       this.formData.append('photo',datum, datum.name);
       
     }

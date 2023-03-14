@@ -86,15 +86,16 @@ for (let index = 0; index < resp.length; index++) {
   if (element.data[0]>0) {
     newArray.push(element)
     MesesLabel.push(element.label)
+    
   }
  });
 
  const data= {
-  labels:MesesLabel,
+  labels:[MesesLabel[0],MesesLabel[1]],
   datasets:newArray
   
 }
-
+console.log()
 this.data = { ...data }
  })
 
