@@ -43,14 +43,14 @@ export class CrearCuentaPage implements OnInit {
   onCreate(){
 
     if(this.formCreateAccount.invalid || this.validateEqualsPass() == false){
-      this.clicktools.acceptMessage("Datos incompletos",
-        "Por favor ingresar todos los datos requeridos.");
+      this.clicktools.acceptMessage("Missing data",
+        "please complete all fields.");
     }
     else{
 
       if(this.form.terms.value == false){
-        this.clicktools.acceptMessage("Datos incompletos",
-          "Debe aceptar las condiciones de uso.");
+        this.clicktools.acceptMessage("Missing data",
+          "you must acept term and conditions.");
 
       }
       else{
@@ -65,11 +65,11 @@ export class CrearCuentaPage implements OnInit {
           rol: 'ADMIN'
         } as UserInterface;
 
-        this.userService.(data)
+        this.userService.saveUser(data)
         .subscribe((response) => {
           if(response.hasOwnProperty('id')){
             this.formCreateAccount.reset();
-            this.clicktools.alertMessageRouter("/login","Operación exitosa", "Se ha registrado exitosamente");
+            this.clicktools.alertMessageRouter("/login","Task susccessfull", "registration completed!");
           }
         });
       }

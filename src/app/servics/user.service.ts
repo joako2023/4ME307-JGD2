@@ -53,8 +53,4 @@ export class  UserService extends CrudService<any, any> {
     return this.http.post('/user',body);
   }
 
-
-
-
-
 }
