@@ -1,14 +1,14 @@
 <ion-header>
   <ion-toolbar mode="ios" slots="primary">
     <ion-back-button slot="start"></ion-back-button>
-    <ion-title>catalogo Nutriologos</ion-title>
+    <ion-title>Nutriologist List</ion-title>
   </ion-toolbar>
-  
+
 </ion-header>
 <ion-item lines="none">
-  
-    <ion-searchbar placeholder="Buscar clientes" debounce="300" (ionChange)="search($event.target.value)" ></ion-searchbar>
-  
+
+    <ion-searchbar placeholder="Search User" debounce="300" (ionChange)="search($event.target.value)" ></ion-searchbar>
+
 
   <ion-buttons>
     <ion-button (click)="verModalRegistro(registro)">
@@ -50,7 +50,7 @@
 
   </ion-list>
   <ion-infinite-scroll (ionInfinite)="loadData($event)">
-    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="cargando...">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 
@@ -64,7 +64,7 @@
   <ng-template>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Editar</ion-title>
+        <ion-title>Edit</ion-title>
         <ion-buttons slot="end">
           <ion-button (click)="modal.dismiss()">
             <ion-icon name="close-circle-outline"></ion-icon>
@@ -77,57 +77,57 @@
         <ion-list lines="full" class="ion-no-margin">
 
           <ion-item>
-            <ion-label position="stacked">identificacion</ion-label>
-            <ion-input placeholder="identificacion" formControlName="id" id="inputId"> </ion-input>
+            <ion-label position="stacked">Id</ion-label>
+            <ion-input placeholder="id" formControlName="id" id="inputId"> </ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-label position="stacked"> nombre </ion-label>
-            <ion-input placeholder="nombres" formControlName="nombre"></ion-input>
+            <ion-label position="stacked"> Name </ion-label>
+            <ion-input placeholder="Name" formControlName="nombre"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> apellido </ion-label>
-            <ion-input placeholder="apellido" formControlName="apellido"></ion-input>
+            <ion-label position="stacked"> Surname </ion-label>
+            <ion-input placeholder="Surname" formControlName="apellido"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> nombre completo </ion-label>
-            <ion-input placeholder="nombre completo" formControlName="nombre_completo"></ion-input>
+            <ion-label position="stacked"> Full Name </ion-label>
+            <ion-input placeholder="Full Name" formControlName="nombre_completo"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> telefono </ion-label>
-            <ion-input placeholder="telefono" formControlName="telefono"></ion-input>
+            <ion-label position="stacked"> Phone </ion-label>
+            <ion-input placeholder="Phone" formControlName="telefono"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="stacked"> email </ion-label>
             <ion-input placeholder="email" formControlName="email"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> tipo pago </ion-label>
-            <ion-input placeholder="tipo_pago" formControlName="tipo_pago"></ion-input>
+            <ion-label position="stacked"> payment type </ion-label>
+            <ion-input placeholder="Full Name" formControlName="tipo_pago"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> acerca de mi </ion-label>
-            <ion-input placeholder="acerca de mi" formControlName="acerca_de_mi"></ion-input>
+            <ion-label position="stacked"> about me </ion-label>
+            <ion-input placeholder="about me" formControlName="acerca_de_mi"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> especialidad </ion-label>
-            <ion-input placeholder="especialidad" formControlName="especialidad"></ion-input>
+            <ion-label position="stacked"> qualification </ion-label>
+            <ion-input placeholder="qualification" formControlName="especialidad"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> enfermedades Tratadas </ion-label>
-            <ion-input placeholder="enfermedades Tratadas" formControlName="enfermedades_tratadas"></ion-input>
+            <ion-label position="stacked"> treatments desees </ion-label>
+            <ion-input placeholder="treatments desees" formControlName="enfermedades_tratadas"></ion-input>
           </ion-item>
-          
-          <ion-item disabled="true">
+
+          <!-- <ion-item disabled="true">
             <ion-label position="stacked" > puntaje </ion-label>
             <ion-input placeholder="puntaje" formControlName="score"></ion-input>
-          </ion-item>
+          </ion-item> -->
           <ion-item>
-            <ion-label position="stacked"> Imagen </ion-label>
-            
+            <ion-label position="stacked"> Image </ion-label>
+
             <div class="ion-padding">
               <ngx-dropzone [maxFileSize]="7e6"  accept="image/jpg, image/png, image/jpeg" (change)="onSelectImagen($event)">
-                <ngx-dropzone-label>Sube aquí las imagenes </ngx-dropzone-label>
+                <ngx-dropzone-label>upload images </ngx-dropzone-label>
                 <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of fileImage" [file]="f" [removable]="true" (removed)="onRemove(fileImage,f)">
                   <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                 </ngx-dropzone-image-preview>
@@ -162,7 +162,7 @@
   <ng-template>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Agregar</ion-title>
+        <ion-title>adding</ion-title>
         <ion-buttons slot="end">
           <ion-button (click)="registro.dismiss()">
             <ion-icon name="close-circle-outline"></ion-icon>
@@ -175,57 +175,57 @@
         <ion-list lines="full" class="ion-no-margin">
 
           <ion-item>
-            <ion-label position="stacked">identificacion</ion-label>
-            <ion-input placeholder="identificacion" formControlName="id" id="inputId"> </ion-input>
+            <ion-label position="stacked">Id</ion-label>
+            <ion-input placeholder="id" formControlName="id" id="inputId"> </ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-label position="stacked"> nombre </ion-label>
-            <ion-input placeholder="nombres" formControlName="nombre"></ion-input>
+            <ion-label position="stacked"> Name </ion-label>
+            <ion-input placeholder="Name" formControlName="nombre"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> apellido </ion-label>
-            <ion-input placeholder="apellido" formControlName="apellido"></ion-input>
+            <ion-label position="stacked"> Surname </ion-label>
+            <ion-input placeholder="Surname" formControlName="apellido"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> nombre completo </ion-label>
-            <ion-input placeholder="nombre completo" formControlName="nombre_completo"></ion-input>
+            <ion-label position="stacked"> Full Name </ion-label>
+            <ion-input placeholder="Full Name" formControlName="nombre_completo"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> telefono </ion-label>
-            <ion-input placeholder="telefono" formControlName="telefono"></ion-input>
+            <ion-label position="stacked"> Phone </ion-label>
+            <ion-input placeholder="Phone" formControlName="telefono"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="stacked"> email </ion-label>
             <ion-input placeholder="email" formControlName="email"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> tipo pago </ion-label>
-            <ion-input placeholder="tipo_pago" formControlName="tipo_pago"></ion-input>
+            <ion-label position="stacked"> payment type </ion-label>
+            <ion-input placeholder="Full Name" formControlName="tipo_pago"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> acerca de mi </ion-label>
-            <ion-input placeholder="acerca de mi" formControlName="acerca_de_mi"></ion-input>
+            <ion-label position="stacked"> about me </ion-label>
+            <ion-input placeholder="about me" formControlName="acerca_de_mi"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> especialidad </ion-label>
-            <ion-input placeholder="especialidad" formControlName="especialidad"></ion-input>
+            <ion-label position="stacked"> qualification </ion-label>
+            <ion-input placeholder="qualification" formControlName="especialidad"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> enfermedades Tratadas </ion-label>
-            <ion-input placeholder="enfermedades Tratadas" formControlName="enfermedades_tratadas"></ion-input>
+            <ion-label position="stacked"> treatments desees </ion-label>
+            <ion-input placeholder="treatments desees" formControlName="enfermedades_tratadas"></ion-input>
           </ion-item>
-          
-          <ion-item disabled="true">
+
+          <!-- <ion-item disabled="true">
             <ion-label position="stacked" > puntaje </ion-label>
             <ion-input placeholder="puntaje" formControlName="score"></ion-input>
-          </ion-item>
+          </ion-item> -->
           <ion-item>
-            <ion-label position="stacked"> Imagen </ion-label>
-            
+            <ion-label position="stacked"> Image </ion-label>
+
             <div class="ion-padding">
               <ngx-dropzone [maxFileSize]="7e6"  accept="image/jpg, image/png, image/jpeg" (change)="onSelectImagen($event)">
-                <ngx-dropzone-label>Sube aquí las imagenes </ngx-dropzone-label>
+                <ngx-dropzone-label>upload images </ngx-dropzone-label>
                 <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of fileImage" [file]="f" [removable]="true" (removed)="onRemove(fileImage,f)">
                   <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                 </ngx-dropzone-image-preview>

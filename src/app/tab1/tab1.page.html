@@ -1,14 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar mode="ios" slots="primary">
     <ion-title>
-      Administrador
+      Administrator
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
 
-  
+
   <ion-grid>
     <ion-row class="ion-justify-content-center ion-align-items-center" >
       <ion-col class="ion-margin"  size-lg="3" size-md="3" size-xs="12" size-xl="3" size-sm="12">
@@ -17,7 +17,7 @@
         <ion-card-header>
           <ion-card-subtitle>
             <ion-item>
-              <strong>Catalogo de clientes</strong>
+              <strong>Customers List</strong>
               <ion-button shape="round" routerLink="/catalogo-clientes" slot="end">
               <ion-icon name="arrow-forward-circle-outline" color="dark" ></ion-icon>
             </ion-button>
@@ -26,13 +26,13 @@
         </ion-card-header>
       </ion-card>
     </ion-col>
-     
-      
-      
+
+
+
     </ion-row>
   </ion-grid>
   <ion-footer>
-    <ion-button #salir (click)="close()" mode="ios" size="full" ><span class="fa-solid fa-arrow-left ion-margin-end" ></span> Salir </ion-button>
+    <ion-button #salir (click)="close()" mode="ios" size="full" ><span class="fa-solid fa-arrow-left ion-margin-end" ></span> Logout </ion-button>
     <h6 style="color: dimgray" class="ion-text-center">Powered by <b>Joaquin Diaz</b></h6>
   </ion-footer>
 </ion-content>
