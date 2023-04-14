@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar mode="ios" slots="primary">
     <ion-back-button slot="start"></ion-back-button>
-    <ion-title>catalogo-clientes</ion-title>
+    <ion-title>catalogo Nutriologos</ion-title>
   </ion-toolbar>
   
 </ion-header>
@@ -11,7 +11,9 @@
   
 
   <ion-buttons>
-  
+    <ion-button (click)="verModalRegistro(registro)">
+      <ion-icon sise="large" name="person-add-outline"></ion-icon>
+    </ion-button>
     <ion-button (click)="exportToExcel()" slot="end">
       <ion-icon name="download-outline"></ion-icon>
     </ion-button>
@@ -171,9 +173,10 @@
     <ion-content>
       <form [formGroup]="formUploadNutriologo">
         <ion-list lines="full" class="ion-no-margin">
+
           <ion-item>
             <ion-label position="stacked">identificacion</ion-label>
-            <ion-input placeholder="identificacion" formControlName="identificacion"> </ion-input>
+            <ion-input placeholder="identificacion" formControlName="id" id="inputId"> </ion-input>
           </ion-item>
 
           <ion-item>
@@ -185,6 +188,10 @@
             <ion-input placeholder="apellido" formControlName="apellido"></ion-input>
           </ion-item>
           <ion-item>
+            <ion-label position="stacked"> nombre completo </ion-label>
+            <ion-input placeholder="nombre completo" formControlName="nombre_completo"></ion-input>
+          </ion-item>
+          <ion-item>
             <ion-label position="stacked"> telefono </ion-label>
             <ion-input placeholder="telefono" formControlName="telefono"></ion-input>
           </ion-item>
@@ -193,11 +200,11 @@
             <ion-input placeholder="email" formControlName="email"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> tipo_pago </ion-label>
+            <ion-label position="stacked"> tipo pago </ion-label>
             <ion-input placeholder="tipo_pago" formControlName="tipo_pago"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> acercaDeMi </ion-label>
+            <ion-label position="stacked"> acerca de mi </ion-label>
             <ion-input placeholder="acerca de mi" formControlName="acerca_de_mi"></ion-input>
           </ion-item>
           <ion-item>
@@ -208,27 +215,30 @@
             <ion-label position="stacked"> enfermedades Tratadas </ion-label>
             <ion-input placeholder="enfermedades Tratadas" formControlName="enfermedades_tratadas"></ion-input>
           </ion-item>
-          <ion-item>
-            <ion-label position="stacked"> id Establecimiento </ion-label>
-            <ion-input placeholder="id Establecimiento" formControlName="idEstablecimiento"></ion-input>
+          
+          <ion-item disabled="true">
+            <ion-label position="stacked" > puntaje </ion-label>
+            <ion-input placeholder="puntaje" formControlName="score"></ion-input>
           </ion-item>
-
           <ion-item>
             <ion-label position="stacked"> Imagen </ion-label>
-            <ion-input placeholder="Imagen" formControlName="imagen">
-              
-                <br>
-                <input class="dropzone" type="file" name="files" accept="image/*" (change)="onFileChanged($event)">
-                <br> 
-                
-                
-            </ion-input>
+            
+            <div class="ion-padding">
+              <ngx-dropzone [maxFileSize]="7e6"  accept="image/jpg, image/png, image/jpeg" (change)="onSelectImagen($event)">
+                <ngx-dropzone-label>Sube aquí las imagenes </ngx-dropzone-label>
+                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of fileImage" [file]="f" [removable]="true" (removed)="onRemove(fileImage,f)">
+                  <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                </ngx-dropzone-image-preview>
+              </ngx-dropzone>
+            </div>
+
           </ion-item>
+
 
         </ion-list>
       </form>
     </ion-content>
-    <form [formGroup]="formUploadNutriologo" (ngSubmit)="save()">
+    <form [formGroup]="formUploadNutriologo" (ngSubmit)="guardarNutriologo()">
       <ion-item>
 
         <ion-buttons slot="end">

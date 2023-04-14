@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
-import {CrudService} from './FAST-TRACK-FRONTEND/crud.service';
-import {HttpGenericService} from './FAST-TRACK-FRONTEND/http-generic.service';
-import {UtilsService} from './FAST-TRACK-FRONTEND/utils.service';
+import { CrudService } from './FAST-TRACK-FRONTEND/crud.service';
+import { HttpGenericService } from './FAST-TRACK-FRONTEND/http-generic.service';
+import { UtilsService } from './FAST-TRACK-FRONTEND/utils.service';
+
 
 @Injectable({
   providedIn: 'root'

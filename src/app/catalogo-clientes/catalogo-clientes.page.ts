@@ -3,14 +3,18 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router';
 import { AlertController, IonItem, IonModal } from '@ionic/angular';
 import { Nutriologos } from '../interfaces/nutriolg.interface';
-import { ExportExcelService } from '../servics/export-excel.service';
-import { NutriologoService } from '../servics/nutriologo.service';
+
+
 import * as Dropzone from 'dropzone';
 import { ImageQueryPipe } from 'src/pipes/image-query.pipe';
-import { UtilsService } from '../servics/FAST-TRACK-FRONTEND/utils.service';
-import { SessionService } from '../servics/FAST-TRACK-FRONTEND/session.service';
+
+
 import { NgxDropzoneChangeEvent } from 'ngx-dropzone';
 import { environment } from 'src/environments/environment';
+import { ExportExcelService } from '../servics/export-excel.service';
+import { NutriologoService } from '../servics/nutriologo.service';
+import { UtilsService } from '../servics/FAST-TRACK-FRONTEND/utils.service';
+import { SessionService } from '../servics/FAST-TRACK-FRONTEND/session.service';
 
 @Component({
   selector: 'app-catalogo-clientes',
@@ -122,6 +126,25 @@ export class CatalogoClientesPage implements OnInit {
   verModalRegistro(modal: IonModal) {
     this.formUploadNutriologo.reset();
     modal.present();
+  }
+  guardarNutriologo() {
+    this.formData = new FormData();
+    const { nombre, apellido } = this.formUploadNutriologo.value;
+    this.formUploadNutriologo.controls['nombre_completo'].patchValue(`${nombre} ${apellido}`);
+    this.formUploadNutriologo.controls['imagen'].patchValue('');
+   
+    const data = this.formUploadNutriologo.value;
+    for (const dataKey in data) {
+      this.formData.append(dataKey, JSON.stringify(data[dataKey]));
+    }
+    for(const datum of this.fileImage) {
+      
+      this.formData.append('photo',datum, datum.name);
+      
+    }
+    if(data.id !== null) {
+      this.nutriologoSvc.post(this.formData)
+    }
   }
   onFileChanged(event) {
     this.img = event.target.files[0];
