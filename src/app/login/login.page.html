@@ -1,13 +1,13 @@
 <ion-content>
   <main class="mainBody">
     <form [formGroup]="formularioLogin" (ngSubmit)="login();">
-      <label for="username">Email</label>
+      <label style="color: black;" for="username">Email</label>
       <input type="username" id="username" formControlName="username" required>
       <div class="erroresValidacion" *ngIf="form.username.invalid && (form.username.dirty || form.username.touched)">
         <small *ngIf="form.username.errors.required">you must enter an email</small>
         <small *ngIf="form.username.errors.username">Use avalid email address</small>
       </div>
-      <label for="password">Contraseña</label>
+      <label style="color: black;" for="password">Contraseña</label>
       <input type="password" id="password" formControlName="password" required>
       <div class="erroresValidacion" *ngIf="form.password.invalid && (form.password.dirty || form.password.touched)">
         <small *ngIf="form.password.errors.required">you must enter an email</small>
@@ -17,7 +17,7 @@
       <button class="darkP botonSubmit" [disabled]="formularioLogin.invalid">Enter</button>
 
       <div id="create-account-container">
-        <label >not registered?<a routerLink="/crear-cuenta" style="color:#e76d3e;">Create an acount</a></label>
+        <label style="color: black;">not registered?    <a routerLink="/crear-cuenta" style="color:#e76d3e;">Create an acount</a></label>
       </div>
    </form>
   </main>

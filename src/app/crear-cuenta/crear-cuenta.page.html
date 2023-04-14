@@ -2,52 +2,52 @@
   <main class="mainBody">
     <form [formGroup]="formCreateAccount" (ngSubmit)="onCreate()">
 
-      <label for="userName">Nombre Usuario</label>
+      <label style="color: black;" for="userName">User name</label>
       <input type="text" id="userName"  formControlName="userName" required>
       <div *ngIf=" form.userName.invalid && (form.userName.dirty || form.userName.touched)">
-        <small>El nombre de usuario es obligatorio</small>
+        <small>you must enter an user name</small>
       </div>
 
-      <label for="email">Correo electrónico</label>
+      <label style="color: black;" for="email">Email</label>
       <input type="email" id="email" formControlName="email" required>
       <div *ngIf="form.email.invalid && (form.email.dirty || form.email.touched)">
         <small *ngIf="form.email.errors.required">
-          La direcci&oacute;n de correo electr&oacute;nico es obligatoria
+          you must enter an email address
         </small>
         <small *ngIf="form.email.errors.email">
-          por favor ingresar una direcci&oacute;n de correo electr&oacute;nico v&aacute;lida
+          please enter a valid email addres
         </small>
       </div>
 
-      <label for="password" >Contraseña</label>
+      <label style="color: black;" for="password" >Password</label>
       <input type="password" id="password" formControlName="password" required>
       <div *ngIf="form.password.invalid && (form.password.dirty || form.password.touched)">
         <small *ngIf="form.password.errors.required">
-          La contrase&ntilde;a es obligatoria
+          Password is mandotory
         </small>
         <small *ngIf="form.password.errors.minlength">
-          La contrase&ntilde;a debe un m&iacute;nimo de 8 caracteres
+          Passwrod lend its minimun 8 characters
         </small>
       </div>
 
-      <label for="passwordConfirm">Confirmar Contraseña</label>
+      <label style="color: black;" for="passwordConfirm">Confirm Password</label>
       <input type="password" id="passwordConfirm" formControlName="passwordConfirm" required>
-      
+
       <div>
         <small *ngIf="!validateEqualsPass()">
-          La confirmaci&oacute;n debe coincidir con la contrase&ntilde;a
+          Password mismatch
         </small>
       </div>
 
       <ion-item id="checkbox-container" lines="none">
         <ion-checkbox formControlName="terms"></ion-checkbox>
-        <ion-label class="ion-margin">Aceptar los <a href="" style="color:#e76d3e;" >t&eacute;rminos y condiciones</a></ion-label>
+        <ion-label style="color:#e76d3e;" class="ion-margin">Acept <a href="" style="color:#e76d3e;" >term and conditions</a></ion-label>
       </ion-item>
 
-      <button class="darkP botonSubmit" >Continuar</button>
-
+      <button class="darkP botonSubmit" >next</button>
+       
       <div id="create-account-container">
-        <label >¿Ya tienes una cuenta? <a routerLink="/login" style="color:#e76d3e;">Iniciar Sesión</a></label>
+        <label style="color: black;" >do you have an account? <a routerLink="/login" style="color:#e76d3e;">Login</a></label>
       </div>
 
     </form>

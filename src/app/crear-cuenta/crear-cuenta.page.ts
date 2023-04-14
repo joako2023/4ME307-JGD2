@@ -14,7 +14,7 @@ import { HttpGenericService } from '../servics/FAST-TRACK-FRONTEND/http-generic.
 export class CrearCuentaPage implements OnInit {
 
   //public user = new User();
-  
+
   constructor(
     private fb: FormBuilder,
     private apiclient: HttpGenericService<any>,
@@ -33,8 +33,8 @@ export class CrearCuentaPage implements OnInit {
       terms : [false]
     });
  //this.formCreateAccount.patchValue()  ayuda a asignar valores a todo el objeto interno del formulario (username, email, etc)
- 
-     
+
+
      }
   public get form(){
     return this.formCreateAccount.controls;
@@ -43,35 +43,35 @@ export class CrearCuentaPage implements OnInit {
   onCreate(){
 
     if(this.formCreateAccount.invalid || this.validateEqualsPass() == false){
-      this.clicktools.acceptMessage("Datos incompletos", 
+      this.clicktools.acceptMessage("Datos incompletos",
         "Por favor ingresar todos los datos requeridos.");
     }
     else{
 
       if(this.form.terms.value == false){
-        this.clicktools.acceptMessage("Datos incompletos", 
+        this.clicktools.acceptMessage("Datos incompletos",
           "Debe aceptar las condiciones de uso.");
 
       }
       else{
 
-      
+
         const data = {
           username: this.formCreateAccount.value.userName,
           email: this.formCreateAccount.value.email,
           password: this.formCreateAccount.value.password,
           telefono: '123456789',
-          tipo: 'paciente',
-          rol: 'paciente'
+          tipo: 'ADMIN',
+          rol: 'ADMIN'
         } as UserInterface;
 
-        // this.userService.saveUser(data)
-        // .subscribe((response) => {
-        //   if(response.hasOwnProperty('id')){
-        //     this.formCreateAccount.reset();
-        //     this.clicktools.alertMessageRouter("/login","Operación exitosa", "Se ha registrado exitosamente");
-        //   }
-        // });
+        this.userService.(data)
+        .subscribe((response) => {
+          if(response.hasOwnProperty('id')){
+            this.formCreateAccount.reset();
+            this.clicktools.alertMessageRouter("/login","Operación exitosa", "Se ha registrado exitosamente");
+          }
+        });
       }
 
     }

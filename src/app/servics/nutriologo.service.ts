@@ -21,11 +21,11 @@ export class  NutriologoService extends CrudService<any, any> {
       urlPut: '/nutriologo',
       urlPost: '/nutriologo',
       urlGetInfinite: '',
-      messageForSave: 'Nutriologo guardado',
-      messageForDelete: 'Nutriologo eliminado',
-      messageForUpdate: 'Nutriologo actualizado',
-      messageForLoad: 'Realizando operación',
-      messageForError: 'Ocurrio un problema realizando esta operación',
+      messageForSave: 'Nutrologist saved',
+      messageForDelete: 'Nutrologist deleted',
+      messageForUpdate: 'Nutrologist updated',
+      messageForLoad: 'Running proccess',
+      messageForError: 'problem happened while restitering',
       keyLocalStorageList: 'LIST_NUTRIOLOGOS',
       keyLocalStorageSelected: 'NUTRIOLOGOS_SELECTED'
     });
