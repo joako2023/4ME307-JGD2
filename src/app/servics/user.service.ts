@@ -50,7 +50,7 @@ export class  UserService extends CrudService<any, any> {
 
   public saveUser(user: UserInterface){
     const body = this.mapUser(user);
-    return this.http.post(body);
+    return this.http.post('/user',body);
   }
 
 
