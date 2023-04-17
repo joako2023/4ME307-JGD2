@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backendUrl: 'http://localhost:3001/api',
+  backendUrl: 'http://localhost:8080/api',
 planSelected:'PLAN_SELECTED',
 };
 

@@ -3,12 +3,13 @@
     <ion-back-button slot="start"></ion-back-button>
     <ion-title>Nutriologist List</ion-title>
   </ion-toolbar>
-
 </ion-header>
 <ion-item lines="none">
-
-    <ion-searchbar placeholder="Search User" debounce="300" (ionChange)="search($event.target.value)" ></ion-searchbar>
-
+  <ion-searchbar
+    placeholder="Search User"
+    debounce="300"
+    (ionChange)="search($event.target.value)"
+  ></ion-searchbar>
 
   <ion-buttons>
     <ion-button (click)="verModalRegistro(registro)">
@@ -18,46 +19,37 @@
       <ion-icon name="download-outline"></ion-icon>
     </ion-button>
   </ion-buttons>
-
-
 </ion-item>
 <ion-content>
-
-
-
-
   <ion-list lines="none">
     <ng-container *ngFor="let nutriologo of listaNutriologos">
-
       <ion-item lines="none">
-        <ion-item button (click)="verModal(modal, nutriologo)" *ngIf="nutriologo.nombre!==null">
-          <ion-label style="color: black;">{{nutriologo.nombre}} {{ nutriologo.apellido}}</ion-label>
-
+        <ion-item
+          button
+          (click)="verModal(modal, nutriologo)"
+          *ngIf="nutriologo.nombre!==null"
+        >
+          <ion-label style="color: black"
+            >{{nutriologo.nombre}} {{ nutriologo.apellido}}</ion-label
+          >
         </ion-item>
 
         <ion-buttons slot="end">
-          <ion-button (click)="presentAlert(nutriologo.id)">
+                    <ion-button style = "color: black;"  (click)="presentAlert(nutriologo.id)">
 
             <ion-icon name="trash-outline"></ion-icon>
           </ion-button>
-
         </ion-buttons>
       </ion-item>
-
-
     </ng-container>
-
-
   </ion-list>
   <ion-infinite-scroll (ionInfinite)="loadData($event)">
-    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading...">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading..."
+    >
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
-
-
-
-
-
 </ion-content>
 
 <ion-modal #modal trigger="open-modal" mode="ios">
@@ -75,47 +67,86 @@
     <ion-content>
       <form #formEdit [formGroup]="formUploadNutriologo">
         <ion-list lines="full" class="ion-no-margin">
-
           <ion-item>
-            <ion-label position="stacked">Id</ion-label>
-            <ion-input placeholder="id" formControlName="id" id="inputId"> </ion-input>
+            <ion-label style="color: black" position="stacked">Id</ion-label>
+            <ion-input placeholder="id" formControlName="id" id="inputId">
+            </ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-label position="stacked"> Name </ion-label>
+            <ion-label style="color: black" position="stacked">
+              Name
+            </ion-label>
             <ion-input placeholder="Name" formControlName="nombre"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> Surname </ion-label>
-            <ion-input placeholder="Surname" formControlName="apellido"></ion-input>
+            <ion-label style="color: black" position="stacked">
+              Surname
+            </ion-label>
+            <ion-input
+              placeholder="Surname"
+              formControlName="apellido"
+            ></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> Full Name </ion-label>
-            <ion-input placeholder="Full Name" formControlName="nombre_completo"></ion-input>
+            <ion-label style="color: black" position="stacked">
+              Full Name
+            </ion-label>
+            <ion-input
+              placeholder="Full Name"
+              formControlName="nombre_completo"
+            ></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> Phone </ion-label>
-            <ion-input placeholder="Phone" formControlName="telefono"></ion-input>
+            <ion-label style="color: black" position="stacked">
+              Phone
+            </ion-label>
+            <ion-input
+              placeholder="Phone"
+              formControlName="telefono"
+            ></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> email </ion-label>
+            <ion-label style="color: black" position="stacked">
+              email
+            </ion-label>
             <ion-input placeholder="email" formControlName="email"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> payment type </ion-label>
-            <ion-input placeholder="Full Name" formControlName="tipo_pago"></ion-input>
+            <ion-label style="color: black" position="stacked">
+              payment type
+            </ion-label>
+            <ion-input
+              placeholder="Type of payment"
+              formControlName="tipo_pago"
+            ></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> about me </ion-label>
-            <ion-input placeholder="about me" formControlName="acerca_de_mi"></ion-input>
+            <ion-label style="color: black" position="stacked">
+              about me
+            </ion-label>
+            <ion-input
+              placeholder="about me"
+              formControlName="acerca_de_mi"
+            ></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> qualification </ion-label>
-            <ion-input placeholder="qualification" formControlName="especialidad"></ion-input>
+            <ion-label style="color: black" position="stacked">
+              qualification
+            </ion-label>
+            <ion-input
+              placeholder="qualification"
+              formControlName="especialidad"
+            ></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> treatments desees </ion-label>
-            <ion-input placeholder="treatments desees" formControlName="enfermedades_tratadas"></ion-input>
+            <ion-label style="color: black" position="stacked">
+              treatments desees
+            </ion-label>
+            <ion-input
+              placeholder="treatments desees"
+              formControlName="enfermedades_tratadas"
+            ></ion-input>
           </ion-item>
 
           <!-- <ion-item disabled="true">
@@ -123,38 +154,44 @@
             <ion-input placeholder="puntaje" formControlName="score"></ion-input>
           </ion-item> -->
           <ion-item>
-            <ion-label position="stacked"> Image </ion-label>
+            <ion-label style="color: black" position="stacked">
+              Image
+            </ion-label>
 
             <div class="ion-padding">
-              <ngx-dropzone [maxFileSize]="7e6"  accept="image/jpg, image/png, image/jpeg" (change)="onSelectImagen($event)">
+              <ngx-dropzone
+                [maxFileSize]="7e6"
+                accept="image/jpg, image/png, image/jpeg"
+                (change)="onSelectImagen($event)"
+              >
                 <ngx-dropzone-label>upload images </ngx-dropzone-label>
-                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of fileImage" [file]="f" [removable]="true" (removed)="onRemove(fileImage,f)">
-                  <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                <ngx-dropzone-image-preview
+                  ngProjectAs="ngx-dropzone-preview"
+                  *ngFor="let f of fileImage"
+                  [file]="f"
+                  [removable]="true"
+                  (removed)="onRemove(fileImage,f)"
+                >
+                  <ngx-dropzone-label
+                    >{{ f.name }} ({{ f.type }})</ngx-dropzone-label
+                  >
                 </ngx-dropzone-image-preview>
               </ngx-dropzone>
             </div>
-
           </ion-item>
-
-
         </ion-list>
-
       </form>
-
-
-
-
     </ion-content>
     <form [formGroup]="formUploadNutriologo" (click)="save()">
       <ion-item>
         <ion-buttons slot="end">
+          <ion-label style="color: white">Save</ion-label>
           <ion-button type="submit" (click)="modal.dismiss()">
             <ion-icon size="large" name="cloud-upload-outline"></ion-icon>
           </ion-button>
         </ion-buttons>
       </ion-item>
     </form>
-
   </ng-template>
 </ion-modal>
 
@@ -173,47 +210,88 @@
     <ion-content>
       <form [formGroup]="formUploadNutriologo">
         <ion-list lines="full" class="ion-no-margin">
-
           <ion-item>
-            <ion-label position="stacked">Id</ion-label>
-            <ion-input placeholder="id" formControlName="id" id="inputId"> </ion-input>
+            <ion-label style="color: black" position="stacked"
+              >Id number</ion-label
+            >
+            <ion-input placeholder="id" formControlName="id" id="inputId">
+            </ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-label position="stacked"> Name </ion-label>
+            <ion-label style="color: black" position="stacked">
+              Name
+            </ion-label>
             <ion-input placeholder="Name" formControlName="nombre"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> Surname </ion-label>
-            <ion-input placeholder="Surname" formControlName="apellido"></ion-input>
+            <ion-label style="color: black" position="stacked">
+              Surname
+            </ion-label>
+            <ion-input
+              placeholder="Surname"
+              formControlName="apellido"
+            ></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> Full Name </ion-label>
-            <ion-input placeholder="Full Name" formControlName="nombre_completo"></ion-input>
+            <ion-label style="color: black" position="stacked">
+              Full Name
+            </ion-label>
+            <ion-input
+              placeholder="Full Name"
+              formControlName="nombre_completo"
+            ></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> Phone </ion-label>
-            <ion-input placeholder="Phone" formControlName="telefono"></ion-input>
+            <ion-label style="color: black" position="stacked">
+              Phone
+            </ion-label>
+            <ion-input
+              placeholder="Phone"
+              formControlName="telefono"
+            ></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> email </ion-label>
+            <ion-label style="color: black" position="stacked">
+              email
+            </ion-label>
             <ion-input placeholder="email" formControlName="email"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> payment type </ion-label>
-            <ion-input placeholder="Full Name" formControlName="tipo_pago"></ion-input>
+            <ion-label style="color: black" position="stacked">
+              payment type
+            </ion-label>
+            <ion-input
+              placeholder="Type of payment"
+              formControlName="tipo_pago"
+            ></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> about me </ion-label>
-            <ion-input placeholder="about me" formControlName="acerca_de_mi"></ion-input>
+            <ion-label style="color: black" position="stacked">
+              about me
+            </ion-label>
+            <ion-input
+              placeholder="about me"
+              formControlName="acerca_de_mi"
+            ></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> qualification </ion-label>
-            <ion-input placeholder="qualification" formControlName="especialidad"></ion-input>
+            <ion-label style="color: black" position="stacked">
+              qualification
+            </ion-label>
+            <ion-input
+              placeholder="qualification"
+              formControlName="especialidad"
+            ></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked"> treatments desees </ion-label>
-            <ion-input placeholder="treatments desees" formControlName="enfermedades_tratadas"></ion-input>
+            <ion-label style="color: black" position="stacked">
+              treatments desees
+            </ion-label>
+            <ion-input
+              placeholder="treatments desees"
+              formControlName="enfermedades_tratadas"
+            ></ion-input>
           </ion-item>
 
           <!-- <ion-item disabled="true">
@@ -221,32 +299,42 @@
             <ion-input placeholder="puntaje" formControlName="score"></ion-input>
           </ion-item> -->
           <ion-item>
-            <ion-label position="stacked"> Image </ion-label>
+            <ion-label style="color: black" position="stacked">
+              Image
+            </ion-label>
 
             <div class="ion-padding">
-              <ngx-dropzone [maxFileSize]="7e6"  accept="image/jpg, image/png, image/jpeg" (change)="onSelectImagen($event)">
+              <ngx-dropzone
+                [maxFileSize]="7e6"
+                accept="image/jpg, image/png, image/jpeg"
+                (change)="onSelectImagen($event)"
+              >
                 <ngx-dropzone-label>upload images </ngx-dropzone-label>
-                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of fileImage" [file]="f" [removable]="true" (removed)="onRemove(fileImage,f)">
-                  <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                <ngx-dropzone-image-preview
+                  ngProjectAs="ngx-dropzone-preview"
+                  *ngFor="let f of fileImage"
+                  [file]="f"
+                  [removable]="true"
+                  (removed)="onRemove(fileImage,f)"
+                >
+                  <ngx-dropzone-label
+                    >{{ f.name }} ({{ f.type }})</ngx-dropzone-label
+                  >
                 </ngx-dropzone-image-preview>
               </ngx-dropzone>
             </div>
-
           </ion-item>
-
-
         </ion-list>
       </form>
     </ion-content>
     <form [formGroup]="formUploadNutriologo" (ngSubmit)="guardarNutriologo()">
       <ion-item>
-
         <ion-buttons slot="end">
+          <ion-label style="color: white">Save</ion-label>
           <ion-button type="submit" (click)="registro.dismiss()">
             <ion-icon size="large" name="cloud-upload-outline"></ion-icon>
           </ion-button>
         </ion-buttons>
-
       </ion-item>
     </form>
   </ng-template>

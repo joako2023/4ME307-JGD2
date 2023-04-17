@@ -1,4 +1,5 @@
-import {Injectable} from '@angular/core';
+
+import { Injectable } from '@angular/core';
 import { UserInterface } from '../interfaces/user.interface';
 import { CrudService } from './FAST-TRACK-FRONTEND/crud.service';
 import { HttpGenericService } from './FAST-TRACK-FRONTEND/http-generic.service';

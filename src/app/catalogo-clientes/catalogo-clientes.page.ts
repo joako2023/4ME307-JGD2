@@ -50,12 +50,12 @@ export class CatalogoClientesPage implements OnInit {
   public formUploadNutriologo!: FormGroup;
 
   ngOnInit() {
-  
+
     this.nutriologoSvc.getList().subscribe((resp: any) => {
       this.listaNutriologos=resp
     });
-   
-   
+
+
     this.formUploadNutriologo = this.fb.group({
       id: [''],
       identificacion: ['', [Validators.required]],
@@ -73,7 +73,7 @@ export class CatalogoClientesPage implements OnInit {
       //terms: [false]
     });
 
-   
+
   }
 
   public get form() {
@@ -88,16 +88,16 @@ export class CatalogoClientesPage implements OnInit {
   search(value: string) {
     if (value) {
       this.nutriologoSvc.getHttp().get('/nutriologo/filtrar/'+value).subscribe((resp:any)=>{
-      
+
         this.listaNutriologos=resp;
-        
+
       })
     }else{
       this.nutriologoSvc.getList().subscribe((resp: any) => {
         this.listaNutriologos=resp
       });
     }
-    
+
   }
   // async image(){
   //   this.imgn = await this.ngxImage.returnImageCompress()
@@ -119,7 +119,7 @@ export class CatalogoClientesPage implements OnInit {
     const file =await this.utils.convertUrlToBinary(this.imageQueryPipe.transform(nut.imagen), nut.imagen);
       this.fileImage=[file]
 
-  
+
 
   }
 
@@ -132,15 +132,15 @@ export class CatalogoClientesPage implements OnInit {
     const { nombre, apellido } = this.formUploadNutriologo.value;
     this.formUploadNutriologo.controls['nombre_completo'].patchValue(`${nombre} ${apellido}`);
     this.formUploadNutriologo.controls['imagen'].patchValue('');
-   
+
     const data = this.formUploadNutriologo.value;
     for (const dataKey in data) {
       this.formData.append(dataKey, JSON.stringify(data[dataKey]));
     }
     for(const datum of this.fileImage) {
-      
+
       this.formData.append('photo',datum, datum.name);
-      
+
     }
     if(data.id !== null) {
       this.nutriologoSvc.post(this.formData)
@@ -152,9 +152,9 @@ export class CatalogoClientesPage implements OnInit {
   }
   async presentAlert(id: number) {
     const alert = await this.alertController.create({
-      header: 'Alerta',
-      subHeader: 'Borrar cliente',
-      message: '¿Desea continuar con la operación?',
+      header: 'warning',
+      subHeader: 'delete user',
+      message: 'do you want to continue?',
       buttons: [{ text: 'Aceptar', handler: () => { this.nutriologoSvc.delete(id) } }]
     });
 
@@ -165,15 +165,15 @@ export class CatalogoClientesPage implements OnInit {
     const { nombre, apellido } = this.formUploadNutriologo.value;
     this.formUploadNutriologo.controls['nombre_completo'].patchValue(`${nombre} ${apellido}`);
     this.formUploadNutriologo.controls['imagen'].patchValue('');
-   
+
     const data = this.formUploadNutriologo.value;
     for (const dataKey in data) {
       this.formData.append(dataKey, JSON.stringify(data[dataKey]));
     }
     for(const datum of this.fileImage) {
-      
+
       this.formData.append('photo',datum, datum.name);
-      
+
     }
     if(data.id !== null) {
       this.nutriologoSvc.put(this.formData)
@@ -184,11 +184,11 @@ export class CatalogoClientesPage implements OnInit {
 
 
 
-  
+
   onSelectImagen($event: NgxDropzoneChangeEvent) {
     this.fileImage = [...$event.addedFiles];
   }
-  
+
   // onSelect(arr: File[], $event: NgxDropzoneChangeEvent) {
   //   arr.push(...$event.addedFiles);
   // }
