@@ -30,7 +30,7 @@
     <ng-container *ngFor="let nutriologo of listaNutriologos">
 
       <ion-item lines="none">
-        <ion-item button (click)="verModal(modal, nutriologo)" *ngIf="nutriologo.nombre!=null">
+        <ion-item button (click)="verModal(modal, nutriologo)" *ngIf="nutriologo.nombre!==null">
           <ion-label style="color: black;">{{nutriologo.nombre}} {{ nutriologo.apellido}}</ion-label>
 
         </ion-item>
