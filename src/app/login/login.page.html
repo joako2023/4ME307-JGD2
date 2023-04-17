@@ -7,7 +7,7 @@
         <small *ngIf="form.username.errors.required">you must enter an email</small>
         <small *ngIf="form.username.errors.username">Use avalid email address</small>
       </div>
-      <label style="color: black;" for="password">Contraseña</label>
+      <label style="color: black;" for="password">Password</label>
       <input type="password" id="password" formControlName="password" required>
       <div class="erroresValidacion" *ngIf="form.password.invalid && (form.password.dirty || form.password.touched)">
         <small *ngIf="form.password.errors.required">you must enter an email</small>
@@ -17,7 +17,7 @@
       <button class="darkP botonSubmit" [disabled]="formularioLogin.invalid">Enter</button>
 
       <div id="create-account-container">
-        <label style="color: black;">not registered?    <a routerLink="/crear-cuenta" style="color:#e76d3e;">Create an acount</a></label>
+        <label style="color: black;">not registered?    <a routerLink="/crear-cuenta" style="color:#e76d3e;">Create an Account</a></label>
       </div>
    </form>
   </main>

@@ -26,7 +26,7 @@
           Password is mandotory
         </small>
         <small *ngIf="form.password.errors.minlength">
-          Passwrod lend its minimun 8 characters
+          The minimum length for a password is 8 characters
         </small>
       </div>
 
@@ -41,11 +41,11 @@
 
       <ion-item id="checkbox-container" lines="none">
         <ion-checkbox formControlName="terms"></ion-checkbox>
-        <ion-label style="color:#e76d3e;" class="ion-margin">Acept <a href="" style="color:#e76d3e;" >term and conditions</a></ion-label>
+        <ion-label style="color:#e76d3e;" class="ion-margin">Acept <a href="" style="color:#e76d3e;" >terms and conditions</a></ion-label>
       </ion-item>
 
       <button class="darkP botonSubmit" >next</button>
-       
+
       <div id="create-account-container">
         <label style="color: black;" >do you have an account? <a routerLink="/login" style="color:#e76d3e;">Login</a></label>
       </div>
